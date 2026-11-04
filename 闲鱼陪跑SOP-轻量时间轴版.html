@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>闲鱼运营陪跑 SOP 标准（轻量时间轴版）</title>
+<style>
+  :root{
+    --bg:#f5f6f8; --card:#fff; --ink:#1f2329; --sub:#6b7280; --line:#e6e8eb;
+    --brand:#ff5000; --brand-soft:#fff1ea; --blue:#2f6bff; --blue-soft:#eef3ff;
+    --green:#16a34a; --green-soft:#ecfdf3; --red:#dc2626; --red-soft:#fef2f2;
+    --amber:#d97706; --amber-soft:#fffbeb;
+  }
+  *{box-sizing:border-box}
+  html.no-js .pg{display:block}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.6;font-size:15px}
+  body.js .pg{display:none}
+  body.js .pg.active{display:block}
+  .wrap{max-width:960px;margin:0 auto;padding:16px 16px 60px}
+  header.top{position:sticky;top:0;z-index:20;background:var(--brand);color:#fff;padding:14px 16px;
+    box-shadow:0 2px 10px rgba(0,0,0,.12)}
+  header.top h1{margin:0;font-size:18px;font-weight:700;display:flex;align-items:center;gap:8px}
+  header.top .sub{font-size:12px;opacity:.92;margin-top:2px}
+  .bar{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+  .btn{border:none;border-radius:8px;padding:7px 13px;font-size:13px;cursor:pointer;font-weight:600;
+    background:rgba(255,255,255,.18);color:#fff;transition:.15s}
+  .btn:hover{background:rgba(255,255,255,.32)}
+  .btn.solid{background:#fff;color:var(--brand)}
+  nav.tabs{display:flex;gap:6px;overflow-x:auto;background:var(--card);padding:8px 12px;position:sticky;top:64px;z-index:15;
+    border-bottom:1px solid var(--line);box-shadow:0 1px 4px rgba(0,0,0,.04)}
+  nav.tabs button{border:none;background:transparent;color:var(--sub);padding:7px 12px;border-radius:8px;
+    font-size:13px;cursor:pointer;white-space:nowrap;font-weight:600}
+  nav.tabs button.active{background:var(--brand-soft);color:var(--brand)}
+  .pg{padding-top:18px}
+  .lead{background:var(--brand-soft);border:1px solid #ffd9c4;border-radius:12px;padding:12px 14px;font-size:13px;color:#7a3b1d;margin-bottom:16px}
+  h2.sec{font-size:16px;margin:0 0 12px;display:flex;align-items:center;gap:8px}
+  h2.sec .n{background:var(--brand);color:#fff;width:24px;height:24px;border-radius:7px;display:inline-flex;
+    align-items:center;justify-content:center;font-size:13px}
+  /* role grid */
+  .roles{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px}
+  .role{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px}
+  .role .nm{font-weight:700;font-size:14px;display:flex;align-items:center;gap:6px}
+  .role .tg{font-size:11px;padding:1px 7px;border-radius:20px;background:var(--blue-soft);color:var(--blue)}
+  .role p{margin:6px 0 0;font-size:12.5px;color:var(--sub)}
+  /* summary table */
+  .tbl{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;font-size:13px}
+  .tbl th,.tbl td{border-bottom:1px solid var(--line);padding:9px 10px;text-align:left;vertical-align:top}
+  .tbl th{background:#fafbfc;color:var(--sub);font-weight:600;font-size:12px;white-space:nowrap}
+  .tbl tr:last-child td{border-bottom:none}
+  .tbl .t{font-weight:700;color:var(--brand);white-space:nowrap}
+  /* timeline */
+  .tl{position:relative;margin-left:8px;padding-left:26px}
+  .tl::before{content:"";position:absolute;left:9px;top:6px;bottom:6px;width:2px;background:linear-gradient(var(--brand),#ffb38a)}
+  .node{position:relative;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:14px}
+  .node::before{content:"";position:absolute;left:-22px;top:18px;width:13px;height:13px;border-radius:50%;
+    background:var(--brand);border:3px solid #fff;box-shadow:0 0 0 2px var(--brand)}
+  .node .hd{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+  .badge{background:var(--brand);color:#fff;font-weight:700;font-size:13px;padding:3px 10px;border-radius:8px}
+  .role-tag{font-size:12px;padding:2px 9px;border-radius:20px;background:var(--blue-soft);color:var(--blue)}
+  .act{font-weight:700;font-size:15px}
+  .meta{font-size:12.5px;color:var(--sub);margin:4px 0 8px}
+  .meta b{color:var(--ink)}
+  ul.do{margin:6px 0 0;padding-left:18px}
+  ul.do li{margin:3px 0;font-size:13.5px}
+  .handoff{background:var(--green-soft);border-left:3px solid var(--green);border-radius:0 8px 8px 0;
+    padding:7px 10px;font-size:13px;margin-top:8px}
+  .handoff b{color:var(--green)}
+  .risk{background:var(--red-soft);border-left:3px solid var(--red);border-radius:0 8px 8px 0;
+    padding:7px 10px;font-size:12.5px;margin-top:8px;color:#991b1b}
+  .risk b{color:var(--red)}
+  /* copy block */
+  .copybox{background:#0f172a;color:#e2e8f0;border-radius:12px;padding:14px 16px;font-size:13px;position:relative;white-space:pre-wrap;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+  .copybtn{position:absolute;top:10px;right:10px;border:none;background:var(--brand);color:#fff;border-radius:7px;
+    padding:5px 11px;font-size:12px;cursor:pointer;font-weight:600}
+  .copybtn:hover{filter:brightness(1.08)}
+  .edit-tip{font-size:12px;color:var(--sub);margin:4px 0 14px}
+  footer{margin-top:30px;text-align:center;font-size:12px;color:var(--sub)}
+  @media print{body{background:#fff}header.top,nav.tabs,.bar,.copybtn{display:none!important}
+    body.js .pg{display:block!important}.node,.role,.tbl{break-inside:avoid}}
+  [data-e][contenteditable="true"]{outline:2px dashed var(--brand);border-radius:6px;padding:2px 4px;background:#fffdf8}
+  body.editing .edit-tip{display:block}
+</style>
+</head>
+<body class="js">
+<header class="top">
+  <h1>🐟 闲鱼运营陪跑 SOP 标准 <span style="font-size:12px;opacity:.85">· 轻量时间轴版</span></h1>
+  <div class="sub">基于《时间点.xlsx》整理 · 单文件离线可用 · 可编辑 / 可导出 / 可打印</div>
+  <div class="bar">
+    <button class="btn solid" id="btnEdit">✏️ 编辑内容</button>
+    <button class="btn" id="btnExport">⬇️ 导出独立 HTML</button>
+    <button class="btn" id="btnPrint">🖨️ 打印 / 存 PDF</button>
+    <button class="btn" id="btnReset">↺ 还原</button>
+  </div>
+</header>
+
+<nav class="tabs" id="tabs">
+  <button data-tab="overview" class="active">总览</button>
+  <button data-tab="roles">角色分工</button>
+  <button data-tab="axis">陪跑时间轴</button>
+  <button data-tab="summary">时间轴总表</button>
+  <button data-tab="order">成单信息模板</button>
+  <button data-tab="review">复盘 / 反馈</button>
+</nav>
+
+<div class="wrap">
+
+  <!-- 总览 -->
+  <section class="pg active" id="overview">
+    <div class="lead" data-e>
+      本标准为「前端销售 → 后端带教」交接的<strong>轻量执行版</strong>，全程以 <b>T+0 ~ T+N</b> 时间轴驱动，
+      每一步都明确了<strong>谁来做、通知谁、做什么、交接什么</strong>。适用于录播 / 直播社群 / 1对1陪跑 / 全案代运营的组合班型。
+      红线：不承诺「包出单 / 保收益」、不代持账号、不碰灰产 / 侵权 / 无货源违规。
+    </div>
+    <h2 class="sec"><span class="n">0</span>陪跑全流程一图速览</h2>
+    <div class="tbl">
+      <table>
+        <tr><th>阶段</th><th>时间锚点</th><th>主导人</th><th>关键产出</th></tr>
+        <tr><td data-e>售前交接</td><td class="t" data-e>T+0 ~ T+2h</td><td data-e>销售</td><td data-e>合同+收款、拉群、决定带教</td></tr>
+        <tr><td data-e>接群启动</td><td class="t" data-e>T+3h</td><td data-e>运营经理</td><td data-e>改群名、欢迎语、讲清节奏</td></tr>
+        <tr><td data-e>摸排建档</td><td class="t" data-e>T+6h</td><td data-e>运营经理</td><td data-e>学员信息+3店铺账号准备</td></tr>
+        <tr><td data-e>每日发品</td><td class="t" data-e>T+1d 起</td><td data-e>运营 / 学员</td><td data-e>每日10:30前发5品+截图</td></tr>
+        <tr><td data-e>成单收款</td><td class="t" data-e>T+1d 起</td><td data-e>学员 / 运营经理</td><td data-e>成单信息齐全、确认收款发货</td></tr>
+        <tr><td data-e>复盘反馈</td><td class="t" data-e>T+N</td><td data-e>全员</td><td data-e>复盘表+SOP迭代+闭环回前端</td></tr>
+      </table>
+    </div>
+    <p class="edit-tip">💡 编辑模式已开：点上方「✏️ 编辑内容」后，所有带虚线框的文字可直接改，自动本地保存。</p>
+  </section>
+
+  <!-- 角色分工 -->
+  <section class="pg" id="roles">
+    <h2 class="sec"><span class="n">1</span>角色与分工</h2>
+    <div class="roles">
+      <div class="role"><div class="nm">📣 销售 <span class="tg">前端/获客</span></div>
+        <p data-e>逼单、提单支付、拉群；T+0~T+2h 主导交接，T+1h 同步运营侧并 @运营主管 决定带教。</p></div>
+      <div class="role"><div class="nm">🧭 运营主管</div>
+        <p data-e>决定哪位运营经理（带教）接单；监督陪跑质量与交接时效。</p></div>
+      <div class="role"><div class="nm">🤝 运营经理 / 带教</div>
+        <p data-e>T+2h 接入、T+3h 接管群+欢迎语、T+6h 调研、T+1d 起每日同步商品、成单整体、收款确认；全程陪跑。</p></div>
+      <div class="role"><div class="nm">📦 订单专员 <span class="tg">示例：子萍</span></div>
+        <p data-e>订单后问题对接、发货执行；收款确认后由运营经理 @其发货。</p></div>
+      <div class="role"><div class="nm">🙋 学员</div>
+        <p data-e>备 3 店铺账号（3支付宝+3手机）、每日发品并截图、成单截图、转账。</p></div>
+    </div>
+    <p class="edit-tip">💡 示例中「戴广久 / 王雨 / 子萍 / 范志强」等为实际人员占位，可按团队名单在编辑模式下替换。</p>
+  </section>
+
+  <!-- 时间轴 -->
+  <section class="pg" id="axis">
+    <h2 class="sec"><span class="n">2</span>陪跑时间轴（核心执行卡）</h2>
+    <div class="tl">
+
+      <div class="node">
+        <div class="hd"><span class="badge">T+0</span><span class="role-tag">销售</span><span class="act" data-e>支付成功 / 销售拉群</span></div>
+        <div class="meta" data-e>通知/相关人：<b>销售 → 学员</b></div>
+        <ul class="do">
+          <li data-e>发送腾讯电子签合同链接，走官方签约</li>
+          <li data-e>企业微信收款（不私下转账）</li>
+        </ul>
+        <div class="handoff" data-e><b>交接动作：</b>同步运营侧学员情况（姓名/诉求/班型/已承诺事项）。</div>
+        <div class="risk" data-e><b>合规：</b>合同与收款必须走官方渠道；不向学员承诺「包出单 / 保收益」，只承诺教方法+陪跑+资源。</div>
+      </div>
+
+      <div class="node">
+        <div class="hd"><span class="badge">T+1h</span><span class="role-tag">销售</span><span class="act" data-e>通知运营</span></div>
+        <div class="meta" data-e>通知/相关人：<b>@戴广久 @王雨（运营主管）</b></div>
+        <ul class="do">
+          <li data-e>同步学员信息和相关情况（背景 / 账号 / 品类 / 预算 / 已承诺）</li>
+        </ul>
+        <div class="handoff" data-e><b>交接动作：</b>由运营主管决定哪位运营经理（带教）来陪跑。</div>
+        <div class="risk" data-e><b>风险：</b>核查销售承诺是否过度（如「几天必出单」），标注并提醒带教 PM 对齐口径。</div>
+      </div>
+
+      <div class="node">
+        <div class="hd"><span class="badge">T+2h</span><span class="role-tag">销售</span><span class="act" data-e>拉群</span></div>
+        <div class="meta" data-e>通知/相关人：<b>运营经理、学员、订单专员（子萍）、运营主管</b></div>
+        <ul class="do">
+          <li data-e>销售发言介绍，正式开启陪跑服务</li>
+          <li data-e>运营经理接入群</li>
+          <li data-e>修改备注名：花名@角色（便于追溯）</li>
+        </ul>
+        <div class="risk" data-e><b>规范：</b>备注名统一「花名@角色」，后续沟通与复盘可快速定位责任人。</div>
+      </div>
+
+      <div class="node">
+        <div class="hd"><span class="badge">T+3h</span><span class="role-tag">运营</span><span class="act" data-e>接管群</span></div>
+        <div class="meta" data-e>通知/相关人：<b>群内全员</b></div>
+        <ul class="do">
+          <li data-e>运营经理修改群名：学员姓名+日期+运营经理花名，例：<b>江涛20261016@海月</b></li>
+          <li data-e>欢迎语 @运营经理：① 介绍群内人员分工（日常运营/收款@运营经理，订单后问题@订单专员）</li>
+          <li data-e>② 一句话介绍带教视频内容</li>
+          <li data-e>③ 一句话介绍工作时间</li>
+          <li data-e>④ 一句话介绍每天动作：发品 5 个，发完品学员截图给群里运营经理</li>
+        </ul>
+        <div class="risk" data-e><b>合规：</b>欢迎语不承诺收益，只讲方法/节奏/陪跑；账号归属与操作权限建议书面确认（区分学员自操作 vs 代运营）。</div>
+      </div>
+
+      <div class="node">
+        <div class="hd"><span class="badge">T+6h</span><span class="role-tag">运营</span><span class="act" data-e>初步调研</span></div>
+        <div class="meta" data-e>通知/相关人：<b>学员</b></div>
+        <ul class="do">
+          <li data-e>收集信息：姓名、手机号、闲鱼店铺几个</li>
+          <li data-e>要求 <b>3 个店铺账号</b>，对应 3 个支付宝、3 个手机号（给学员 1 天准备）</li>
+          <li data-e>准备好的店铺，分别截图店铺主页 + 店铺安全页</li>
+        </ul>
+        <div class="risk" data-e><b>合规：</b>3 店铺账号须本人实名合规，不代持、不碰灰产 / 侵权 / 无货源违规；账号若被限流/降权须标注。</div>
+      </div>
+
+      <div class="node">
+        <div class="hd"><span class="badge">T+1d</span><span class="role-tag">运营</span><span class="act" data-e>同步商品</span></div>
+        <div class="meta" data-e>通知/相关人：<b>学员</b></div>
+        <ul class="do">
+          <li data-e>每天 <b>10:30 之前</b> 发送 5 个商品的素材等相关材料</li>
+          <li data-e>要求学员发送完后，同步商品截图到群里</li>
+        </ul>
+        <div class="risk" data-e><b>预警：</b>每日发品是硬动作，未发品即触发掉队预警；商品素材须过合规审核（无侵权/违规词）。</div>
+      </div>
+
+      <div class="node">
+        <div class="hd"><span class="badge">T+1d 起</span><span class="role-tag">学员成单</span><span class="act" data-e>成单信息汇总</span></div>
+        <div class="meta" data-e>通知/相关人：<b>学员截图，运营经理整体</b></div>
+        <ul class="do">
+          <li data-e>学员成单后截图，运营经理按「成单信息模板」整合成单信息（见「成单信息模板」页）</li>
+          <li data-e>渔货栈供应链必填渔货号；信息完整方可安排发货</li>
+        </ul>
+        <div class="handoff" data-e><b>交接动作：</b>成单信息交付订单专员备货发货。</div>
+        <div class="risk" data-e><b>风控：</b>成单信息务必完整（缺一不发货）；明确「出单」=真实成交，区分学员自操作 vs 代运营、是否计入退单。</div>
+      </div>
+
+      <div class="node">
+        <div class="hd"><span class="badge">成单后</span><span class="role-tag">收款</span><span class="act" data-e>确认收款 → 发货</span></div>
+        <div class="meta" data-e>通知/相关人：<b>运营经理 → 订单专员（子萍）</b></div>
+        <ul class="do">
+          <li data-e>确认学员转账收款</li>
+          <li data-e>收款后群里同步 @订单专员，可以发货</li>
+        </ul>
+        <div class="risk" data-e><b>风控：</b>收款确认后再 @发货，避免空发；退款/纠纷按平台规则处理，留存沟通凭证。</div>
+      </div>
+
+      <div class="node">
+        <div class="hd"><span class="badge">T+N</span><span class="role-tag">全员</span><span class="act" data-e>复盘 + 跨团队反馈</span></div>
+        <div class="meta" data-e>通知/相关人：<b>全员</b></div>
+        <ul class="do">
+          <li data-e>产出复盘表 + SOP 迭代 + 反馈记录</li>
+          <li data-e>沉淀脱敏案例（用于获客团队背书）</li>
+          <li data-e>反馈必须闭环回前端（优化话术 / 教研 / 陪跑节奏）</li>
+        </ul>
+        <div class="risk" data-e><b>闭环：</b>→ 获客：哪些承诺易引发退款；→ 内容：课程薄弱点；→ 带教：导师工作量优化。</div>
+      </div>
+
+    </div>
+    <p class="edit-tip">💡 各节点动作、风险提示均可在编辑模式下直接修改。</p>
+  </section>
+
+  <!-- 总表 -->
+  <section class="pg" id="summary">
+    <h2 class="sec"><span class="n">3</span>陪跑时间轴总表（速查）</h2>
+    <div class="tbl">
+      <table>
+        <tr><th>时间点</th><th>责任人</th><th>节点动作</th><th>通知/相关人</th><th>动作要点</th><th>交接动作</th></tr>
+        <tr><td class="t" data-e>T+0</td><td data-e>销售</td><td data-e>支付成功/拉群</td><td data-e>销售→学员</td><td data-e>①电子签合同 ②企业微信收款</td><td data-e>同步运营侧学员情况</td></tr>
+        <tr><td class="t" data-e>T+1h</td><td data-e>销售</td><td data-e>通知运营</td><td data-e>@戴广久 @王雨</td><td data-e>同步学员信息和情况</td><td data-e>决定哪位运营经理陪跑</td></tr>
+        <tr><td class="t" data-e>T+2h</td><td data-e>销售</td><td data-e>拉群</td><td data-e>运营经理/学员/订单专员/运营主管</td><td data-e>①发言开启服务 ②运营经理接入 ③改备注名</td><td data-e>—</td></tr>
+        <tr><td class="t" data-e>T+3h</td><td data-e>运营</td><td data-e>接管群</td><td data-e>群内全员</td><td data-e>改群名+欢迎语（分工/视频/时间/每天动作）</td><td data-e>—</td></tr>
+        <tr><td class="t" data-e>T+6h</td><td data-e>运营</td><td data-e>初步调研</td><td data-e>学员</td><td data-e>收信息+要3店铺账号(3支付/3手机)+截图</td><td data-e>—</td></tr>
+        <tr><td class="t" data-e>T+1d</td><td data-e>运营</td><td data-e>同步商品</td><td data-e>学员</td><td data-e>每天10:30前发5品+发完截图到群</td><td data-e>—</td></tr>
+        <tr><td class="t" data-e>T+1d起</td><td data-e>学员成单</td><td data-e>成单汇总</td><td data-e>学员截图/运营经理整体</td><td data-e>按成单信息模板整合（渔货号必填）</td><td data-e>交付订单专员备货</td></tr>
+        <tr><td class="t" data-e>成单后</td><td data-e>收款</td><td data-e>确认收款</td><td data-e>运营经理→订单专员</td><td data-e>确认转账后@订单专员发货</td><td data-e>—</td></tr>
+        <tr><td class="t" data-e>T+N</td><td data-e>全员</td><td data-e>复盘+反馈</td><td data-e>全员</td><td data-e>复盘表+SOP迭代+脱敏案例+闭环回前端</td><td data-e>—</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- 成单信息模板 -->
+  <section class="pg" id="order">
+    <h2 class="sec"><span class="n">4</span>成单信息模板（复制填写）</h2>
+    <p class="edit-tip" style="display:block">每次成单按此模板收集，信息齐全方可 @订单专员 发货；渔货栈供应链必填渔货号。</p>
+    <div class="copybox" id="orderBox" data-e>产品：小天才电话手表z6
+渔货号：xxxx（渔货栈供应链必填）
+收货人：韦丽宝[8893]
+手机号码：18448261335-8893
+地址信息：广西壮族自治区柳州市柳江区拉堡镇柳西新城63栋2单元703号[8893]
+备注：绿色，发货拍视频
+成本价：320
+所属供应链：渔货栈
+学员姓名：卫丽珍
+学员店铺名称：卫卫Vivi
+专属运营经理：范志强</div>
+    <button class="copybtn" data-copy="orderBox">复制</button>
+  </section>
+
+  <!-- 复盘 -->
+  <section class="pg" id="review">
+    <h2 class="sec"><span class="n">5</span>复盘 / 跨团队反馈模板</h2>
+    <p class="edit-tip" style="display:block">T+N 结营或单学员结单时使用；案例须脱敏，反馈必须闭环回前端。</p>
+    <div class="copybox" id="reviewBox" data-e>【陪跑复盘表】
+学员：______    运营经理：______    周期：______
+1. 目标达成：出单___单 / 上架___件 / 完课率___%
+2. 里程碑：选品✅  上架✅  优化✅  首单✅
+3. 风险与处理：______
+4. 客户反馈：______
+5. SOP 迭代建议：______
+6. 脱敏案例（用于前端背书）：______
+7. 跨团队反馈闭环：→ 获客 / 内容 / 带教</div>
+    <button class="copybtn" data-copy="reviewBox">复制</button>
+    <div class="risk" style="margin-top:14px" data-e><b>出单验收拆解：</b>将「出单」拆成前置可验收动作——选品确认✅ → 上架完成✅ → 优化达标✅ → 首单✅，避免结果全押最后一环；因学员不执行导致的未出单须留存证据、界定责任。</div>
+  </section>
+
+  <footer>闲鱼运营陪跑 SOP 标准（轻量时间轴版）· 基于《时间点.xlsx》· 单文件离线 · 可编辑导出</footer>
+</div>
+
+<script>
+(function(){
+  var KEY='xykb_sop_light_edit';
+  function safe(fn){try{return fn()}catch(e){return null}}
+  // tabs
+  var tabs=document.getElementById('tabs');
+  tabs.addEventListener('click',function(e){
+    var b=e.target.closest('button'); if(!b)return;
+    [].forEach.call(tabs.children,function(x){x.classList.remove('active')});
+    b.classList.add('active');
+    var id=b.getAttribute('data-tab');
+    [].forEach.call(document.querySelectorAll('.pg'),function(p){
+      p.classList.toggle('active',p.id===id);
+    });
+  });
+  // edit mode
+  var editing=false;
+  var btnEdit=document.getElementById('btnEdit');
+  function setEdit(on){
+    editing=on;
+    document.body.classList.toggle('editing',on);
+    [].forEach.call(document.querySelectorAll('[data-e]'),function(el){
+      el.setAttribute('contentEditable',on?'true':'false');
+    });
+    btnEdit.textContent=on?'💾 保存完成':'✏️ 编辑内容';
+    if(on){btnEdit.classList.add('solid');}
+    else{btnEdit.classList.remove('solid'); save();}
+  }
+  function save(){
+    var data={};
+    [].forEach.call(document.querySelectorAll('[data-e]'),function(el){
+      data[el.id||(el.getAttribute('data-e')&&el.previousElementSibling&&el.previousElementSibling.textContent)||Math.random()]=el.innerHTML;
+    });
+    safe(function(){localStorage.setItem(KEY,JSON.stringify(collect()))});
+  }
+  function collect(){
+    var o={};
+    [].forEach.call(document.querySelectorAll('[data-e]'),function(el,i){
+      o['n'+i]=el.innerHTML;
+    });
+    return o;
+  }
+  function restore(){
+    var raw=safe(function(){return localStorage.getItem(KEY)});
+    if(!raw)return;
+    try{var o=JSON.parse(raw);
+      var els=document.querySelectorAll('[data-e]');
+      Object.keys(o).forEach(function(k){
+        var i=parseInt(k.replace('n',''),10);
+        if(els[i])els[i].innerHTML=o[k];
+      });
+    }catch(e){}
+  }
+  // input debounce save
+  document.addEventListener('input',function(e){
+    if(editing && e.target.closest('[data-e]')){
+      clearTimeout(window.__st);window.__st=setTimeout(save,400);
+    }
+  });
+  btnEdit.addEventListener('click',function(){setEdit(!editing)});
+  // copy
+  [].forEach.call(document.querySelectorAll('[data-copy]'),function(b){
+    b.addEventListener('click',function(){
+      var txt=document.getElementById(b.getAttribute('data-copy')).innerText;
+      var done=function(){b.textContent='已复制';setTimeout(function(){b.textContent='复制'},1200)};
+      var fail=function(){b.textContent='请手动复制';setTimeout(function(){b.textContent='复制'},1500)};
+      if(navigator.clipboard&&navigator.clipboard.writeText){
+        navigator.clipboard.writeText(txt).then(done,fail);
+      }else{fail();}
+    });
+  });
+  // export standalone
+  document.getElementById('btnExport').addEventListener('click',function(){
+    var clone=document.cloneNode(true);
+    clone.documentElement.className='no-js';
+    // strip scripts & contenteditable
+    [].forEach.call(clone.querySelectorAll('script'),function(s){s.remove()});
+    [].forEach.call(clone.querySelectorAll('[data-e],[contenteditable]'),function(el){
+      el.removeAttribute('contenteditable');
+    });
+    // expand all pages
+    [].forEach.call(clone.querySelectorAll('.pg'),function(p){p.classList.add('active')});
+    var html='<!DOCTYPE html>\n'+clone.documentElement.outerHTML;
+    var blob=new Blob([html],{type:'text/html;charset=utf-8'});
+    var url=URL.createObjectURL(blob);
+    var a=document.createElement('a');
+    a.href=url;a.download='闲鱼陪跑SOP-轻量时间轴版(导出).html';
+    document.body.appendChild(a);a.click();a.remove();
+    setTimeout(function(){URL.revokeObjectURL(url)},2000);
+  });
+  // print
+  document.getElementById('btnPrint').addEventListener('click',function(){window.print();});
+  // reset
+  document.getElementById('btnReset').addEventListener('click',function(){
+    if(!confirm('确认还原所有编辑内容？（仅清除本地修改，不影响原文件）'))return;
+    safe(function(){localStorage.removeItem(KEY)});
+    location.reload();
+  });
+  restore();
+})();
+</script>
+</body>
+</html>
