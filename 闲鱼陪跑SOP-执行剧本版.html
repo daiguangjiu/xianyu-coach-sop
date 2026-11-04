@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>闲鱼运营陪跑 SOP · 执行剧本（运营教练版）</title>
+<style>
+  :root{
+    --bg:#f4f6f9; --card:#fff; --ink:#1f2329; --sub:#6b7280; --line:#e7e9ee;
+    --brand:#ff5000; --brand-soft:#fff1ea; --blue:#2f6bff; --blue-soft:#eef3ff;
+    --green:#16a34a; --green-soft:#ecfdf3; --red:#dc2626; --red-soft:#fef2f2;
+    --amber:#d97706; --amber-soft:#fffbeb;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.65;font-size:15px}
+  /* sticky top */
+  header.top{position:sticky;top:0;z-index:30;background:var(--brand);color:#fff;padding:12px 16px;box-shadow:0 2px 10px rgba(0,0,0,.12)}
+  header.top h1{margin:0;font-size:17px;font-weight:700}
+  header.top .sub{font-size:12px;opacity:.92;margin-top:2px}
+  .bar{display:flex;gap:8px;flex-wrap:wrap;margin-top:9px}
+  .btn{border:none;border-radius:8px;padding:6px 12px;font-size:12.5px;cursor:pointer;font-weight:600;background:rgba(255,255,255,.18);color:#fff}
+  .btn:hover{background:rgba(255,255,255,.32)}
+  .btn.solid{background:#fff;color:var(--brand)}
+  /* progress */
+  .prog{position:sticky;top:58px;z-index:25;background:#fff;border-bottom:1px solid var(--line);padding:8px 16px;display:flex;align-items:center;gap:12px}
+  .prog .track{flex:1;height:8px;background:#eef0f4;border-radius:20px;overflow:hidden}
+  .prog .fill{height:100%;width:0;background:linear-gradient(90deg,var(--brand),#ff8a4c);transition:width .3s}
+  .prog .num{font-size:13px;font-weight:700;color:var(--brand);white-space:nowrap}
+  .wrap{margin:0;padding:18px 16px 70px}
+
+  /* scenario hero */
+  .hero{background:linear-gradient(135deg,#fff1ea,#ffe3d6);border:1px solid #ffd2ba;border-radius:16px;padding:18px 20px;margin-bottom:20px}
+  .hero h2{margin:0 0 8px;font-size:17px}
+  .hero p{margin:6px 0;font-size:14px;color:#7a3b1d}
+  .hero .flow{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;align-items:center}
+  .hero .chip{background:#fff;border:1px solid #ffcdb5;color:#c2410c;font-size:12.5px;padding:4px 10px;border-radius:20px;font-weight:600}
+  .hero .arrow{color:#c2410c;font-weight:700}
+
+  /* role map */
+  .roles{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-bottom:22px}
+  .role{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:11px}
+  .role .nm{font-weight:700;font-size:13.5px}
+  .role.me{background:var(--brand-soft);border-color:#ffcdb5}
+  .role.me .nm{color:var(--brand)}
+  .role p{margin:5px 0 0;font-size:12px;color:var(--sub)}
+
+  /* stage */
+  .stage{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 18px 16px;margin-bottom:18px;scroll-margin-top:120px}
+  .stage .shd{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+  .stage .sn{background:var(--brand);color:#fff;width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;flex:none}
+  .stage .st{font-size:17px;font-weight:800;margin:0}
+  .stage .tm{font-size:12px;color:var(--brand);background:var(--brand-soft);padding:3px 10px;border-radius:20px;font-weight:700;margin-left:auto;white-space:nowrap}
+  .trig{font-size:13px;color:var(--sub);background:#fafbfc;border-left:3px solid var(--blue);border-radius:0 8px 8px 0;padding:8px 12px;margin-bottom:12px}
+  .trig b{color:var(--ink)}
+
+  ul.check{list-style:none;margin:0 0 6px;padding:0}
+  ul.check li{display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed #eef0f4}
+  ul.check li:last-child{border-bottom:none}
+  ul.check input[type=checkbox]{width:18px;height:18px;margin-top:2px;accent-color:var(--brand);flex:none;cursor:pointer}
+  ul.check label{flex:1;font-size:14px;cursor:pointer}
+  ul.check li.done label{color:var(--sub);text-decoration:line-through}
+  [data-e][contenteditable="true"]{outline:2px dashed var(--brand);border-radius:6px;padding:1px 4px;background:#fffdf8}
+
+  .tpl{background:#0f172a;color:#e2e8f0;border-radius:12px;padding:14px 16px;font-size:13px;position:relative;white-space:pre-wrap;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;margin:12px 0 4px}
+  .tplbtn{position:absolute;top:10px;right:10px;border:none;background:var(--brand);color:#fff;border-radius:7px;padding:5px 11px;font-size:12px;cursor:pointer;font-weight:600}
+  .tplbtn:hover{filter:brightness(1.08)}
+  .tpLabel{font-size:12px;color:var(--sub);margin:10px 0 0;font-weight:600}
+  .tpLabel::before{content:"💬 ";}
+
+  .handoff{background:var(--green-soft);border-left:3px solid var(--green);border-radius:0 8px 8px 0;padding:8px 12px;font-size:13px;margin-top:12px}
+  .handoff b{color:var(--green)}
+  .redline{background:var(--red-soft);border-left:3px solid var(--red);border-radius:0 8px 8px 0;padding:8px 12px;font-size:13px;margin-top:10px;color:#991b1b}
+  .redline b{color:var(--red)}
+  .gate{background:var(--amber-soft);border-left:3px solid var(--amber);border-radius:0 8px 8px 0;padding:10px 12px;font-size:13px;margin-top:12px;color:#9a3412}
+  .gate b{color:#c2410c}
+  .grpname{background:#fef2f2;border:2px solid var(--red);border-radius:12px;padding:12px 14px;margin:12px 0;color:#991b1b}
+  .grpname b{color:var(--red)}
+  .grpname .fmt{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;background:#fff;padding:4px 8px;border-radius:6px;display:inline-block;margin:6px 0;font-weight:700;color:#b91c1c;border:1px dashed #fca5a5}
+
+  .toolbox h2{font-size:18px;margin:6px 0 4px}
+  .toolbox .desc{font-size:13px;color:var(--sub);margin:0 0 14px}
+  footer{margin-top:30px;text-align:center;font-size:12px;color:var(--sub)}
+  .edit-tip{font-size:12px;color:var(--sub);background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:8px 12px;margin:0 0 16px;display:none}
+  body.editing .edit-tip{display:block}
+  /* 全流程一览图 */
+  .ov{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:20px}
+  .ov h2{margin:0 0 4px;font-size:17px}
+  .ov .sub{font-size:13px;color:var(--sub);margin:0 0 12px}
+  .legend{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+  .legend span{font-size:12px;display:inline-flex;align-items:center;gap:5px;color:var(--sub)}
+  .legend i{width:10px;height:10px;border-radius:3px;display:inline-block}
+  .ov-tl{position:relative;margin-left:4px;padding-left:20px}
+  .ov-tl::before{content:"";position:absolute;left:6px;top:8px;bottom:8px;width:2px;background:linear-gradient(var(--brand),#ffb38a)}
+  .ov-node{position:relative;display:flex;align-items:baseline;gap:10px;padding:9px 0;border-bottom:1px dashed #eef0f4;flex-wrap:wrap}
+  .ov-node:last-child{border-bottom:none}
+  .ov-node::before{content:"";position:absolute;left:-17px;top:14px;width:11px;height:11px;border-radius:50%;background:var(--brand);border:3px solid #fff;box-shadow:0 0 0 2px var(--brand)}
+  .ov-t{font-weight:800;color:var(--brand);font-size:13px;min-width:54px}
+  .ov-act{font-size:13.5px;flex:1;min-width:200px}
+  .rt{font-size:11.5px;padding:2px 8px;border-radius:20px;font-weight:700;white-space:nowrap}
+  .rt-sales{background:#eef3ff;color:#2f6bff}
+  .rt-sup{background:#f3eaff;color:#7c3aed}
+  .rt-mgr{background:var(--brand-soft);color:var(--brand)}
+  .rt-biz{background:#e0f5fe;color:#0ea5e9}
+  .rt-ord{background:#fce7f3;color:#db2777}
+  .rt-stu{background:var(--green-soft);color:var(--green)}
+
+  @media print{body{background:#fff}header.top,.prog,.bar,.tplbtn,.edit-tip{display:none!important}
+    .stage,.hero,.roles,.ov{break-inside:avoid}ul.check li.done label{text-decoration:none}}
+</style>
+</head>
+<body class="js">
+<header class="top">
+  <h1>🐟 闲鱼运营陪跑 SOP · 执行剧本</h1>
+  <div class="sub">运营教练视角 · 按时间顺序照着做 · 每步可打勾 · 话术直接复制</div>
+  <div class="bar">
+    <button class="btn solid" id="btnEdit">✏️ 编辑内容</button>
+    <button class="btn" id="btnExport">⬇️ 导出独立 HTML</button>
+    <button class="btn" id="btnPrint">🖨️ 打印 / 存 PDF</button>
+    <button class="btn" id="btnReset">↺ 清空勾选</button>
+  </div>
+</header>
+
+<div class="prog">
+  <span class="num" id="pgNum">0 / 0 已完成</span>
+  <div class="track"><div class="fill" id="pgFill"></div></div>
+</div>
+
+<div class="wrap">
+
+  <!-- 场景代入 -->
+  <div class="hero">
+    <h2>🎬 先代入这个场景</h2>
+    <p data-e>你是<b>运营教练（带教）</b>。当一个学员在闲鱼交了费，销售把你拉进服务群，陪跑就正式开场了。接下来从 <b>T+0 到出单 / 结营</b>，这份剧本就是你要做的事——<b>谁在什么时候、发什么话、交给我们谁、红线是什么</b>，照着勾、照着发就行。</p>
+    <div class="flow">
+      <span class="chip">学员支付</span><span class="arrow">→</span>
+      <span class="chip">销售拉群</span><span class="arrow">→</span>
+      <span class="chip">你 T+2h 接入</span><span class="arrow">→</span>
+      <span class="chip">T+3h 接管群</span><span class="arrow">→</span>
+      <span class="chip">T+6h 摸排</span><span class="arrow">→</span>
+      <span class="chip">T+1d 起每日发品</span><span class="arrow">→</span>
+      <span class="chip">成单→同步商务升单</span><span class="arrow">→</span>
+      <span class="chip">T+N 复盘</span>
+    </div>
+  </div>
+
+  <!-- 陪跑全流程一览图 -->
+  <div class="ov">
+    <h2>🗺️ 陪跑全流程一览图</h2>
+    <p class="sub">一张图看全：谁、在哪个时间点、做什么。颜色对应下方角色。</p>
+    <div class="legend">
+      <span><i style="background:#2f6bff"></i>销售</span>
+      <span><i style="background:#7c3aed"></i>运营主管</span>
+      <span><i style="background:#ff5000"></i>运营教练(你)</span>
+      <span><i style="background:#0ea5e9"></i>商务(陪跑/广告)</span>
+      <span><i style="background:#db2777"></i>订单专员</span>
+      <span><i style="background:#16a34a"></i>学员</span>
+    </div>
+    <div class="ov-tl">
+      <div class="ov-node"><span class="ov-t">T+0</span><span class="rt rt-sales">销售</span><span class="ov-act" data-e>支付成功 · 拉群 · 电子签合同 + 企业微信收款</span></div>
+      <div class="ov-node"><span class="ov-t">T+1h</span><span class="rt rt-sales">销售</span><span class="ov-act" data-e>通知运营 @范志强，同步学员信息，决定哪位带教接单</span></div>
+      <div class="ov-node"><span class="ov-t">T+2h</span><span class="rt rt-sales">销售</span><span class="ov-act" data-e>拉群：销售发言开启 · 运营教练接入 · 相关人员进群后统一备注名(角色@花名)</span></div>
+      <div class="ov-node"><span class="ov-t">T+3h</span><span class="rt rt-mgr">运营教练</span><span class="ov-act" data-e>接管群 · 改群名(学员+课程类型#+日期+花名) · 发欢迎语(分工/带教流程/时间/升单预期)</span></div>
+      <div class="ov-node"><span class="ov-t">T+6h</span><span class="rt rt-mgr">运营教练</span><span class="ov-act" data-e>摸排：收信息 · 账号 1 个可起步(优先 3 个) · 店铺主页+安全页截图</span></div>
+      <div class="ov-node"><span class="ov-t">T+1d 起</span><span class="rt rt-mgr">运营教练</span><span class="ov-act" data-e>每日 10:30 前发 5 品 · 学员发完截图回群</span></div>
+      <div class="ov-node"><span class="ov-t">T+5d</span><span class="rt rt-mgr">运营教练</span><span class="ov-act" data-e>数据闸口：第 5 天仍无出单迹象 → 汇报主管 + 商务决策</span></div>
+      <div class="ov-node"><span class="ov-t">成单后</span><span class="rt rt-stu">学员→运营教练</span><span class="ov-act" data-e>成单 → 收齐信息 → 收款 → @订单专员发货 → 同步商务升单踢单</span></div>
+      <div class="ov-node"><span class="ov-t">T+N</span><span class="rt rt-sup">全员</span><span class="ov-act" data-e>复盘 + SOP 迭代 + 脱敏案例 + 反馈闭环回前端</span></div>
+    </div>
+  </div>
+
+  <!-- 角色地图 -->
+  <div class="roles">
+    <div class="role me"><div class="nm">🧑‍💼 你（运营教练/带教）</div><p data-e>陪跑主责：接管群、调研、每日发品、成单整体、收款确认、出单后同步商务升单踢单。</p></div>
+    <div class="role"><div class="nm">📣 销售</div><p data-e>T+0~T+2h 主导交接，拉群、通知运营、决定派你。</p></div>
+    <div class="role"><div class="nm">🧭 运营主管（范志强）</div><p data-e>决定派哪位带教接单，监督质量；第 5 天数据差时参与决策。</p></div>
+    <div class="role"><div class="nm">💼 陪跑商务</div><p data-e>升单 / 踢单 / 续费 / 复购；出单后由你同步，配合升单。</p></div>
+    <div class="role"><div class="nm">📢 广告商务</div><p data-e>广告投放 / 广告费相关资源对接。</p></div>
+    <div class="role"><div class="nm">📦 订单专员（子萍）</div><p data-e>订单后问题 + 发货执行。</p></div>
+    <div class="role"><div class="nm">🙋 学员</div><p data-e>备账号(1 个可起步，优先 3 个)、每日发品截图、成单、转账。</p></div>
+  </div>
+
+  <p class="edit-tip">💡 编辑模式已开：点「✏️ 编辑内容」后，所有带虚线框的文字可直接改并自动本地保存。勾选状态与编辑互不影响。</p>
+
+  <!-- 备注名标准 -->
+  <section class="stage" id="s0">
+    <div class="shd"><div class="sn">0</div><h3 class="st" data-e>群成员备注名标准</h3><span class="tm">T+2h 建群后</span></div>
+    <div class="trig" data-e>触发：建群、相关人员（销售已拉入）进群后，第一时间把<b>每个相关人都备注成「角色@花名」</b>，便于全程追溯与交接。</div>
+    <ul class="check">
+      <li><input type="checkbox" data-c="0-1"><label data-e>运营教练 @ 你的花名（例：运营教练@墨峭）</label></li>
+      <li><input type="checkbox" data-c="0-2"><label data-e>运营主管 @ 范志强（运营主管@范志强）</label></li>
+      <li><input type="checkbox" data-c="0-3"><label data-e>陪跑商务 @ 花名（陪跑商务@xxx）</label></li>
+      <li><input type="checkbox" data-c="0-4"><label data-e>广告商务 @ 花名（广告商务@xxx）</label></li>
+      <li><input type="checkbox" data-c="0-5"><label data-e>订单专员 @ 子萍（订单专员@子萍）</label></li>
+      <li><input type="checkbox" data-c="0-6"><label data-e>学员 @ 真实姓名（便于核对，例：学员@江涛）</label></li>
+    </ul>
+    <div class="handoff" data-e><b>标准：</b>统一格式「角色@花名」，全员一致；后续任何沟通/交接/复盘都能一句话定位责任人。</div>
+    <div class="redline" data-e><b>红线：</b>备注名必须真实可溯源，不写昵称/表情代称；商务花名空缺时先 @运营主管 补齐再开服务。</div>
+  </section>
+
+  <!-- 阶段一 -->
+  <section class="stage" id="s1">
+    <div class="shd"><div class="sn">1</div><h3 class="st" data-e>接单启动</h3><span class="tm">T+0 ~ T+3h</span></div>
+    <div class="trig" data-e>触发：销售支付成功并拉群，群内 <b>@你 + @范志强（运营主管）</b>。你从"被拉进群"到"正式接管群"。</div>
+    <ul class="check">
+      <li><input type="checkbox" data-c="1-1"><label data-e>收到销售 @，确认派单（运营主管定你为本次运营教练）</label></li>
+      <li><input type="checkbox" data-c="1-2"><label data-e>T+2h 进群，听销售发言、正式开启陪跑服务</label></li>
+      <li><input type="checkbox" data-c="1-3"><label data-e>相关人员进群后，按「备注名标准」统一改群备注（角色@花名）</label></li>
+      <li><input type="checkbox" data-c="1-4"><label data-e>T+3h 按下方「群名标准」改群名（学员+课程类型#+日期+花名）</label></li>
+      <li><input type="checkbox" data-c="1-5"><label data-e>T+3h 发欢迎语（用下方模板），讲清分工/带教流程/时间/每天动作</label></li>
+      <li><input type="checkbox" data-c="1-6"><label data-e>确认学员已入群、备注名规范，进入下一阶段</label></li>
+    </ul>
+    <div class="grpname" data-e>🔴 <b>群名必须统一（强制标准）</b>
+格式：学员姓名 + 课程类型# + 日期 + 你的花名
+<span class="fmt">江涛598正价#20261016@墨峭</span>
+课程类型三选一：<b>598正价</b> / <b>98体验</b> / <b>7天免费</b></div>
+    <p class="tpLabel" data-e>欢迎语（复制后改花名/链接）</p>
+    <div class="tpl" id="tplWelcome" data-e>@全体成员 同学你好，我是你的专属运营教练【墨峭】👋
+接下来由我全程陪你跑通闲鱼，从注册账号到出第一单，一步一步带你走。
+
+👥 群内分工
+· 日常运营 / 收款 → 找我 @墨峭
+· 订单后问题 → 找 @子萍（订单专员）
+· 想升级资源 / 广告投放 → 找对应商务
+
+📚 带教流程（跟着节奏走就行）
+1. 先按要求把账号注册好、实名、基础设置做完
+2. 看完群文件里《闲鱼开店基础》《文字版秘籍》打底
+3. 新号养号几天，模拟真实买家刷一刷
+4. 每天固定发品 5 个，发完把后台截图发群里 @我
+5. 出单后客服、发货、售后我带你处理
+
+🕐 我的服务时间：每天 9:30–23:00，急事直接 @我
+
+📦 每天固定动作：发品 5 个，发完截图发群里 @我。咱们按节奏一步步来，先跑通再放大 💪
+
+💬 跟你说句心里话：我对你提要求，是因为这套流程跑通过，照着走更容易出结果。哪一步卡住、跟不上，你直接说卡在哪，我们一起拆小、放慢，不会因为你进度慢就不管你。你只要跟着动手、有问题及时问，别自己闷着卡住就行。
+
+🧰 服务范围：账号注册指导、起号养号、选品铺货、标题主图详情、客服话术、发货和常见纠纷处理。</div>
+    <button class="tplbtn" data-copy="tplWelcome">复制</button>
+    <div class="handoff" data-e><b>交接：</b>本阶段你在"接"，销售在"交"。无需你再交接他人。</div>
+    <div class="redline" data-e><b>红线：</b>欢迎语不承诺"包出单/保收益"，只讲方法+节奏+陪跑；款项一律走企业微信，不私收。</div>
+  </section>
+
+  <!-- 阶段二 -->
+  <section class="stage" id="s2">
+    <div class="shd"><div class="sn">2</div><h3 class="st" data-e>摸排建档</h3><span class="tm">T+6h</span></div>
+    <div class="trig" data-e>触发：接管群后立刻做初步调研，把学员底数和账号资产摸清楚。重点做<b>预期管理</b>：3 个号是更优方案，但 1 个也能起步，不强求。</div>
+    <ul class="check">
+      <li><input type="checkbox" data-c="2-1"><label data-e>发调研问卷，收集：姓名、手机号、现有闲鱼店铺数</label></li>
+      <li><input type="checkbox" data-c="2-2"><label data-e>讲清平台规则：1 手机+1 支付宝=1 实名店铺；优先备 3 个(3支付+3手机)，1 个也可起步不强求</label></li>
+      <li><input type="checkbox" data-c="2-3"><label data-e>学员备好后，要求每个店分别截图：① 店铺主页 ② 店铺安全页</label></li>
+      <li><input type="checkbox" data-c="2-4"><label data-e>归档信息，标注账号状态（是否限流 / 违规降权）</label></li>
+    </ul>
+    <p class="tpLabel" data-e>调研问卷（复制发群）</p>
+    <div class="tpl" id="tplSurvey" data-e>【开店摸底】同学直接回复即可：
+1. 真实姓名：
+2. 手机号：
+3. 目前有几个闲鱼店铺？店名分别是：
+4. 之前做过闲鱼吗？大概月销多少：
+5. 每天能拿出多少时间运营：
+
+（账号数量不强求，1 个账号也可以起步，有几个填几个）
+⚠️ 平台规则：1 个手机号 + 1 个支付宝对应 1 个实名店铺。
+我们优先准备 3 个店铺账号（3 支付宝 + 3 手机号），尽量 1 天内准备好；条件有限 1 个也能起步。</div>
+    <button class="tplbtn" data-copy="tplSurvey">复制</button>
+    <p class="tpLabel" data-e>预期管理 FAQ（学员常问，直接复制答）</p>
+    <div class="tpl" id="tplFaq" data-e>Q：我只有 1 个手机号，只能弄 1 个账号行不行？
+A：完全可以。单账号能正常上架运营、出单，只是风险集中（一旦限流就没备选）。先把这一个号做好，后续有多余手机号/支付宝再增加，我一样带你。
+
+Q：是不是必须 3 个号，不够就不带？
+A：不是！1 个账号也能正常跟着做。3 个号是更稳妥的方案（分散限流/违规风险、可测不同品类、容错更高），不是门槛。条件有限就先用 1 个号起步。</div>
+    <button class="tplbtn" data-copy="tplFaq">复制</button>
+    <div class="handoff" data-e><b>交接：</b>摸排结果同步运营主管备案；账号异常须提前标注，避免后期掉链子。</div>
+    <div class="redline" data-e><b>红线：</b>账号须本人实名合规，不代持、不碰灰产/侵权/无货源违规；账号异常必须留痕。</div>
+  </section>
+
+  <!-- 阶段三 -->
+  <section class="stage" id="s3">
+    <div class="shd"><div class="sn">3</div><h3 class="st" data-e>每日发品陪跑</h3><span class="tm">T+1d 起 · 每天</span></div>
+    <div class="trig" data-e>触发：每日 <b>10:30 之前</b>。这是陪跑的"日常引擎"，发品是硬动作，不能断。</div>
+    <ul class="check">
+      <li><input type="checkbox" data-c="3-1"><label data-e>10:30 前给学员发当天 5 个商品素材（标题/主图/详情）</label></li>
+      <li><input type="checkbox" data-c="3-2"><label data-e>提醒学员上架后把闲鱼后台截图发群 @你</label></li>
+      <li><input type="checkbox" data-c="3-3"><label data-e>检查截图，5 件全上架；未发品即触发掉队预警 + 1v1 对齐</label></li>
+      <li><input type="checkbox" data-c="3-4"><label data-e>答疑、优化商品标题/主图，推进"选品→上架→优化"前置验收</label></li>
+    </ul>
+    <p class="tpLabel" data-e>每日发品指令（复制发群）</p>
+    <div class="tpl" id="tplDaily" data-e>☀️ 今日发品任务（每天 10:30 前）
+给你 5 个商品素材（见群文件）：① 标题 ② 主图 ③ 详情文案
+动作：上架后把【闲鱼后台截图】发群里 @墨峭
+今天目标：5 件全上架 ✅
+卡住随时 @我</div>
+    <button class="tplbtn" data-copy="tplDaily">复制</button>
+    <div class="gate" data-e><b>⏰ Day5 数据闸口（关键决策点）：</b>若到第 5 天，学员仍「持续未发品 / 上架不达标 / 毫无出单迹象 / 零互动」，立即：① 运营教练整理数据截图 → ② 汇报运营主管（范志强）+ 陪跑商务 → ③ 三方决策下一步：补课时长 / 转班型 / 商务介入升单 or 退款风险预警。别让"没迹象"拖到第 2 周才暴露。</div>
+    <div class="redline" data-e><b>红线：</b>每日发品不溶于水；商品素材须过合规审核（无侵权/违规词）；"出第一单"是学员自操作结果，不替学员承诺确定性收益。</div>
+  </section>
+
+  <!-- 阶段四 -->
+  <section class="stage" id="s4">
+    <div class="shd"><div class="sn">4</div><h3 class="st" data-e>成单闭环 + 升单</h3><span class="tm">每次成单</span></div>
+    <div class="trig" data-e>触发：学员成单截图发群。你负责把"散单"收成"标准成单信息"、推进发货，并<b>第一时间同步商务升单踢单</b>。</div>
+    <ul class="check">
+      <li><input type="checkbox" data-c="4-1"><label data-e>按「成单信息表」收齐字段（渔货栈供应链必填渔货号）</label></li>
+      <li><input type="checkbox" data-c="4-2"><label data-e>确认学员转账收款（企业微信），截图留存</label></li>
+      <li><input type="checkbox" data-c="4-3"><label data-e>群里 @订单专员 子萍：可以发货（附成单信息）</label></li>
+      <li><input type="checkbox" data-c="4-4"><label data-e>第一时间同步陪跑商务：学员已出单，配合升单/踢单（复购供应链 / 扩店矩阵 / 高阶班）</label></li>
+      <li><input type="checkbox" data-c="4-5"><label data-e>归档订单截图，推进里程碑（选品→上架→优化→首单）</label></li>
+    </ul>
+    <p class="tpLabel" data-e>成单信息表（复制让学员填，渔货栈必填渔货号）</p>
+    <div class="tpl" id="tplOrder" data-e>【成单信息】学员成单后按此填：
+产品：
+渔货号：xxxx（渔货栈供应链必填）
+收货人：
+手机号码：
+地址信息：
+备注：（如颜色 / 发货拍视频）
+成本价：
+所属供应链：
+学员姓名：
+学员店铺名称：
+专属运营教练：</div>
+    <button class="tplbtn" data-copy="tplOrder">复制</button>
+    <p class="tpLabel" data-e>收款确认话术（复制发群）</p>
+    <div class="tpl" id="tplPay" data-e>✅ 已收到学员转账（企业微信）【金额 / 产品】
+@子萍 可以安排发货啦～
+订单信息见上 ⬆️</div>
+    <button class="tplbtn" data-copy="tplPay">复制</button>
+    <p class="tpLabel" data-e>升单同步话术（复制发商务/主管）</p>
+    <div class="tpl" id="tplUp" data-e>📈 升单同步（发陪跑商务 + 运营主管）
+学员【姓名】今日首单达成 ✅ 产品【xxx】
+运营教练：@墨峭  数据：上架 X 件 / 出单 1 单
+下一步建议：启动升单（复购供应链 / 扩店矩阵 / 高阶陪跑），请商务跟进踢单。</div>
+    <button class="tplbtn" data-copy="tplUp">复制</button>
+    <div class="handoff" data-e><b>交接：</b>成单信息 → 订单专员（子萍）备货发货；升单线索 → 陪跑商务。</div>
+    <div class="redline" data-e><b>红线：</b>信息缺一不发货；先收款后发货；退款/纠纷按平台规则，留存沟通凭证与责任界定。</div>
+  </section>
+
+  <!-- 阶段五 -->
+  <section class="stage" id="s5">
+    <div class="shd"><div class="sn">5</div><h3 class="st" data-e>复盘结营</h3><span class="tm">T+N</span></div>
+    <div class="trig" data-e>触发：学员结营或单学员结单。把过程变成可复用资产，并把问题闭环回前端。</div>
+    <ul class="check">
+      <li><input type="checkbox" data-c="5-1"><label data-e>填复盘表：出单 / 上架 / 完课率 / 里程碑（选品→上架→优化→首单）</label></li>
+      <li><input type="checkbox" data-c="5-2"><label data-e>沉淀脱敏成功案例（用于获客团队背书）</label></li>
+      <li><input type="checkbox" data-c="5-3"><label data-e>反馈闭环：→ 获客（易退款承诺）/ 内容（课程薄弱点）/ 带教（导师工作量）/ 商务（升单转化）</label></li>
+    </ul>
+    <p class="tpLabel" data-e>复盘表（复制填写）</p>
+    <div class="tpl" id="tplReview" data-e>【陪跑复盘】
+学员：___  运营教练：___  周期：___
+1. 出单 ___ 单 / 上架 ___ 件 / 完课率 ___%
+2. 里程碑：选品✅ 上架✅ 优化✅ 首单✅
+3. 风险与处理（含 Day5 闸口是否触发）：
+4. 客户反馈：
+5. SOP 迭代建议：
+6. 脱敏案例（前端背书用）：
+7. 反馈闭环：→ 获客 / 内容 / 带教 / 商务</div>
+    <button class="tplbtn" data-copy="tplReview">复制</button>
+    <div class="redline" data-e><b>红线：</b>案例必须脱敏（去实名/去其他学员数据）；跨团队反馈必须闭环回前端，不烂在群里。</div>
+  </section>
+
+  <!-- 话术工具箱 -->
+  <section class="toolbox">
+    <h2>🧰 话术工具箱（一页汇总）</h2>
+    <p class="desc">上面各阶段模板的集中入口，方便你一次性复制。所有模板都可在「编辑内容」模式下按你们实际话术改。</p>
+    <ul class="check">
+      <li><span class="tm" style="margin:0">欢迎语</span> <a href="#s1" style="color:var(--brand);font-size:13px">→ 阶段一</a></li>
+      <li><span class="tm" style="margin:0">调研问卷 / 预期FAQ</span> <a href="#s2" style="color:var(--brand);font-size:13px">→ 阶段二</a></li>
+      <li><span class="tm" style="margin:0">每日发品指令</span> <a href="#s3" style="color:var(--brand);font-size:13px">→ 阶段三</a></li>
+      <li><span class="tm" style="margin:0">成单信息表 / 收款 / 升单同步</span> <a href="#s4" style="color:var(--brand);font-size:13px">→ 阶段四</a></li>
+      <li><span class="tm" style="margin:0">复盘表</span> <a href="#s5" style="color:var(--brand);font-size:13px">→ 阶段五</a></li>
+    </ul>
+  </section>
+
+  <footer>闲鱼运营陪跑 SOP · 执行剧本（运营教练版）· 整合《时间点.xlsx》+《开头剧本.pdf》· 单文件离线 · 可编辑导出</footer>
+</div>
+
+<script>
+(function(){
+  var CK='xykb_runbook_check', EK='xykb_runbook_edit';
+  function safe(fn){try{return fn()}catch(e){return null}}
+  // progress + checkboxes
+  var boxes=[].slice.call(document.querySelectorAll('input[data-c]'));
+  var numEl=document.getElementById('pgNum'), fillEl=document.getElementById('pgFill');
+  function loadChecks(){
+    var raw=safe(function(){return localStorage.getItem(CK)}); if(!raw)return {};
+    try{return JSON.parse(raw)}catch(e){return {}}
+  }
+  function saveChecks(){
+    var o={}; boxes.forEach(function(b){o[b.getAttribute('data-c')]=b.checked});
+    safe(function(){localStorage.setItem(CK,JSON.stringify(o))});
+  }
+  function updateProg(){
+    var done=boxes.filter(function(b){return b.checked}).length;
+    numEl.textContent=done+' / '+boxes.length+' 已完成';
+    fillEl.style.width=(done/boxes.length*100)+'%';
+  }
+  var saved=loadChecks();
+  boxes.forEach(function(b){
+    b.checked=!!saved[b.getAttribute('data-c')];
+    b.addEventListener('change',function(){saveChecks();updateProg();b.closest('li').classList.toggle('done',b.checked)});
+    if(b.checked)b.closest('li').classList.add('done');
+  });
+  updateProg();
+  // edit mode
+  var editing=false, btnEdit=document.getElementById('btnEdit');
+  function setEdit(on){
+    editing=on; document.body.classList.toggle('editing',on);
+    [].forEach.call(document.querySelectorAll('[data-e]'),function(el){el.setAttribute('contentEditable',on?'true':'false')});
+    btnEdit.textContent=on?'💾 保存完成':'✏️ 编辑内容';
+    btnEdit.classList.toggle('solid',on);
+    if(!on)saveEdit();
+  }
+  function collectEdit(){var o={};[].forEach.call(document.querySelectorAll('[data-e]'),function(el,i){o['n'+i]=el.innerHTML});return o}
+  function saveEdit(){safe(function(){localStorage.setItem(EK,JSON.stringify(collectEdit()))})}
+  function restoreEdit(){
+    var raw=safe(function(){return localStorage.getItem(EK)}); if(!raw)return;
+    try{var o=JSON.parse(raw);var els=document.querySelectorAll('[data-e]');
+      Object.keys(o).forEach(function(k){var i=parseInt(k.replace('n',''),10);if(els[i])els[i].innerHTML=o[k]})}
+    catch(e){}
+  }
+  document.addEventListener('input',function(e){
+    if(editing&&e.target.closest('[data-e]')){clearTimeout(window.__st);window.__st=setTimeout(saveEdit,400)}
+  });
+  btnEdit.addEventListener('click',function(){setEdit(!editing)});
+  // copy
+  [].forEach.call(document.querySelectorAll('[data-copy]'),function(b){
+    b.addEventListener('click',function(){
+      var txt=document.getElementById(b.getAttribute('data-copy')).innerText;
+      var ok=function(){b.textContent='已复制';setTimeout(function(){b.textContent='复制'},1200)};
+      var no=function(){b.textContent='请手动复制';setTimeout(function(){b.textContent='复制'},1500)};
+      if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(ok,no)}else{no()}
+    });
+  });
+  // export
+  document.getElementById('btnExport').addEventListener('click',function(){
+    var c=document.cloneNode(true); c.documentElement.className='no-js';
+    [].forEach.call(c.querySelectorAll('script'),function(s){s.remove()});
+    [].forEach.call(c.querySelectorAll('[data-e],[contenteditable]'),function(el){el.removeAttribute('contenteditable')});
+    c.getElementById('pgFill').style.width=(boxes.filter(function(b){return b.checked}).length/boxes.length*100)+'%';
+    var html='<!DOCTYPE html>\n'+c.documentElement.outerHTML;
+    var blob=new Blob([html],{type:'text/html;charset=utf-8'});
+    var url=URL.createObjectURL(blob), a=document.createElement('a');
+    a.href=url;a.download='闲鱼陪跑SOP-执行剧本(导出).html';document.body.appendChild(a);a.click();a.remove();
+    setTimeout(function(){URL.revokeObjectURL(url)},2000);
+  });
+  document.getElementById('btnPrint').addEventListener('click',function(){window.print()});
+  document.getElementById('btnReset').addEventListener('click',function(){
+    if(!confirm('清空所有勾选进度？（仅清本地，不影响原文件）'))return;
+    boxes.forEach(function(b){b.checked=false;b.closest('li').classList.remove('done')});
+    safe(function(){localStorage.removeItem(CK)});updateProg();
+  });
+  restoreEdit();
+})();
+</script>
+</body>
+</html>
