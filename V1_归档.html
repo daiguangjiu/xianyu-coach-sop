@@ -1,0 +1,1683 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>学员陪跑 SOP Checklist · V1（待对齐稿）</title>
+<style>
+:root{
+  --bg:#f5f6f8; --card:#fff; --line:#e3e6ea; --line2:#eef0f3;
+  --tx:#17191c; --tx2:#4b525c; --mut:#8a919b;
+  --acc:#1f5fd0; --acc-s:#eef3fc; --acc-b:#c9dbf7;
+  --ok:#0f7b52; --ok-s:#e9f6f0;
+  --wn:#b45309; --wn-s:#fdf3e5;
+  --dg:#c0392b; --dg-s:#fdeeec;
+  --sh:0 1px 2px rgba(20,25,32,.04),0 4px 16px rgba(20,25,32,.05);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:var(--bg); color:var(--tx);
+  font:15px/1.65 -apple-system,BlinkMacSystemFont,"PingFang SC","Helvetica Neue","Microsoft YaHei",sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px 100px}
+
+/* header */
+.hd{background:linear-gradient(135deg,#12233d 0%,#1f3f70 55%,#1f5fd0 100%);color:#fff;padding:34px 0 30px;margin-bottom:0}
+.hd .wrap{padding-bottom:0}
+.hd h1{font-size:25px;font-weight:650;letter-spacing:-.3px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.hd .vtag{font-size:11px;font-weight:600;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.24);padding:3px 9px;border-radius:20px;letter-spacing:.4px}
+.hd p{color:#c3d4ec;font-size:13.5px;margin-top:8px;max-width:820px;line-height:1.7}
+.hd .meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.hd .meta span{font-size:11.5px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);padding:4px 10px;border-radius:5px;color:#dbe7f7}
+
+/* nav */
+nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid var(--line);box-shadow:0 1px 3px rgba(0,0,0,.03)}
+.navin{max-width:1180px;margin:0 auto;padding:0 24px;display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+.navin::-webkit-scrollbar{display:none}
+.nb{background:none;border:0;padding:13px 13px;font:inherit;font-size:13px;color:var(--tx2);cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;transition:.15s;font-weight:500}
+.nb:hover{color:var(--acc);background:var(--acc-s)}
+.nb.on{color:var(--acc);border-bottom-color:var(--acc);font-weight:650}
+.nb .d{font-size:10.5px;color:var(--mut);font-weight:400;margin-left:5px}
+
+/* panel */
+.pg{display:block;padding-top:26px;animation:fade .22s ease}
+/* JS 正常时由 .on 控制显隐；JS 失效/被禁用时全部平铺可见 */
+.js .pg{display:none}
+.js .pg.on{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+/* JS 失效兜底：导航隐藏，内容全展开 */
+.noscript-note{display:none;background:#fff8e6;border-bottom:1px solid #f0dcb8;color:#6b5320;padding:11px 16px;font-size:13px;text-align:center}
+html.no-js .noscript-note{display:block}
+html.no-js nav,html.no-js .tools{display:none}
+html.no-js .pg{border-bottom:1px solid var(--line);padding-bottom:18px}
+
+/* section */
+.sec{margin-bottom:34px}
+.sechd{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:14px;flex-wrap:wrap}
+.sechd h2{font-size:18px;font-weight:650;letter-spacing:-.2px;display:flex;align-items:center;gap:9px}
+.code{font:600 11px/1 ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--acc);color:#fff;padding:5px 8px;border-radius:5px;letter-spacing:.3px}
+.meta-r{font-size:12px;color:var(--mut);display:flex;gap:14px;flex-wrap:wrap}
+.meta-r b{color:var(--tx2);font-weight:600}
+
+/* goal bar */
+.goal{background:var(--acc-s);border:1px solid var(--acc-b);border-radius:8px;padding:12px 16px;font-size:13.5px;color:#1c3f75;margin-bottom:16px;line-height:1.7}
+.goal b{color:#12305c}
+
+/* card */
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;margin-bottom:11px;box-shadow:var(--sh);overflow:hidden;transition:.16s}
+.card.done{background:#fbfdfc;border-color:#cbe6d8}
+.card.done .ttl{color:var(--mut);text-decoration:line-through;text-decoration-color:#b9c3cc}
+.chead{display:flex;align-items:flex-start;gap:11px;padding:14px 16px;cursor:pointer;user-select:none}
+.cb{width:19px;height:19px;border:1.8px solid #c3cad3;border-radius:5px;flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center;transition:.15s;background:#fff}
+.cb:hover{border-color:var(--acc)}
+.card.done .cb{background:var(--ok);border-color:var(--ok)}
+.card.done .cb::after{content:"";width:9px;height:5px;border-left:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(-45deg) translate(1px,-1.5px)}
+.nm{font:600 12px/1.5 ui-monospace,Menlo,monospace;color:var(--acc);background:var(--acc-s);padding:3px 6px;border-radius:4px;flex-shrink:0;margin-top:2px}
+.card.done .nm{color:var(--mut);background:#eef0f2}
+.ttl{flex:1;font-size:14.5px;font-weight:600;line-height:1.55}
+.lim{font-size:11.5px;color:var(--wn);background:var(--wn-s);border:1px solid #f0dcb8;padding:2px 8px;border-radius:20px;white-space:nowrap;flex-shrink:0;margin-top:3px}
+.cbody{padding:0 16px 15px 46px;display:none}
+.card.open .cbody{display:block}
+/* 无 JS 时全部展开，保证动作细节可读 */
+html.no-js .cbody{display:block!important}
+html.no-js .chead{cursor:default}
+html.no-js .cb{display:none}
+.blk{margin-top:11px}
+.blk .lb{font-size:11px;font-weight:700;color:var(--mut);letter-spacing:.6px;margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.blk .lb::before{content:"";width:3px;height:11px;background:var(--acc);border-radius:2px}
+.acts{margin:0;padding-left:19px}
+.acts li{font-size:13.5px;line-height:1.75;color:var(--tx2);margin-bottom:5px}
+.acts li::marker{color:#b9c1cb;font-size:11px}
+.acts li b{color:var(--tx);font-weight:600}
+.acts code{background:#f1f3f6;padding:1px 5px;border-radius:3px;font-size:12px;font-family:ui-monospace,Menlo,monospace;color:#3c4a5a}
+
+.notify{background:var(--acc-s);border-left:3px solid var(--acc);padding:9px 13px;border-radius:0 6px 6px 0;font-size:13px;color:#1c3f75;line-height:1.7;margin-top:11px}
+.notify b{color:#12305c;display:block;font-size:11px;letter-spacing:.4px;margin-bottom:2px;font-weight:700}
+.risk{background:var(--dg-s);border-left:3px solid var(--dg);padding:9px 13px;border-radius:0 6px 6px 0;font-size:13px;color:#8c2a1f;line-height:1.7;margin-top:9px}
+.risk b{display:block;font-size:11px;letter-spacing:.4px;margin-bottom:2px;font-weight:700;color:#6d1f16}
+
+.chips{display:flex;gap:7px;flex-wrap:wrap;margin-top:11px}
+.chip{font-size:11.5px;padding:3px 9px;border-radius:5px;background:#f4f6f8;border:1px solid var(--line);color:var(--tx2)}
+.chip.d{background:var(--dg-s);border-color:#f3c9c3;color:#8c2a1f}
+.chip.o{background:var(--ok-s);border-color:#c4e5d5;color:var(--ok)}
+
+/* table */
+.tw{background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden;box-shadow:var(--sh);margin-bottom:20px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{background:#fafbfc;font-weight:650;color:var(--tx2);text-align:left;padding:11px 13px;border-bottom:1px solid var(--line);font-size:11.5px;letter-spacing:.4px;white-space:nowrap}
+td{padding:11px 13px;border-bottom:1px solid var(--line2);line-height:1.7;color:var(--tx2);vertical-align:top}
+tr:last-child td{border-bottom:0}
+tbody tr:hover{background:#fafbfd}
+td b,td strong{color:var(--tx);font-weight:600}
+td .k{font:600 11.5px ui-monospace,Menlo,monospace;color:var(--acc);white-space:nowrap}
+.tag{display:inline-block;font-size:11px;padding:2px 7px;border-radius:4px;white-space:nowrap;font-weight:600}
+.tag.a{background:var(--acc-s);color:#1c3f75}
+.tag.o{background:var(--ok-s);color:var(--ok)}
+.tag.w{background:var(--wn-s);color:var(--wn)}
+.tag.d{background:var(--dg-s);color:var(--dg)}
+.tag.n{background:#f1f3f5;color:var(--mut)}
+
+/* timeline */
+.tl{position:relative;padding-left:26px}
+.tl::before{content:"";position:absolute;left:7px;top:6px;bottom:6px;width:2px;background:linear-gradient(180deg,var(--acc),var(--acc-b) 70%,var(--line))}
+.tlx{position:relative;margin-bottom:15px}
+.tlx::before{content:"";position:absolute;left:-22px;top:5px;width:10px;height:10px;border-radius:50%;background:#fff;border:2.5px solid var(--acc)}
+.tlx .tm{font:600 11.5px ui-monospace,Menlo,monospace;color:var(--acc);background:var(--acc-s);padding:2px 8px;border-radius:4px;display:inline-block}
+.tlx h4{font-size:14px;font-weight:650;margin:6px 0 4px}
+.tlx p{font-size:13px;color:var(--tx2);line-height:1.7}
+
+/* overview cards */
+.ov{display:grid;grid-template-columns:repeat(auto-fit,minmax(228px,1fr));gap:12px;margin-bottom:24px}
+.ovc{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:15px 16px;box-shadow:var(--sh);position:relative;overflow:hidden;transition:.16s}
+.ovc:hover{border-color:var(--acc-b);transform:translateY(-2px);box-shadow:0 4px 18px rgba(31,95,208,.1)}
+.ovc .bar{position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--acc)}
+.ovc h4{font-size:14px;font-weight:650;margin-bottom:4px;display:flex;align-items:center;gap:7px}
+.ovc .w{font:600 11px ui-monospace,Menlo,monospace;color:var(--wn);margin-bottom:8px}
+.ovc p{font-size:12.5px;color:var(--mut);line-height:1.65}
+.ovc .pg-bar{height:4px;background:#eef0f3;border-radius:3px;margin-top:11px;overflow:hidden}
+.ovc .pg-bar i{display:block;height:100%;background:var(--ok);border-radius:3px;transition:.3s}
+.ovc .pg-t{font-size:11px;color:var(--mut);margin-top:5px;font-weight:600}
+
+.note{background:#fffdf7;border:1px solid #f2e4c4;border-radius:9px;padding:13px 16px;font-size:13px;color:#6b5320;line-height:1.75;margin-bottom:18px}
+.note b{color:#4d3b12}
+.warnbox{background:var(--dg-s);border:1px solid #f3c9c3;border-radius:9px;padding:14px 17px;font-size:13px;color:#8c2a1f;line-height:1.8;margin-bottom:18px}
+.warnbox b{color:#6d1f16;display:block;margin-bottom:4px;font-size:13.5px}
+
+/* script */
+.sc{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--acc);border-radius:0 9px 9px 0;padding:14px 17px;margin-bottom:11px;box-shadow:var(--sh)}
+.sc h4{font-size:13.5px;font-weight:650;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.sc h4 .lb{font-size:11px;font-weight:600;color:var(--mut)}
+.copy{background:#f1f3f6;border:1px solid var(--line);color:var(--tx2);font:inherit;font-size:11.5px;padding:3px 9px;border-radius:5px;cursor:pointer;transition:.15s;white-space:nowrap}
+.copy:hover{background:var(--acc-s);color:var(--acc);border-color:var(--acc-b)}
+.copy.ok{background:var(--ok-s);color:var(--ok);border-color:#c4e5d5}
+.sc p{font-size:13px;color:var(--tx2);line-height:1.85;background:#fafbfc;border-radius:6px;padding:11px 13px;margin-bottom:7px}
+.sc .anno{font-size:12px;color:var(--mut);line-height:1.7}
+.sc .anno b{color:var(--wn)}
+
+.tools{display:flex;gap:8px;padding:12px 24px;background:#fafbfc;border-bottom:1px solid var(--line)}
+.tb{background:#fff;border:1px solid var(--line);color:var(--tx2);font:inherit;font-size:12.5px;padding:6px 13px;border-radius:6px;cursor:pointer;transition:.15s}
+.tb:hover{border-color:var(--acc);color:var(--acc);background:var(--acc-s)}
+.prog{flex:1;display:flex;align-items:center;gap:11px;font-size:12.5px;color:var(--mut);font-weight:600;padding-left:8px}
+.prog .bar{flex:1;height:6px;background:#e8ebef;border-radius:4px;overflow:hidden;max-width:200px}
+.prog .bar i{display:block;height:100%;background:var(--ok);border-radius:4px;transition:.3s}
+@media(max-width:768px){
+  .hd h1{font-size:20px}.wrap{padding:0 16px 70px}.navin{padding:0 16px}
+  .cbody{padding-left:16px}.hd .meta{display:none}
+}
+@media print{
+  nav,.tools{display:none}.pg{display:block!important}.card .cbody{display:block!important}
+  body{background:#fff}.wrap{max-width:100%}
+}
+</style>
+</head>
+<body class="no-js">
+<script>document.body.className='js';</script>
+
+<div class="hd">
+  <div class="wrap">
+    <h1>学员陪跑 SOP Checklist <span class="vtag">V1 · 待对齐稿</span></h1>
+    <p>覆盖「前端引流 → 交接 → 摸排 → 电话疏导 → 视频学习 → 分类给供应链 → 发品上架 → 运营 SOP → 出单验收 → 复盘」全链路。每一步含<strong style="color:#fff">详细动作、时限、学员通知点、交付物、合规红线</strong>，勾选后进度自动保存。</p>
+    <div class="meta">
+      <span>结业标准：学员独立出第一单</span>
+      <span>责任主体：带教 PM</span>
+      <span>适用：录播 / 直播 / 1对1陪跑 / 全案代运营</span>
+      <span>更新：2026-10-11</span>
+    </div>
+  </div>
+</div>
+
+<nav><div class="navin" id="nav"><button class="nb on" data-t="ov">全景总览</button><button class="nb" data-t="s0">S0 前端交接<span class="d">6项</span></button><button class="nb" data-t="s1">S1 基础摸排<span class="d">10项</span></button><button class="nb" data-t="s2">S2 电话疏导<span class="d">8项</span></button><button class="nb" data-t="s3">S3 视频学习<span class="d">6项</span></button><button class="nb" data-t="s4">S4 供应链发品<span class="d">7项</span></button><button class="nb" data-t="s5">S5 运营 SOP<span class="d">6项</span></button><button class="nb" data-t="s6">S6 出单验收<span class="d">5项</span></button><button class="nb" data-t="s7">S7 复盘沉淀<span class="d">5项</span></button><button class="nb" data-t="tt">通知节奏表</button><button class="nb" data-t="mf">摸排表模板<span class="d">22项</span></button><button class="nb" data-t="sc">话术库</button></div></nav>
+<div class="noscript-note">当前以「全展开」模式显示（交互功能需启用 JavaScript）。全部 8 阶段 53 条动作均已完整呈现。</div>
+
+<div class="wrap">
+  <div class="tools">
+    <div class="prog"><span>总进度</span><div class="bar"><i id="pbar" style="width:0%"></i></div><span id="ptxt">0 / 0</span></div>
+    <button class="tb" onclick="expandAll()">展开全部</button>
+    <button class="tb" onclick="collapseAll()">收起全部</button>
+    <button class="tb" onclick="resetAll()">重置进度</button>
+    <button class="tb" onclick="print()">打印 / 导出 PDF</button>
+  </div>
+</div>
+
+<div class="wrap" id="pages"><div class="pg on" id="pg-ov">
+  <div class="warnbox"><b>⚠️ 使用前请先对齐 4 件事</b>
+   ① <b>「出第一单」的准确定义</b>——真实成交（非刷单）、学员自操作 vs 代操作、退单是否计入；<br>
+   ② <b>销售已承诺事项的清单与口径</b>——哪些承诺公司不承接，必须在陪跑启动前书面澄清；<br>
+   ③ <b>各阶段时限是否合理</b>——时限是本 SOP 的骨架，改时限等于改整个陪跑周期；<br>
+   ④ <b>视频结业闸门（3.6）是否放水</b>——放水是本 SOP 最大的雷，放了后面全塌。</div>
+
+  <div class="ov">
+   <div class="ovc" onclick="jump('s0')" style="cursor:pointer">
+     <div class="bar"></div><h4><span class="code">S0</span>前端交接</h4>
+     <div class="w">T+0 ~ T+4h</div><p>获客 → 带教</p>
+     <div class="pg-bar"><i style="width:0%"></i></div>
+     <div class="pg-t">0 / 6 项完成</div>
+    </div><div class="ovc" onclick="jump('s1')" style="cursor:pointer">
+     <div class="bar"></div><h4><span class="code">S1</span>基础信息摸排</h4>
+     <div class="w">T+2h ~ T+24h</div><p>把底数摸清</p>
+     <div class="pg-bar"><i style="width:0%"></i></div>
+     <div class="pg-t">0 / 10 项完成</div>
+    </div><div class="ovc" onclick="jump('s2')" style="cursor:pointer">
+     <div class="bar"></div><h4><span class="code">S2</span>电话沟通</h4>
+     <div class="w">T+24h ~ T+48h</div><p>心理按摩 + 预期管理</p>
+     <div class="pg-bar"><i style="width:0%"></i></div>
+     <div class="pg-t">0 / 8 项完成</div>
+    </div><div class="ovc" onclick="jump('s3')" style="cursor:pointer">
+     <div class="bar"></div><h4><span class="code">S3</span>视频学习</h4>
+     <div class="w">T+48h ~ T+7d</div><p>先输入方法</p>
+     <div class="pg-bar"><i style="width:0%"></i></div>
+     <div class="pg-t">0 / 6 项完成</div>
+    </div><div class="ovc" onclick="jump('s4')" style="cursor:pointer">
+     <div class="bar"></div><h4><span class="code">S4</span>分类给供应链 → 发品 → 上架</h4>
+     <div class="w">T+7d ~ T+14d</div><p></p>
+     <div class="pg-bar"><i style="width:0%"></i></div>
+     <div class="pg-t">0 / 7 项完成</div>
+    </div><div class="ovc" onclick="jump('s5')" style="cursor:pointer">
+     <div class="bar"></div><h4><span class="code">S5</span>运营 SOP 标准</h4>
+     <div class="w">T+14d ~ T+21d</div><p>让学员自己跑</p>
+     <div class="pg-bar"><i style="width:0%"></i></div>
+     <div class="pg-t">0 / 6 项完成</div>
+    </div><div class="ovc" onclick="jump('s6')" style="cursor:pointer">
+     <div class="bar"></div><h4><span class="code">S6</span>首单突破与结业验收</h4>
+     <div class="w">T+21d ~ 结业</div><p></p>
+     <div class="pg-bar"><i style="width:0%"></i></div>
+     <div class="pg-t">0 / 5 项完成</div>
+    </div><div class="ovc" onclick="jump('s7')" style="cursor:pointer">
+     <div class="bar"></div><h4><span class="code">S7</span>交付复盘与资产沉淀</h4>
+     <div class="w">结业后 3 天内</div><p></p>
+     <div class="pg-bar"><i style="width:0%"></i></div>
+     <div class="pg-t">0 / 5 项完成</div>
+    </div>
+  </div>
+
+  <div class="sec">
+   <div class="sechd"><h2>全链路时间轴</h2></div>
+   <div class="tw"><table><thead><tr><th style="width:80px">节点</th><th style="width:150px">动作</th><th style="width:110px">通知方向</th><th>学员收到什么 / 做什么</th><th style="width:190px">带教内部动作</th><th style="width:200px">关键红线</th></tr></thead><tbody>
+   <tr><td><span class="k">T+0</span></td><td>支付成功 / 销售拉群</td><td>销售 → 学员</td><td>群公告 + 自我介绍 + 7 天日程预告</td><td>带教 PM 明确回执接手</td><td>销售说过的承诺，逐条落到交接单</td></tr><tr><td><span class="k">T+2h</span></td><td>带教 PM 群内回执</td><td>带教 PM → 内部</td><td>交接单录入台账，状态改「已交接」</td><td>4h 不回执 = 未交接</td><td>—</td></tr><tr><td><span class="k">T+4h</span></td><td>摸排问卷下发</td><td>带教 PM → 学员</td><td>群内 + 私聊双发问卷链接</td><td>5 分钟填完，24h 前提交</td><td>收问卷提交时间戳作留痕</td></tr><tr><td><span class="k">T+24h</span></td><td>摸排完成 + 定级</td><td>带教 PM → 学员 / 内部</td><td>回「你是 XX 类，我按这个排计划」</td><td>附陪跑方案初稿</td><td>C 级学员要上报主管</td></tr><tr><td><span class="k">T+24h</span></td><td>电话预约</td><td>带教 PM → 学员</td><td>给 2 个时段让学员选</td><td>提前 2h 预约，不突袭</td><td>—</td></tr><tr><td><span class="k">T+48h</span></td><td>电话沟通 + 书面确认</td><td>带教 PM → 学员</td><td>《沟通确认单》+ 请回复「已确认」</td><td>预期管理三件套必须讲到</td><td>⚠️ 此回复是退款争议关键证据</td></tr><tr><td><span class="k">T+48h</span></td><td>课程清单下发</td><td>带教 PM + 助教 → 学员</td><td>本周课程 3 节 + 每日打卡规则</td><td>按定级分配，不一次甩满</td><td>—</td></tr><tr><td><span class="k">T+7d</span></td><td>视频结业验收</td><td>带教 PM → 内部</td><td>完播率≥80% + 作业≥80% 才放行</td><td>不达标补学，不进 S4</td><td>⚠️ 硬闸门，不能跳</td></tr><tr><td><span class="k">T+7d</span></td><td>分类 + 供应链匹配</td><td>带教 PM → 供应链</td><td>学员分类结论 + SKU 范围</td><td>同步供应链对接人</td><td>⚠️ 不推 1688/抖音/拼多多</td></tr><tr><td><span class="k">T+10d</span></td><td>上架教学 + 逐品验收</td><td>带教 PM → 学员</td><td>一对一带着上第一个品</td><td>48h 内完成首批 3-5 款</td><td>违禁词必查</td></tr><tr><td><span class="k">T+14d</span></td><td>运营 SOP 交付</td><td>带教 PM → 学员</td><td>日动作清单 + 数据看板 + 话术卡</td><td>前两周每日盯执行</td><td>—</td></tr><tr><td><span class="k">T+21d</span></td><td>出单前置三项验收</td><td>带教 PM → 学员 / 内部</td><td>选品/上架/优化 三项通过确认</td><td>不过不进入冲刺</td><td>⚠️ 防止「结果全押在出单」</td></tr><tr><td><span class="k">T+21d</span></td><td>7 天冲刺启动</td><td>带教 PM → 学员</td><td>每天给一个具体动作 + 复盘数据</td><td>给动作，不给压力</td><td>焦虑型学员越催越退</td></tr><tr><td><span class="k">T+28d</span></td><td>未出单归因（如适用）</td><td>带教 PM → 学员 / 主管</td><td>《未出单诊断单》+ 改进方案</td><td>四类归因，不甩锅</td><td>⚠️ 先归因再定性</td></tr><tr><td><span class="k">出单当日</span></td><td>出单确认</td><td>带教 PM → 学员</td><td>收订单截图 + 公开表扬</td><td>当天收截图，存档</td><td>出单后 3 天内给持续运营 SOP</td></tr><tr><td><span class="k">结业后 3 天</span></td><td>复盘 + 跨团队反馈</td><td>带教 PM → 三团队</td><td>复盘表 + SOP 迭代 + 反馈记录</td><td>沉淀脱敏案例</td><td>反馈必须闭环回前端</td></tr>
+   </tbody></table></div>
+  </div>
+
+  <div class="sec">
+   <div class="sechd"><h2>4 条贯穿全程的红线</h2></div>
+   <div class="tw"><table><thead><tr><th style="width:180px">红线</th><th>说明</th><th style="width:120px">触发阶段</th></tr></thead><tbody>
+   <tr><td><b>不承诺收益</b> <span class="tag d">最高</span></td><td>口头、书面、群里、私聊<b>一律不许</b>说「保证」「肯定赚」「稳赚」。统一口径：出单是结果不是承诺，我们承诺方法+资源+陪跑。</td><td><span class="tag w">S0 / S2</span></td></tr>
+   <tr><td><b>不代持账号</b> <span class="tag d">最高</span></td><td>不接账号密码、不代运营、不代发货。全案代运营班型例外，需走单独书面授权流程。</td><td><span class="tag w">S0 / S4</span></td></tr>
+   <tr><td><b>不碰灰产</b> <span class="tag d">最高</span></td><td>仿牌、假货、刷单、虚假交易、站外引流、无货源搬运——涉及一律拒接，已付款走退费流程。</td><td><span class="tag w">S1 / S4</span></td></tr>
+   <tr><td><b>前置动作不放水</b> <span class="tag n">高</span></td><td>视频结业、上架验收、SOP 执行率——该卡的必须卡住。放了水，学员翻车反过来算陪跑的账。</td><td><span class="tag w">S3 / S6</span></td></tr>
+   </tbody></table></div>
+  </div>
+
+  <div class="note"><b>关于这份 SOP</b>：V1 是骨架稿，先对齐阶段划分和时限，再逐项细化动作。三个建议先拍板——<b>① 各阶段时限是否可行；② 视频结业闸门（3.6）放不放水；③ 出单前置验收（6.1）由谁签字确认</b>。这三点定了，剩下就是执行细节。</div>
+ </div>
+<div class="pg" id="pg-s0">
+ <div class="sec">
+  <div class="sechd">
+   <h2><span class="code">S0</span>前端交接：获客 → 带教</h2>
+   <div class="meta-r"><span>时限 <b>T+0 ~ T+4h</b></span><span>责任 <b>销售 → 带教 PM</b></span></div>
+  </div>
+  <div class="goal"><b>阶段目标</b>：把客户信息<b>完整、口径一致、留痕可追</b>地交到后端手上。交接完成 = 带教 PM 已在群内回执接手，后续学员问题不再回落到前端。</div>
+  <div class="card" data-id="s0-0.1">
+    <div class="chead" onclick="tog(this.parentElement)">
+     <div class="cb" onclick="ck(event,this)"></div>
+     <span class="nm">0.1</span>
+     <div class="ttl">支付到账确认与交接触发</div>
+     <span class="lim">T+30min</span>
+    </div>
+    <div class="cbody">
+     <div class="blk"><div class="lb">详细动作</div><ul class="acts"><li>确认学员<b>支付成功</b>（支付截图 + 订单号），订单进入已付状态</li><li>销售在交接群内发「<b>@带教PM 学员已付，班型 XX，请接手</b>」</li><li>带教 PM 看到触发信号后，<b>必须在 30 分钟内响应</b>，超 30 分钟未响应 → 学员直接找前端 → 后续纠纷归前端</li></ul></div>
+     <div class="notify"><b>学员通知点</b><b>学员侧暂无动作</b>（此阶段学员只关心付款成功）。带教 PM 收到后 <b>1 小时内</b>在学员所在临时群内发：「我是你的带教老师 XXX，接下来 30 天由我负责带你出第一单。」</div>
+     <div class="chips"><span class="chip o">交付物 · 交接触发记录（订单号 + 时间 + 触发人）</span></div>
+     <div class="risk"><b>合规 / 风险提示</b>销售用「先拉群、后付款」把未付款学员塞进交付群 → 必须在群内明确「<b>付款确认后才正式启动陪跑</b>」，避免白带。</div>
+    </div>
+   </div><div class="card" data-id="s0-0.2">
+    <div class="chead" onclick="tog(this.parentElement)">
+     <div class="cb" onclick="ck(event,this)"></div>
+     <span class="nm">0.2</span>
+     <div class="ttl">客户信息交接单填写（12 项，销售侧必填）</div>
+     <span class="lim">T+30min</span>
+    </div>
+    <div class="cbody">
+     <div class="blk"><div class="lb">详细动作</div><ul class="acts"><li><b>基础信息</b>：称呼、微信昵称、手机号、所在城市、年龄段</li><li><b>来源渠道</b>：IP 号 / 直播间 / 私域 / 短视频 / 转介绍，附引流内容截图</li><li><b>成交信息</b>：班型、金额、支付时间、订单号、是否分期</li><li><b>销售已承诺事项</b>：逐条列出，<b>必须带销售原话截图</b>（含口头承诺）</li><li><b>学员自述诉求</b>：想赚多少、多久见效、有什么具体想法</li><li><b>现有账号</b>：有没有 / 几个 / 做多久 / 什么品类 / 大概曝光出单量</li><li><b>职业与可投入时间</b>：上班 / 全职 / 每天能挤出几小时</li><li><b>执行意愿初判</b>：销售按 A 积极 / B 一般 / C 观望 评一级</li></ul></div>
+     <div class="notify"><b>学员通知点</b>带教 PM <b>1 小时内</b>私信学员发送自我介绍 + 摸排问卷预告：「先做个基础了解，我按你的情况定陪跑计划，大概 15 分钟问卷 + 20 分钟电话。」</div>
+     <div class="chips"><span class="chip o">交付物 · 《客户信息交接单》（12 项齐全，缺项标红）</span></div>
+     <div class="risk"><b>合规 / 风险提示</b>销售为了促单口头加码「保证出单」「这个月就能赚几千」→ <b>交接单必须原文记录</b>，带教 PM 接手后第一通电话做口径纠偏，别让销售把锅全甩给交付。</div>
+    </div>
+   </div><div class="card" data-id="s0-0.3">
+    <div class="chead" onclick="tog(this.parentElement)">
+     <div class="cb" onclick="ck(event,this)"></div>
+     <span class="nm">0.3</span>
+     <div class="ttl">承诺事项与口径留痕</div>
+     <span class="lim">T+1h</span>
+    </div>
+    <div class="cbody">
+     <div class="blk"><div class="lb">详细动作</div><ul class="acts"><li>把销售所有承诺拆成两类：<b>【公司可承接】</b>（课程、陪跑、资源对接）/ <b>【公司不承接】</b>（保证出单、保收益、代持账号、代运营）</li><li>【不承接】项<b>书面同步学员</b>（群内文字，留痕），不要口头私下说</li><li>销售与交付口径冲突时，以<b>合同/协议</b>为准；销售说错话 → 立刻报 PM 主管，不自行圆</li></ul></div>
+     <div class="notify"><b>学员通知点</b>带教 PM 在群内发《口径确认》：<b>我们承诺给你什么、不承诺什么</b>，请回复「已阅读」。</div>
+     <div class="chips"><span class="chip o">交付物 · 承诺拆解表 + 群内口径确认截图</span></div>
+     <div class="risk"><b>合规 / 风险提示</b>⚠️ 高风险：学员留证「销售承诺包出单」。必须在陪跑启动前完成书面澄清，后续退款时这是唯一防线。</div>
+    </div>
+   </div><div class="card" data-id="s0-0.4">
+    <div class="chead" onclick="tog(this.parentElement)">
+     <div class="cb" onclick="ck(event,this)"></div>
+     <span class="nm">0.4</span>
+     <div class="ttl">拉群与多方入群</div>
+     <span class="lim">T+2h</span>
+    </div>
+    <div class="cbody">
+     <div class="blk"><div class="lb">详细动作</div><ul class="acts"><li><b>销售拉群</b>（保留信任延续），群名规范：<code>班型-期次-学员称呼</code></li><li>四方入群：学员 / 销售 / 带教 PM / 助教（助教可不进群，内部对接）</li><li>群内 @ 全体，发欢迎语 + <b>接下来 7 天日程预告</b></li><li>置顶群公告：课程入口、答疑时间、联系方式、群规</li></ul></div>
+     <div class="notify"><b>学员通知点</b>T+2h 群公告 + @全体：「从现在起，我（带教 XXX）负责你的 30 天陪跑。这周我们做三件事：① 摸底 ② 电话沟通 ③ 开课学习。日程如下…」</div>
+     <div class="chips"><span class="chip o">交付物 · 交付群（含群公告 + 成员名单）</span></div>
+     <div class="risk"><b>合规 / 风险提示</b>销售拉群后<strong style="color:#c0392b">长期潜水</strong>，学员有问题先找销售 → 带教 PM 在群公告明确「交付期问题统一找我，销售同学负责前期答疑」。</div>
+    </div>
+   </div><div class="card" data-id="s0-0.5">
+    <div class="chead" onclick="tog(this.parentElement)">
+     <div class="cb" onclick="ck(event,this)"></div>
+     <span class="nm">0.5</span>
+     <div class="ttl">带教 PM 群内回执接手</div>
+     <span class="lim">T+4h</span>
+    </div>
+    <div class="cbody">
+     <div class="blk"><div class="lb">详细动作</div><ul class="acts"><li>带教 PM 在群内<b>明确回执</b>：「已接手 XX 学员的陪跑，后续交付由我负责 @销售」</li><li>同步内部：交接单录入交付系统 / 台账，状态改为「已交接」</li><li><b>4 小时内不回执 = 视为未交接</b>，学员问题仍归销售</li></ul></div>
+     <div class="notify"><b>学员通知点</b>学员无需动作。此步为内部责任划分节点。</div>
+     <div class="chips"><span class="chip o">交付物 · 回执截图 + 台账状态更新</span></div>
+     <div class="risk"><b>合规 / 风险提示</b>回执缺失 → 退款纠纷时责任无法划分。必须留痕。</div>
+    </div>
+   </div><div class="card" data-id="s0-0.6">
+    <div class="chead" onclick="tog(this.parentElement)">
+     <div class="cb" onclick="ck(event,this)"></div>
+     <span class="nm">0.6</span>
+     <div class="ttl">交接信息缺项补齐</div>
+     <span class="lim">T+4h</span>
+    </div>
+    <div class="cbody">
+     <div class="blk"><div class="lb">详细动作</div><ul class="acts"><li>带教 PM 核对交接单 12 项，缺项<b>直接找销售补</b>（不等学员自述）</li><li><b>关键项缺失优先级最高</b>：已承诺事项、现有账号现状、学员真实诉求</li><li>补齐后更新交接单版本号，留痕「V1→V2」</li></ul></div>
+     <div class="notify"><b>学员通知点</b>学员无需动作。</div>
+     <div class="chips"><span class="chip o">交付物 · 交接单 V2（补齐版）</span></div>
+     <div class="risk"><b>合规 / 风险提示</b>销售已离场/请假 → 缺项直接电话学员补录（10 分钟内可完成），并标注「由交付侧补录」。</div>
+    </div>
+   </div>
+ </div>
+</div>
+<div class="pg" id="pg-s1">
+ <div class="sec">
+  <div class="sechd">
+   <h2><span class="code">S1</span>基础信息摸排：把底数摸清</h2>
+   <div class="meta-r"><span>时限 <b>T+2h ~ T+24h</b></span><span>责任 <b>带教 PM</b></span></div>
+  </div>
+  <div class="goal"><b>阶段目标</b>：<b>摸排是一切陪跑动作的地基。</b>摸不清底数就分供应链、发品、压进度，全部会翻车。摸排的产出不只是信息，而是「<b>学员定级 + 陪跑方案初稿</b>」。</div>
+  <div class="card" data-id="s1-1.1">
+    <div class="chead" onclick="tog(this.parentElement)">
+     <div class="cb" onclick="ck(event,this)"></div>
+     <span class="nm">1.1</span>
+     <div class="ttl">摸排问卷下发</div>
+     <span class="lim">T+4h</span>
+    </div>
+    <div class="cbody">
+     <div class="blk"><div class="lb">详细动作</div><ul class="acts"><li>进入交付群 <b>4 小时内</b>下发摸排问卷（<b>用表单，不长篇大论</b>，20 题以内、5 分钟填完）</li><li><b>表单必须带提交截图要求</b>，作为执行意愿的第一份留痕</li><li>问卷入口 + 填写示例（让学员知道填到什么颗粒度）</li><li>私聊单独发一次链接（群内发了不代表看到）</li></ul></div>
+     <div class="notify"><b>学员通知点</b><b>T+4h</b> 群内 + 私聊：「问卷 5 分钟，填完我就能给你定陪跑计划了。<b>T+24h 前提交</b>，我好提前给你排电话。」</div>
+     <div class="chips"><span class="chip o">交付物 · 问卷提交记录（含提交时间戳）</span></div>
+     <div class="risk"><b>合规 / 风险提示</b>问卷只发群内 → 70% 不看群。必须群内 + 私聊双发，24h 未提交触发电话。</div>
+    </div>
+   </div><div class="card" data-id="s1-1.2">
+    <div class="chead" onclick="tog(this.parentElement)">
+     <div class="cb" onclick="ck(event,this)"></div>
+     <span class="nm">1.2</span>
+     <div class="ttl">账号底数盘点</div>
+     <span class="lim">T+24h</span>
+    </div>
+    <div class="cbody">
+     <div class="blk"><div class="lb">详细动作</div><ul class="acts"><li>问清：<b>目前有几个闲鱼号 / 注册多久 / 什么品类 / 日均曝光多少 / 出过几单</b></li><li>要求<b>截图后台数据页</b>（曝光、浏览、想要、成交四项），不收截图按 0 处理</li><li>判断：<b>新号 vs 老号 vs 有违规史</b>——三类的陪跑节奏完全不同</li><li>老号有历史违规 → 先排「申诉/养号」动作，不直接推上架</li></ul></div>
+     <div class="notify"><b>学员通知点</b>问卷回收后 <b>2 小时内</b>回：「看了你的账号，你的情况属于【XX 类】，我按这个给你排计划。」</div>
+     <div class="chips"><span class="chip o">交付物 · 账号底数记录 + 后台数据截图</span></div>
+     <div class="risk"><b>合规 / 风险提示</b>学员谎报/夸大（「我原来做过」但截图是空白号）→ 按截图说话，别按嘴说。</div>
+    </div>
+   </div><div class="card" data-id="s1-1.3">
+    <div class="chead" onclick="tog(this.parentElement)">
+     <div class="cb" onclick="ck(event,this)"></div>
+     <span class="nm">1.3</span>
+     <div class="ttl">现有货源与品类现状</div>
+     <span class="lim">T+24h</span>
+    </div>
+    <div class="cbody">
+     <div class="blk"><div class="lb">详细动作</div><ul class="acts"><li>问：现在在卖什么？<b>货源从哪来</b>（1688 / 抖音 / 朋友 / 自有 / 没有）</li><li>有无<b>囤货</b>、有无<b>供应链资源</b>、之前做的是不是同一品类</li><li>已有货源且在出单 → 属「优化型」，不打散；无货源 → 走机构供应链</li></ul></div>
+     <div class="notify"><b>学员通知点</b>问卷类动作，无需单独推送；<b>统一在 1.10汇总回复学员</b>时带一句：「你 XX 情况我看到了，已记进你的陪跑计划。」让学员知道每项都被认真看过。</div>
+     <div class="chips"><span class="chip o">交付物 · 货源现状记录</span></div>
+     <div class="risk"><b>合规 / 风险提示</b>学员已有稳定出单货源却报「完全没做」→ 可能怕被否定。摸排要<b>肯定先行</b>，别一上来就盘问。</div>
+    </div>
+   </div><div class="card" data-id="s1-1.4">
+    <div class="chead" onclick="tog(this.parentElement)">
+     <div class="cb" onclick="ck(event,this)"></div>
+     <span class="nm">1.4</span>
+     <div class="ttl">资金与预算摸排</div>
+     <span class="lim">T+24h</span>
+    </div>
+    <div class="cbody">
+     <div class="blk"><div class="lb">详细动作</div><ul class="acts"><li>问：<b>愿意投入多少启动资金</b>（0 元 / 500 内 / 1000-3000 / 3000+）</li><li>是否接受<b>一件代发</b>（不囤货）还是必须自提</li><li>能接受的<b>单笔成本上限</b>，决定发品的客单价区间</li></ul></div>
+     <div class="notify"><b>学员通知点</b>问卷类动作，无需单独推送；<b>统一在 1.10汇总回复学员</b>时带一句：「你 XX 情况我看到了，已记进你的陪跑计划。」让学员知道每项都被认真看过。</div>
+     <div class="chips"><span class="chip o">交付物 · 预算档位标注（0元档 / 低预算档 / 有预算档）</span></div>
+     <div class="risk"><b>合规 / 风险提示</b>预算 0 元却想买高客单品牌货 → 直接判为不匹配，换类目或换班型，别硬推。</div>
+    </div>
+   </div><div class="card" data-id="s1-1.5">
+    <div class="chead" onclick="tog(this.parentElement)">
+     <div class="cb" onclick="ck(event,this)"></div>
+     <span class="nm">1.5</span>
+     <div class="ttl">可投入时间摸排</div>
+     <span class="lim">T+24h</span>
+    </div>
+    <div class="cbody">
+     <div class="blk"><div class="lb">详细动作</div><ul class="acts"><li>问：<b>每天能稳定投入多久</b>（碎片 15min / 1h / 2h+）、<b>什么时段</b>（早/晚/午休）</li><li>是否<b>固定每天</b>还是想起来才做</li><li>时长大 → 陪跑计划按「大块推进」排；碎片 → 排「15 分钟微任务」</li></ul></div>
+     <div class="notify"><b>学员通知点</b>问卷类动作，无需单独推送；<b>统一在 1.10汇总回复学员</b>时带一句：「你 XX 情况我看到了，已记进你的陪跑计划。」让学员知道每项都被认真看过。</div>
+     <div class="chips"><span class="chip o">交付物 · 可投入时段表</span></div>
+     <div class="risk"><b>合规 / 风险提示</b>「我有很多时间」→ 三天后交不出作业。<b>不信口头信日程</b>，按 1h 排，多了再松。</div>
+    </div>
+   </div><div class="card" data-id="s1-1.6">
+    <div class="chead" onclick="tog(this.parentElement)">
+     <div class="cb" onclick="ck(event,this)"></div>
+     <span class="nm">1.6</span>
+     <div class="ttl">技能基础摸排</div>
+     <span class="lim">T+24h</span>
+    </div>
+    <div class="cbody">
+     <div class="blk"><div class="lb">详细动作</div><ul class="acts"><li>会不会<b>拍图/修图</b>（会不会用剪映/醒图）、会不会<b>写文案</b>、有没有<b>出镜意愿</b></li><li>会不会<b>基础电脑操作</b>（发货、打单、后台操作）</li><li>零基础 → SOP 要写到「点哪个按钮」级别</li></ul></div>
+     <div class="notify"><b>学员通知点</b>问卷类动作，无需单独推送；<b>统一在 1.10汇总回复学员</b>时带一句：「你 XX 情况我看到了，已记进你的陪跑计划。」让学员知道每项都被认真看过。</div>
+     <div class="chips"><span class="chip o">交付物 · 技能画像标签（零基础 / 有基础 / 有内容能力）</span></div>
+     <div class="risk"><b>合规 / 风险提示</b>高估自己能力（"我懂 Photoshop"实际只会截图）→ 按最低能力给 SOP，多问一句「你上次做类似的是什么时候」。</div>
+    </div>
+   </div><div class="card" data-id="s1-1.7">
+    <div class="chead" onclick="tog(this.parentElement)">
+     <div class="cb" onclick="ck(event,this)"></div>
+     <span class="nm">1.7</span>
+     <div class="ttl">目标与收益预期摸排</div>
+     <span class="lim">T+24h</span>
+    </div>
+    <div class="cbody">
+     <div class="blk"><div class="lb">详细动作</div><ul class="acts"><li>问：<b>你做闲鱼想达到什么目标</b>（月入 3000 / 5000 / 1万 / 先出单就行）</li><li>问：<b>期望多久见效</b>（1周 / 1个月 / 3个月）</li><li><b>关键动作</b>：把「想赚多少」翻译成「<b>需要多少单 × 什么客单价</b>」，帮学员算清账</li><li>期望明显超出可达成范围 → <b>标记</b>，留到 S2 电话做预期管理</li></ul></div>
+     <div class="notify"><b>学员通知点</b>问卷类动作，无需单独推送；<b>统一在 1.10汇总回复学员</b>时带一句：「你 XX 情况我看到了，已记进你的陪跑计划。」让学员知道每项都被认真看过。</div>
+     <div class="chips"><span class="chip o">交付物 · 目标换算表（目标收入 → 所需单量 → 对应选品方向）</span></div>
+     <div class="risk"><b>合规 / 风险提示</b>⚠️ 学员目标过高（如"一个月赚 3 万"）→ 这类学员退款率最高，<b>摸排阶段就要打标</b>，S2 电话重点管理预期。</div>
+    </div>
+   </div><div class="card" data-id="s1-1.8">
+    <div class="chead" onclick="tog(this.parentElement)">
+     <div class="cb" onclick="ck(event,this)"></div>
+     <span class="nm">1.8</span>
+     <div class="ttl">心理状态与执行意愿评估</div>
+     <span class="lim">T+24h</span>
+    </div>
+    <div class="cbody">
+     <div class="blk"><div class="lb">详细动作</div><ul class="acts"><li>判断学员<b>类型</b>：积极执行型 / 被动等待型 / 焦虑质疑型 / 高高在上型</li><li><b>识别退款倾向早期信号</b>：反复问「多久回本」「保证赚吗」「别人都赚了多少」</li><li>焦虑型 → S2 电话加长；质疑型 → 全程留痕、用数据说话；高高在上型 → 从基础动作做起压预期</li></ul></div>
+     <div class="notify"><b>学员通知点</b>问卷类动作，无需单独推送；<b>统一在 1.10汇总回复学员</b>时带一句：「你 XX 情况我看到了，已记进你的陪跑计划。」让学员知道每项都被认真看过。</div>
+     <div class="chips"><span class="chip o">交付物 · 学员画像标签 + 风险等级（A 低 / B 中 / C 高退款风险）</span></div>
+     <div class="risk"><b>合规 / 风险提示</b>忽视心理类型 → 用错节奏。焦虑型不能催（越催越退），质疑型必须给数据。</div>
+    </div>
+   </div><div class="card" data-id="s1-1.9">
+    <div class="chead" onclick="tog(this.parentElement)">
+     <div class="cb" onclick="ck(event,this)"></div>
+     <span class="nm">1.9</span>
+     <div class="ttl">合规诉求确认</div>
+     <span class="lim">T+24h</span>
+    </div>
+    <div class="cbody">
+     <div class="blk"><div class="lb">详细动作</div><ul class="acts"><li>直接问：<b>有没有要求做灰产、假货、仿牌、无货源搬运、站外引流</b></li><li>有无要求<b>代持账号</b>、<b>完全代运营</b>（含账号密码）</li><li>有任何一条 → <b>立即上报 PM 主管</b>，按拒接流程处理</li></ul></div>
+     <div class="notify"><b>学员通知点</b>问卷类动作，无需单独推送；<b>统一在 1.10汇总回复学员</b>时带一句：「你 XX 情况我看到了，已记进你的陪跑计划。」让学员知道每项都被认真看过。</div>
+     <div class="chips"><span class="chip o">交付物 · 合规确认记录（学员口头确认 + 带教签注）</span></div>
+     <div class="risk"><b>合规 / 风险提示</b>⚠️ 红线：涉及侵权/仿牌/灰产/站外引流 → <b>一律不接</b>，即使已付款也要走退费流程，别硬扛。</div>
+    </div>
+   </div><div class="card" data-id="s1-1.10">
+    <div class="chead" onclick="tog(this.parentElement)">
+     <div class="cb" onclick="ck(event,this)"></div>
+     <span class="nm">1.10</span>
+     <div class="ttl">学员定级与陪跑方案初稿</div>
+     <span class="lim">T+24h</span>
+    </div>
+    <div class="cbody">
+     <div class="blk"><div class="lb">详细动作</div><ul class="acts"><li><b>综合定级</b>（三选一）：<br>· <b>A 级 全力陪跑</b>——账号健康 + 时间充足 + 目标合理 → 全流程 S0→S7 完整带<br>· <b>B 级 轻量陪跑</b>——时间碎片 / 基础弱 → 录播为主 + 关键节点 1v1<br>· <b>C 级 观察/降配</b>——执行意愿低 / 预期离谱 / 资源不足 → 降配方案 + 明确退出条件</li><li>输出<b>陪跑方案初稿</b>：选品方向、节奏、日动作量、里程碑时间点</li><li>方案初稿<b>内部过一遍</b>（助教/导师），不达标的不发学员</li></ul></div>
+     <div class="notify"><b>学员通知点</b><b>T+24h 内</b>群内 + 私聊发《你的陪跑方案》：定位 + 选品方向 + 本周动作 + 里程碑时间点。同时预告<b>电话时间</b>。</div>
+     <div class="chips"><span class="chip o">交付物 · 学员定级结论 + 陪跑方案初稿（内部版）</span></div>
+     <div class="risk"><b>合规 / 风险提示</b>⚠️ 摸排做一半就发品 = 最常见的翻车原因。<b>摸排不完成，不进入 S4</b>。</div>
+    </div>
+   </div>
+ </div>
+</div>
+<div class="pg" id="pg-s2">
+ <div class="sec">
+  <div class="sechd">
+   <h2><span class="code">S2</span>电话沟通：心理按摩 + 预期管理</h2>
+   <div class="meta-r"><span>时限 <b>T+24h ~ T+48h</b></span><span>责任 <b>带教 PM</b></span></div>
+  </div>
+  <div class="goal"><b>阶段目标</b>：这是整个陪跑<b>最关键的一通电话</b>。摸排是「收集信息」，电话是「<b>建立信任 + 校准预期</b>」。目标：让学员从「我交了钱，公司该给我结果」转成「<b>这是我自己的项目，公司给我方法</b>」。</div>
+  <div class="card" data-id="s2-2.1">
+    <div class="chead" onclick="tog(this.parentElement)">
+     <div class="cb" onclick="ck(event,this)"></div>
+     <span class="nm">2.1</span>
+     <div class="ttl">电话预约与前置准备</div>
+     <span class="lim">T+24h</span>
+    </div>
+    <div class="cbody">
+     <div class="blk"><div class="lb">详细动作</div><ul class="acts"><li><b>提前 2 小时预约</b>，不用「现在方便吗」这种开放式问法</li><li>直接给 2 个时段让学员选：「今天晚上 8 点还是明天中午 12 点？」</li><li><b>通话前必看</b>：摸排问卷 + 账号截图 + 交接单承诺项 + 学员画像标签</li><li><b>通话目标</b>写下来（3 条以内）：① 心理疏导建立信任 ② 预期管理 ③ 确认下一步动作</li></ul></div>
+     <div class="notify"><b>学员通知点</b><b>T+24h</b> 内发出预约：「今晚 8 点或明早 10 点，20 分钟，我带你把后面 30 天的路捋一遍。」</div>
+     <div class="chips"><span class="chip o">交付物 · 通话预约确认 + 通话目标卡</span></div>
+     <div class="risk"><b>合规 / 风险提示</b>临时突袭电话 → 学员戒备/反感。必须预约。</div>
+    </div>
+   </div><div class="card" data-id="s2-2.2">
+    <div class="chead" onclick="tog(this.parentElement)">
+     <div class="cb" onclick="ck(event,this)"></div>
+     <span class="nm">2.2</span>
+     <div class="ttl">通话开场与破冰（3 分钟）</div>
+     <span class="lim">T+48h</span>
+    </div>
+    <div class="cbody">
+     <div class="blk"><div class="lb">详细动作</div><ul class="acts"><li><b>先不问问题</b>，先聊现状：「你之前是做什么的？这次是怎么了解到我们的？」</li><li>让学员讲 2-3 分钟，<b>认真听并复述</b>：「所以你主要是想做【XX】类，对吧」</li><li><b>目的</b>：让学员开口，降低防御，建立「他是认真在帮我的」印象</li></ul></div>
+     <div class="notify"><b>学员通知点</b>问卷类动作，无需单独推送；<b>统一在 1.10汇总回复学员</b>时带一句：「你 XX 情况我看到了，已记进你的陪跑计划。」让学员知道每项都被认真看过。</div>
+     
+     <div class="risk"><b>合规 / 风险提示</b>开局就上问题 → 学员当成填表，防御心重，后面预期管理讲不进去。</div>
+    </div>
+   </div><div class="card" data-id="s2-2.3">
+    <div class="chead" onclick="tog(this.parentElement)">
+     <div class="cb" onclick="ck(event,this)"></div>
+     <span class="nm">2.3</span>
+     <div class="ttl">现状共情与问题归因外化</div>
+     <span class="lim">T+48h</span>
+    </div>
+    <div class="cbody">
+     <div class="blk"><div class="lb">详细动作</div><ul class="acts"><li><b>先肯定</b>：「你自己能主动来学、已经在摸排填表了，这个动作很多人做不到」</li><li><b>归因外化</b>（关键）——把问题推给「外部客观原因」，不是学员能力：<br>·「闲鱼现在流量池子在收紧，很多人卡住不是因为不努力，是<b>方法跟不上平台变化</b>」<br>·「你不是没出单，是<b>选品那一步没选对，选错了一直在跟空气较劲</b>」</li><li><b>降羞耻感</b>：明确告诉他「卡住是常态，我带的学员里大部分第一单都在第 7-20 天」</li></ul></div>
+     <div class="notify"><b>学员通知点</b>问卷类动作，无需单独推送；<b>统一在 1.10汇总回复学员</b>时带一句：「你 XX 情况我看到了，已记进你的陪跑计划。」让学员知道每项都被认真看过。</div>
+     <div class="chips"><span class="chip o">交付物 · 通话中记录学员情绪状态（用于后续跟进策略）</span></div>
+     <div class="risk"><b>合规 / 风险提示</b>不要说「你怎么不上架」「你进度太慢了」→ 学员的自尊一破，后面全不配合。</div>
+    </div>
+   </div><div class="card" data-id="s2-2.4">
+    <div class="chead" onclick="tog(this.parentElement)">
+     <div class="cb" onclick="ck(event,this)"></div>
+     <span class="nm">2.4</span>
+     <div class="ttl">心理按摩与情绪疏导</div>
+     <span class="lim">T+48h</span>
+    </div>
+    <div class="cbody">
+     <div class="blk"><div class="lb">详细动作</div><ul class="acts"><li><b>处理焦虑</b>：「你担心赚不到，我理解。换我也担心。我们把它拆小：这 30 天只要做成一件事——<b>你自己独立出一单</b>，后面全是复利。」</li><li><b>处理羞耻</b>：「身边朋友赚钱了你就急了？正常。但你不知道他们背后试了多少次。」</li><li><b>处理怀疑</b>：「你怀疑我们是不是割韭菜，这个怀疑很对，我给你看 XX 数据（看我们自己的学员案例、后台数据）。」</li><li><b>建立节奏感</b>：「接下来每周会有一个明确的小目标，一周一个台阶，不是一步到位。」</li></ul></div>
+     <div class="notify"><b>学员通知点</b>问卷类动作，无需单独推送；<b>统一在 1.10汇总回复学员</b>时带一句：「你 XX 情况我看到了，已记进你的陪跑计划。」让学员知道每项都被认真看过。</div>
+     <div class="chips"><span class="chip o">交付物 · 情绪疏导记录 + 学员承诺点（他自己说愿意做什么）</span></div>
+     <div class="risk"><b>合规 / 风险提示</b>⚠️ 关键：学员承诺点要<b>当场记下来</b>，后续没做到时用它做跟进，不是用来指责，是用来问「这周说好要上架 3 件，现在到 1 件，卡在哪了？」</div>
+    </div>
+   </div><div class="card" data-id="s2-2.5">
+    <div class="chead" onclick="tog(this.parentElement)">
+     <div class="cb" onclick="ck(event,this)"></div>
+     <span class="nm">2.5</span>
+     <div class="ttl">预期管理三件套</div>
+     <span class="lim">T+48h</span>
+    </div>
+    <div class="cbody">
+     <div class="blk"><div class="lb">详细动作</div><ul class="acts"><li><b>【收益预期】</b>：「我不承诺你赚多少——因为结果取决于你投入多少。但我可以承诺：<b>方法、资源、陪跑我给到位，你按节奏走，出单是必然结果，只是时间问题</b>」</li><li><b>【时间预期】</b>：「第一单通常 7-21 天，快的话一周，慢的话一个月。<b>越早开始动手，越早出单</b>。超过一个月还没出单的，我们一起找原因，不甩锅」</li><li><b>【边界预期】</b>：「我们教的是<b>方法 + 资源对接 + 陪跑监督</b>。账号是你自己的，货是你自己发的，<b>我们不代持账号、不代运营、不保证收益</b>。这条我必须提前说清楚」</li></ul></div>
+     <div class="notify"><b>学员通知点</b>问卷类动作，无需单独推送；<b>统一在 1.10汇总回复学员</b>时带一句：「你 XX 情况我看到了，已记进你的陪跑计划。」让学员知道每项都被认真看过。</div>
+     <div class="chips"><span class="chip o">交付物 · 预期管理确认记录（学员口头确认三个预期）</span></div>
+     <div class="risk"><b>合规 / 风险提示</b>⚠️ 红线：不承诺收益、不承诺时间、不承诺一定出单。<b>口头也不许说</b>，说一次就可能被留证。同时用「出单是必然结果，只是时间问题」替代「保证出单」，把主动权还给学员。</div>
+    </div>
+   </div><div class="card" data-id="s2-2.6">
+    <div class="chead" onclick="tog(this.parentElement)">
+     <div class="cb" onclick="ck(event,this)"></div>
+     <span class="nm">2.6</span>
+     <div class="ttl">需求澄清与方案微调</div>
+     <span class="lim">T+48h</span>
+    </div>
+    <div class="cbody">
+     <div class="blk"><div class="lb">详细动作</div><ul class="acts"><li>基于摸排+通话，<b>当场确认 3 件事</b>：① 选品方向 ② 每天动作量 ③ 本周里程碑</li><li><b>学员认可后再往下讲</b>，避免单方面输出</li><li>方案有调整 → 当场说清「我调整了 X，因为你的情况是 Y」</li></ul></div>
+     <div class="notify"><b>学员通知点</b>问卷类动作，无需单独推送；<b>统一在 1.10汇总回复学员</b>时带一句：「你 XX 情况我看到了，已记进你的陪跑计划。」让学员知道每项都被认真看过。</div>
+     <div class="chips"><span class="chip o">交付物 · 电话后确认的方案版本</span></div>
+     <div class="risk"><b>合规 / 风险提示</b>方案在电话里定了但没落纸 → 后续扯皮「你当时不是这么说的」。</div>
+    </div>
+   </div><div class="card" data-id="s2-2.7">
+    <div class="chead" onclick="tog(this.parentElement)">
+     <div class="cb" onclick="ck(event,this)"></div>
+     <span class="nm">2.7</span>
+     <div class="ttl">异议与高危话术处理</div>
+     <span class="lim">T+48h</span>
+    </div>
+    <div class="cbody">
+     <div class="blk"><div class="lb">详细动作</div><ul class="acts"><li><b>「能不能保证出单？」</b> → 口径：不能保证，但按节奏走的学员 90% 在一个月内出单；<b>我能保证的是方法和陪跑到位</b></li><li><b>「别人都说赚很多」</b> → 口径：截图可以给你看，但每个人起点不同，我们不比别人，只跟你的上周比</li><li><b>「我先自己试试」</b> → 口径：完全可以，你随时回来找我们，SOP 依然给你（不锁死资源）</li><li><b>「能不能帮我代运营」</b> → 口径：<b>不代持账号</b>，但我们给你逐条 SOP + 逐项陪跑</li></ul></div>
+     <div class="notify"><b>学员通知点</b>问卷类动作，无需单独推送；<b>统一在 1.10汇总回复学员</b>时带一句：「你 XX 情况我看到了，已记进你的陪跑计划。」让学员知道每项都被认真看过。</div>
+     
+     <div class="risk"><b>合规 / 风险提示</b>⚠️ 任何涉及「保证/承诺/肯定赚」的表述都不许出口。学员录音留证是常态。</div>
+    </div>
+   </div><div class="card" data-id="s2-2.8">
+    <div class="chead" onclick="tog(this.parentElement)">
+     <div class="cb" onclick="ck(event,this)"></div>
+     <span class="nm">2.8</span>
+     <div class="ttl">电话后书面确认（关键留痕）</div>
+     <span class="lim">T+48h（通话后 2h 内）</span>
+    </div>
+    <div class="cbody">
+     <div class="blk"><div class="lb">详细动作</div><ul class="acts"><li>通话结束后 <b>2 小时内</b>，群内 + 私聊发《沟通确认单》：<br>· 我们承诺给你什么<br>· 我们不承诺什么<br>· 你需要做什么<br>· 本周里程碑 + 时间点</li><li><b>请学员回复「已确认」</b>——这行回复是后续退款争议的关键证据</li><li>《沟通确认单》同步存交付档案，编号留痕</li></ul></div>
+     <div class="notify"><b>学员通知点</b>「X 哥，这是刚才电话的确认，麻烦回复「已确认」，后面我们就按这个走，有问题随时找我。」</div>
+     <div class="chips"><span class="chip o">交付物 · 《沟通确认单》+ 学员「已确认」回复截图</span></div>
+     <div class="risk"><b>合规 / 风险提示</b>⚠️ 不做书面确认 → 退款时学员拿不出你承诺过什么、你也没法证明他答应做什么。这是<b>最高性价比的留痕动作</b>，务必执行。</div>
+    </div>
+   </div>
+ </div>
+</div>
+<div class="pg" id="pg-s3">
+ <div class="sec">
+  <div class="sechd">
+   <h2><span class="code">S3</span>视频学习：先输入方法</h2>
+   <div class="meta-r"><span>时限 <b>T+48h ~ T+7d</b></span><span>责任 <b>带教 PM + 助教</b></span></div>
+  </div>
+  <div class="goal"><b>阶段目标</b>：<b>学习在前，动作在后。</b>没学完方法就上架 = 学员自己摸索 + 出问题 + 找上门。先把方法灌进去，再动手。<b>本阶段唯一考核指标：完播率 + 作业通过率</b>。</div>
+  <div class="card" data-id="s3-3.1">
+    <div class="chead" onclick="tog(this.parentElement)">
+     <div class="cb" onclick="ck(event,this)"></div>
+     <span class="nm">3.1</span>
+     <div class="ttl">课程清单按定级分配</div>
+     <span class="lim">T+48h</span>
+    </div>
+    <div class="cbody">
+     <div class="blk"><div class="lb">详细动作</div><ul class="acts"><li>按 S1 定级分配课程：<b>A 级</b>全套必修 + 选修；<b>B 级</b>只给必修主干；<b>C 级</b>给最小必要集</li><li><b>不要一次甩 30 节课</b>，按周给「本周只看这 3 节」，降低放弃率</li><li>说明每节课<b>「看完要做什么」</b>，和 S4 上架动作挂钩</li></ul></div>
+     <div class="notify"><b>学员通知点</b>「本周课程 3 节已放到群文件，<b>周日前看完</b>，每节后面都有一个小作业，做完我给你批。」</div>
+     <div class="chips"><span class="chip o">交付物 · 个人课程清单（含必看/选看标注）</span></div>
+     <div class="risk"><b>合规 / 风险提示</b>课程给太满 → 完播率崩。宁少勿多。</div>
+    </div>
+   </div><div class="card" data-id="s3-3.2">
+    <div class="chead" onclick="tog(this.parentElement)">
+     <div class="cb" onclick="ck(event,this)"></div>
+     <span class="nm">3.2</span>
+     <div class="ttl">学习节奏表下发</div>
+     <span class="lim">T+48h</span>
+    </div>
+    <div class="cbody">
+     <div class="blk"><div class="lb">详细动作</div><ul class="acts"><li>明确<b>每天学多久</b>（按 S1 摸排的可用时间定，不统一硬性）</li><li><b>固定学习时段</b>（如每晚 9 点），配合打卡机制</li><li><b>截止日明确</b>：「Day1-3 看第 1-3 节，Day4 交作业」，不给模糊空间</li></ul></div>
+     <div class="notify"><b>学员通知点</b>问卷类动作，无需单独推送；<b>统一在 1.10汇总回复学员</b>时带一句：「你 XX 情况我看到了，已记进你的陪跑计划。」让学员知道每项都被认真看过。</div>
+     <div class="chips"><span class="chip o">交付物 · 学习节奏表（学员版）</span></div>
+     <div class="risk"><b>合规 / 风险提示</b>时间不贴合学员实际作息 → 三天后停摆。必须按摸排结果定制。</div>
+    </div>
+   </div><div class="card" data-id="s3-3.3">
+    <div class="chead" onclick="tog(this.parentElement)">
+     <div class="cb" onclick="ck(event,this)"></div>
+     <span class="nm">3.3</span>
+     <div class="ttl">每日打卡与作业提交</div>
+     <span class="lim">每日</span>
+    </div>
+    <div class="cbody">
+     <div class="blk"><div class="lb">详细动作</div><ul class="acts"><li><b>每日打卡</b>：学完打一次（文字/截图均可），<b>带教每天回复</b>（哪怕只回「收到」）</li><li><b>每周 1 个作业</b>（实操作业为主，如：写 3 个标题、写 1 段详情）</li><li><b>作业必须批改</b>，给具体反馈（哪里好、哪里改），不要只回「收到」</li><li><b>作业存档</b>：这是 S4 上架、S6 出单的素材来源</li></ul></div>
+     <div class="notify"><b>学员通知点</b>每日固定时间提醒：「⏰ 今天的打卡还差，看完回个 1 就行。」<br>每周作业截止前一天提醒：「明晚 10 点交作业，我给你批。」</div>
+     <div class="chips"><span class="chip o">交付物 · 打卡记录 + 作业批改记录（含学员原稿+修改稿）</span></div>
+     <div class="risk"><b>合规 / 风险提示</b>带教不回复打卡 → 学员 3 天内停止打卡。<b>回复成本极低、效果极高</b>，必须每天做。</div>
+    </div>
+   </div><div class="card" data-id="s3-3.4">
+    <div class="chead" onclick="tog(this.parentElement)">
+     <div class="cb" onclick="ck(event,this)"></div>
+     <span class="nm">3.4</span>
+     <div class="ttl">答疑与每周复盘</div>
+     <span class="lim">每周</span>
+    </div>
+    <div class="cbody">
+     <div class="blk"><div class="lb">详细动作</div><ul class="acts"><li><b>群内答疑</b>：固定时段（如每晚 20:00-21:00），学员集中提问</li><li><b>每周一次复盘</b>：这周学了什么、作业情况、下周动作、下周里程碑</li><li><b>1v1 答疑</b>：B/C 级学员每周至少 1 次，A 级按需</li></ul></div>
+     <div class="notify"><b>学员通知点</b>每周日发《本周复盘》：学习完成 X 节 / 作业 Y 份 / 下周动作 3 条 / 下周里程碑。</div>
+     <div class="chips"><span class="chip o">交付物 · 答疑纪要 + 每周复盘记录</span></div>
+     <div class="risk"><b>合规 / 风险提示</b>答疑只在群内 → 学员不好意思问/A 级学员觉得人多不爱问。留 1v1 通道。</div>
+    </div>
+   </div><div class="card" data-id="s3-3.5">
+    <div class="chead" onclick="tog(this.parentElement)">
+     <div class="cb" onclick="ck(event,this)"></div>
+     <span class="nm">3.5</span>
+     <div class="ttl">学习进度追踪与掉队预警</div>
+     <span class="lim">每日</span>
+    </div>
+    <div class="cbody">
+     <div class="blk"><div class="lb">详细动作</div><ul class="acts"><li><b>连续 3 天未打卡/未交作业</b> → 私聊问原因（不群里 @，留面子）</li><li><b>连续 5 天未响应</b> → 电话跟进，判断是否要降配或调整节奏</li><li><b>完播率低于 50%</b> → 暂停推进后续动作，先把学习补上（<b>不补完不上架</b>）</li></ul></div>
+     <div class="notify"><b>学员通知点</b>「好几天没看到你打卡了，是最近忙还是课程哪里卡住？跟我说一声，我调整下节奏给你。」</div>
+     <div class="chips"><span class="chip o">交付物 · 学习进度看板 + 预警记录</span></div>
+     <div class="risk"><b>合规 / 风险提示</b>⚠️ 掉队不预警 → 拖到出单期才发现没学完，前面全白做。<b>每天盯看板是带教的基本功</b>。</div>
+    </div>
+   </div><div class="card" data-id="s3-3.6">
+    <div class="chead" onclick="tog(this.parentElement)">
+     <div class="cb" onclick="ck(event,this)"></div>
+     <span class="nm">3.6</span>
+     <div class="ttl">视频结业验收</div>
+     <span class="lim">T+7d</span>
+    </div>
+    <div class="cbody">
+     <div class="blk"><div class="lb">详细动作</div><ul class="acts"><li><b>完播率 ≥80%</b> + <b>作业通过 ≥80%</b> 才算通过</li><li><b>不达标 → 不进入 S4</b>，补学后重测（这是硬闸门，不能跳）</li><li>通过后<b>当场通知</b>：进入实操阶段，进入 S4</li></ul></div>
+     <div class="notify"><b>学员通知点</b>「视频部分通过了，明天开始给你匹配供应链和发品。」</div>
+     <div class="chips"><span class="chip o">交付物 · 学习结业确认（完播率截图 + 作业通过记录）</span></div>
+     <div class="risk"><b>合规 / 风险提示</b>⚠️ <b>放水让没学完的学员进 S4 是最大的雷</b>：学员会自己瞎摸索，出问题反过来怪课程和陪跑。闸门必须守住。</div>
+    </div>
+   </div>
+ </div>
+</div>
+<div class="pg" id="pg-s4">
+ <div class="sec">
+  <div class="sechd">
+   <h2><span class="code">S4</span>分类给供应链 → 发品 → 上架</h2>
+   <div class="meta-r"><span>时限 <b>T+7d ~ T+14d</b></span><span>责任 <b>带教 PM + 供应链对接</b></span></div>
+  </div>
+  <div class="goal"><b>阶段目标</b>：把「学到的方法」<b>变成货架上的商品</b>。本阶段唯一考核指标：<b>首批上架完成率 + 上架质量合格率</b>。</div>
+  <div class="card" data-id="s4-4.1">
+    <div class="chead" onclick="tog(this.parentElement)">
+     <div class="cb" onclick="ck(event,this)"></div>
+     <span class="nm">4.1</span>
+     <div class="ttl">学员分类（三分法）</div>
+     <span class="lim">T+7d</span>
+    </div>
+    <div class="cbody">
+     <div class="blk"><div class="lb">详细动作</div><ul class="acts"><li><b>按能力/预算/执行意愿三分</b>：<br>· <b>新手类目</b>（适合零基础）——标准普通供应链三选一，易上架、易出单<br>· <b>供应链优势类目</b>（3C 配件 / 品牌鞋服等）——需一定资金和甄别能力，利润高但门槛高<br>· <b>鲸选供应链</b>（数码 3C / 品牌鞋服）——门槛高，<b>不适合新手</b>，仅推给有经验/有资源的学员</li><li><b>强边界</b>：不推 1688 / 抖音 / 拼多多 / 视频号货源，只推机构审核过的供应链</li><li>分类结论<b>同步给供应链对接人</b>，明确 SKU 范围和学员情况</li></ul></div>
+     <div class="notify"><b>学员通知点</b>「根据你的情况，我给你匹配的是【XX 类目】的供应链，这类的特点是【XX】，和你之前说的【XX 需求】比较匹配。」<br>注意：<b>要讲清楚「为什么给你这个类」，让学员觉得是被认真分析过的</b>。</div>
+     <div class="chips"><span class="chip o">交付物 · 学员分类结论 + 供应链匹配单</span></div>
+     <div class="risk"><b>合规 / 风险提示</b>⚠️ 不管学员基础一律推高门槛品类 → 上架失败、退款、投诉。分类这一步<b>宁可保守不要激进</b>。</div>
+    </div>
+   </div><div class="card" data-id="s4-4.2">
+    <div class="chead" onclick="tog(this.parentElement)">
+     <div class="cb" onclick="ck(event,this)"></div>
+     <span class="nm">4.2</span>
+     <div class="ttl">供应链匹配与授权开通</div>
+     <span class="lim">T+7d</span>
+    </div>
+    <div class="cbody">
+     <div class="blk"><div class="lb">详细动作</div><ul class="acts"><li>对接供应链负责人，开通<b>学员账号权限</b>（下单/查价/看库存）</li><li>同步<b>该供应链的规则</b>：起订量、退换货、发货时效、结算方式、售后责任</li><li>明确<b>禁止事项</b>：不得对外宣称官方合作、不得改价乱发、不得跨区发货</li><li><b>把规则写给学员看</b>，不是口头说</li></ul></div>
+     <div class="notify"><b>学员通知点</b>「你的供应链权限开通了，我拉你进供应商对接群，里面有价格表和下单流程。有问题先问我，别自己乱下单。」</div>
+     <div class="chips"><span class="chip o">交付物 · 权限开通截图 + 规则告知留痕</span></div>
+     <div class="risk"><b>合规 / 风险提示</b>供应链规则没提前说 → 出货/售后阶段纠纷。必须书面。</div>
+    </div>
+   </div><div class="card" data-id="s4-4.3">
+    <div class="chead" onclick="tog(this.parentElement)">
+     <div class="cb" onclick="ck(event,this)"></div>
+     <span class="nm">4.3</span>
+     <div class="ttl">首批发品清单（3-5 个品）</div>
+     <span class="lim">T+7d</span>
+    </div>
+    <div class="cbody">
+     <div class="blk"><div class="lb">详细动作</div><ul class="acts"><li><b>首批 ≤5 个品，控制在 3-5 个</b>，多了学员做不完也看不明白</li><li>每个品<b>配套资料</b>：成本价、建议售价、利润、主图素材、卖点文案</li><li><b>说明为什么选这 3-5 个</b>：客群匹配/易出单/竞争小/有利润</li><li><b>明确试品逻辑</b>：「先上这 3 个跑数据，哪个跑得好我们再追加」</li></ul></div>
+     <div class="notify"><b>学员通知点</b>「给你发了 3 个品（清单见文件）。<b>先不用全上，选 1-2 个最顺手的先上</b>，我带你走一遍。」</div>
+     <div class="chips"><span class="chip o">交付物 · 发品清单 + 选品理由说明</span></div>
+     <div class="risk"><b>合规 / 风险提示</b>⚠️ 一口气发 20 个品 → 学员懵了、选择困难、最后一个都没上。<b>宁可少而精</b>。</div>
+    </div>
+   </div><div class="card" data-id="s4-4.4">
+    <div class="chead" onclick="tog(this.parentElement)">
+     <div class="cb" onclick="ck(event,this)"></div>
+     <span class="nm">4.4</span>
+     <div class="ttl">上架一对一教学</div>
+     <span class="lim">T+10d</span>
+    </div>
+    <div class="cbody">
+     <div class="blk"><div class="lb">详细动作</div><ul class="acts"><li><b>手把手带做第一个品</b>：标题怎么写、主图怎么选、详情怎么排、价格怎么定、发货怎么填</li><li><b>零基础必须陪着他点一遍</b>（可视频/语音），不能只发教程链接</li><li>上架 6 要素逐个过：<b>标题/主图/详情/价格/发货/分类标签</b></li><li>教完<b>让他自己上第二个</b>，确认他真会了</li></ul></div>
+     <div class="notify"><b>学员通知点</b>「今天带你上第一个品，我发个语音，你边听边操作，卡住随时问我。上完你再自己上一个。」</div>
+     <div class="chips"><span class="chip o">交付物 · 上架教学记录 + 第一个品上架截图</span></div>
+     <div class="risk"><b>合规 / 风险提示</b>只发教程不陪练 → 学员卡在半路不动手，第一次上架的挫败感会直接终结陪跑。</div>
+    </div>
+   </div><div class="card" data-id="s4-4.5">
+    <div class="chead" onclick="tog(this.parentElement)">
+     <div class="cb" onclick="ck(event,this)"></div>
+     <span class="nm">4.5</span>
+     <div class="ttl">上架质量验收（逐品）</div>
+     <span class="lim">T+10d</span>
+    </div>
+    <div class="cbody">
+     <div class="blk"><div class="lb">详细动作</div><ul class="acts"><li><b>逐品检查 6 要素</b>，不合格<b>打回重做</b>（不是嘴上说）</li><li><b>标题检查</b>：关键词有没有、长度、有无违禁词</li><li><b>主图检查</b>：清晰度、有无水印、有无夸大</li><li><b>违禁词必查</b>：最、第一、国家级、治愈、纯天然等一律不写</li></ul></div>
+     <div class="notify"><b>学员通知点</b>「第一个品通过，第二个主图有水印，我给你标出来了，重新换一张。」</div>
+     <div class="chips"><span class="chip o">交付物 · 上架验收记录（每品 6 要素勾选 + 修改前后对比）</span></div>
+     <div class="risk"><b>合规 / 风险提示</b>⚠️ 违禁词导致商品下架/扣分 → 学员信任崩塌。<b>带教必须每次都查词</b>，这是硬要求。</div>
+    </div>
+   </div><div class="card" data-id="s4-4.6">
+    <div class="chead" onclick="tog(this.parentElement)">
+     <div class="cb" onclick="ck(event,this)"></div>
+     <span class="nm">4.6</span>
+     <div class="ttl">上架完成时限硬要求</div>
+     <span class="lim">T+10d（48 小时内完成首批）</span>
+    </div>
+    <div class="cbody">
+     <div class="blk"><div class="lb">详细动作</div><ul class="acts"><li><b>首批上架 48 小时内必须完成</b>，不能拖</li><li>超时的<b>当天电话催</b>，问具体卡点（不会写标题 / 不知道选哪个品 / 没时间）</li><li><b>把「上架完成」和时间节点绑定</b>：上架完 → 下周开始流量和转化课程，节奏上给学员盼头</li></ul></div>
+     <div class="notify"><b>学员通知点</b>「你的上架这周内要完成，卡住了直接找我，别自己憋着。上架完我们下周进下一阶段。」</div>
+     <div class="chips"><span class="chip o">交付物 · 首批上架完成记录（含时间戳）</span></div>
+     <div class="risk"><b>合规 / 风险提示</b>上架拖过一周 → 后面运营课全部延后，陪跑周期拉长，学员失去信心。</div>
+    </div>
+   </div><div class="card" data-id="s4-4.7">
+    <div class="chead" onclick="tog(this.parentElement)">
+     <div class="cb" onclick="ck(event,this)"></div>
+     <span class="nm">4.7</span>
+     <div class="ttl">供应链使用规范宣导</div>
+     <span class="lim">T+10d</span>
+    </div>
+    <div class="cbody">
+     <div class="blk"><div class="lb">详细动作</div><ul class="acts"><li>再次强调<b>只用机构审核供应链</b>，<b>不得私自从 1688/抖音/拼多多进货</b>（一旦出问题机构不担责）</li><li><b>不得刷单、不得虚假交易、不得搬运他人图片</b>（违规后果说明清楚）</li><li><b>价格保护</b>：按建议售价区间出货，不得恶意低价引流破坏价格体系</li></ul></div>
+     <div class="notify"><b>学员通知点</b>「记住，货只从我们对接的供应链走，别自己从别的地方拿，出事我们帮不了你。」</div>
+     <div class="chips"><span class="chip o">交付物 · 规范确认记录</span></div>
+     <div class="risk"><b>合规 / 风险提示</b>⚠️ 学员偷偷上 1688 或刷单 → 平台处罚学员，但学员会怪到陪跑头上。<b>提前把这条说透</b>。</div>
+    </div>
+   </div>
+ </div>
+</div>
+<div class="pg" id="pg-s5">
+ <div class="sec">
+  <div class="sechd">
+   <h2><span class="code">S5</span>运营 SOP 标准：让学员自己跑</h2>
+   <div class="meta-r"><span>时限 <b>T+14d ~ T+21d</b></span><span>责任 <b>带教 PM</b></span></div>
+  </div>
+  <div class="goal"><b>阶段目标</b>：从「我教他做」转为「<b>他自己按标准跑</b>」。本阶段考核指标：<b>SOP 交付完整度 + 学员日动作执行率</b>。</div>
+  <div class="card" data-id="s5-5.1">
+    <div class="chead" onclick="tog(this.parentElement)">
+     <div class="cb" onclick="ck(event,this)"></div>
+     <span class="nm">5.1</span>
+     <div class="ttl">日常运营动作 SOP</div>
+     <span class="lim">T+14d</span>
+    </div>
+    <div class="cbody">
+     <div class="blk"><div class="lb">详细动作</div><ul class="acts"><li><b>每日动作清单</b>（可勾选版）：上新 X 件 / 擦亮 X 次 / 回复全部消息 / 浏览竞品 X 分钟 / 数据记录</li><li><b>每周动作清单</b>：数据复盘 / 价格测试 / 补货 / 标题优化</li><li><b>动作要具体到数字</b>，不说「多上架」，说「每天上架 2-3 件」</li></ul></div>
+     <div class="notify"><b>学员通知点</b>「运营 SOP 给你了，每天照着清单做，做完打个勾。月底我们看勾了多少。」</div>
+     <div class="chips"><span class="chip o">交付物 · 《日动作 SOP 清单》（勾选版，学员可打印）</span></div>
+     <div class="risk"><b>合规 / 风险提示</b>SOP 太笼统 → 学员做两天就废。必须拆到可勾选颗粒度。</div>
+    </div>
+   </div><div class="card" data-id="s5-5.2">
+    <div class="chead" onclick="tog(this.parentElement)">
+     <div class="cb" onclick="ck(event,this)"></div>
+     <span class="nm">5.2</span>
+     <div class="ttl">数据看板 SOP</div>
+     <span class="lim">T+14d</span>
+    </div>
+    <div class="cbody">
+     <div class="blk"><div class="lb">详细动作</div><ul class="acts"><li>明确<b>只看 4 个核心指标</b>：曝光、浏览/点击、咨询、成交</li><li><b>每天固定时间记录</b>（建议晚 9 点），截图存</li><li><b>周维度对比</b>：这周曝光比上周涨了还是跌了</li><li><b>异常处理规则</b>：曝光 <30 → 检查标题/类目；曝光有但咨询 0 → 检查主图和价格</li></ul></div>
+     <div class="notify"><b>学员通知点</b>「每天发我一下这 4 个数，我帮你看有没有问题。这是判断你有没有做对的方法，不用你自己瞎猜。」</div>
+     <div class="chips"><span class="chip o">交付物 · 《学员数据日报模板》+ 异常处理对照表</span></div>
+     <div class="risk"><b>合规 / 风险提示</b>⚠️ 只给数据不给判断标准 → 学员看到数据跌就慌、直接放弃。<b>必须给「跌了怎么办」的规则</b>。</div>
+    </div>
+   </div><div class="card" data-id="s5-5.3">
+    <div class="chead" onclick="tog(this.parentElement)">
+     <div class="cb" onclick="ck(event,this)"></div>
+     <span class="nm">5.3</span>
+     <div class="ttl">合规避坑 SOP</div>
+     <span class="lim">T+14d</span>
+    </div>
+    <div class="cbody">
+     <div class="blk"><div class="lb">详细动作</div><ul class="acts"><li><b>违禁词清单</b>：最/第一/国家级/绝对化/医疗功效/纯天然…（列成表，学员上架前自查）</li><li><b>行为红线</b>：不刷单、不虚假发货、不诱导好评、不站外引流、不碰灰产</li><li><b>账号安全</b>：不频繁改标题/类目（触发降权）、不频繁切换登录设备</li></ul></div>
+     <div class="notify"><b>学员通知点</b>「上架前把这张表过一遍，宁可少写词也别踩线。被封了重新养号很耽误事。」</div>
+     <div class="chips"><span class="chip o">交付物 · 《违禁词自查表》+《行为红线告知书》</span></div>
+     <div class="risk"><b>合规 / 风险提示</b>学员被封号 → 归因到陪跑。必须提前预防 + 明确「这是平台规则，不是我能改的」。</div>
+    </div>
+   </div><div class="card" data-id="s5-5.4">
+    <div class="chead" onclick="tog(this.parentElement)">
+     <div class="cb" onclick="ck(event,this)"></div>
+     <span class="nm">5.4</span>
+     <div class="ttl">客服话术 SOP</div>
+     <span class="lim">T+14d</span>
+    </div>
+    <div class="cbody">
+     <div class="blk"><div class="lb">详细动作</div><ul class="acts"><li>给<b>询价/议价/催付/售后</b>四类场景的标准话术</li><li><b>议价底线</b>要提前给（不轻易降价，降价伤账号权重）</li><li><b>回复时效要求</b>：<b>咨询 10 分钟内必须回</b>，闲鱼掉回复率权重</li><li>话术要<b>给示例</b>，不是给原则</li></ul></div>
+     <div class="notify"><b>学员通知点</b>「买家咨询 10 分钟内必须回，这条比你上架还重要，直接影响你的曝光。」</div>
+     <div class="chips"><span class="chip o">交付物 · 《四场景话术卡》（可直接照抄）</span></div>
+     <div class="risk"><b>合规 / 风险提示</b>回复慢 → 掉权重 → 学员完全不知道为什么自己不曝光。<b>这条要反复强调</b>。</div>
+    </div>
+   </div><div class="card" data-id="s5-5.5">
+    <div class="chead" onclick="tog(this.parentElement)">
+     <div class="cb" onclick="ck(event,this)"></div>
+     <span class="nm">5.5</span>
+     <div class="ttl">发货与售后 SOP</div>
+     <span class="lim">T+14d</span>
+    </div>
+    <div class="cbody">
+     <div class="blk"><div class="lb">详细动作</div><ul class="acts"><li><b>发货时效</b>：24h 内发出（影响体验分和权重）</li><li><b>售后话术</b>：先处理再复盘，不推诿</li><li><b>异常订单</b>（破损/漏发/退货）：按供应链规则走，谁出运费写清楚</li></ul></div>
+     <div class="notify"><b>学员通知点</b>「发货 24 小时内发出，这是硬指标。做不了 3 件以上就先别上那么多品。」</div>
+     <div class="chips"><span class="chip o">交付物 · 发货时效要求 + 售后流程说明</span></div>
+     <div class="risk"><b>合规 / 风险提示</b>学员发货慢被差评 → 影响整条链接。<b>宁可少上，别超能力发货</b>。</div>
+    </div>
+   </div><div class="card" data-id="s5-5.6">
+    <div class="chead" onclick="tog(this.parentElement)">
+     <div class="cb" onclick="ck(event,this)"></div>
+     <span class="nm">5.6</span>
+     <div class="ttl">SOP 交付与每日提醒机制</div>
+     <span class="lim">T+14d</span>
+    </div>
+    <div class="cbody">
+     <div class="blk"><div class="lb">详细动作</div><ul class="acts"><li>SOP <b>整理成可复制粘贴的表格/清单</b>发到群文件，方便学员反复用</li><li><b>前两周每日提醒执行</b>（发清单 + 问完成情况），之后改为每周抽查</li><li><b>执行率记录</b>：每周统计「SOP 完成度」，低于 50% 找原因</li></ul></div>
+     <div class="notify"><b>学员通知点</b>「SOP 清单在群文件，每天做完打个勾发我，我给你看进度。」</div>
+     <div class="chips"><span class="chip o">交付物 · SOP 交付记录 + 执行率周统计</span></div>
+     <div class="risk"><b>合规 / 风险提示</b>⚠️ SOP 发了不管 → 学员不看。<b>前两周必须每天盯</b>，这是从「陪跑」到「能自己跑」的关键过渡期。</div>
+    </div>
+   </div>
+ </div>
+</div>
+<div class="pg" id="pg-s6">
+ <div class="sec">
+  <div class="sechd">
+   <h2><span class="code">S6</span>首单突破与结业验收</h2>
+   <div class="meta-r"><span>时限 <b>T+21d ~ 结业</b></span><span>责任 <b>带教 PM</b></span></div>
+  </div>
+  <div class="goal"><b>阶段目标</b>：<b>结业标准只有一条：学员独立出第一单。</b>本阶段要做的不是「催」，而是<b>把前置动作一项项验收通过</b>，把压力从「结果」转移到「过程」。</div>
+  <div class="card" data-id="s6-6.1">
+    <div class="chead" onclick="tog(this.parentElement)">
+     <div class="cb" onclick="ck(event,this)"></div>
+     <span class="nm">6.1</span>
+     <div class="ttl">出单前置四项验收</div>
+     <span class="lim">T+21d</span>
+    </div>
+    <div class="cbody">
+     <div class="blk"><div class="lb">详细动作</div><ul class="acts"><li><b>严格按顺序验收，前一项不过不进入下一项</b>：<br>· 选品确认 ✅（选定品类 + 确认发品清单）<br>· 上架完成 ✅（首批 ≥3 款，每款 6 要素合格）<br>· 优化达标 ✅（标题/主图/价格至少各优化过一轮，有记录）<br>· 首单 ✅（真实成交订单截图）</li><li><b>每项验收留痕</b>（截图 + 日期 + 带教签字）</li><li><b>明确告诉学员</b>：「四项里前三项我帮你确认过了，现在只差最后一步。」</li></ul></div>
+     <div class="notify"><b>学员通知点</b>「你的前三项都过了，现在就是等第一单。我这边盯着你的数据，有动静第一时间告诉你。」</div>
+     <div class="chips"><span class="chip o">交付物 · 出单前置验收表（三项勾选 + 截图）</span></div>
+     <div class="risk"><b>合规 / 风险提示</b>⚠️ <b>前置动作没做扎实就催出单</b> → 学员出不了单反过来怪你。<b>这是整个陪跑最容易翻车的地方</b>，务必守住前置。</div>
+    </div>
+   </div><div class="card" data-id="s6-6.2">
+    <div class="chead" onclick="tog(this.parentElement)">
+     <div class="cb" onclick="ck(event,this)"></div>
+     <span class="nm">6.2</span>
+     <div class="ttl">首单冲刺专项（7 天）</div>
+     <span class="lim">T+21d</span>
+    </div>
+    <div class="cbody">
+     <div class="blk"><div class="lb">详细动作</div><ul class="acts"><li><b>7 天冲刺方案</b>：明确每天做什么（改标题 / 换主图 / 降价试探 / 刷擦亮 / 回复加速）</li><li><b>每天复盘数据</b>：曝光涨没涨、咨询有没有、有没有卡在某一环</li><li><b>按数据找卡点</b>：曝光低 → 标题/标签/上架量；曝光有咨询无 → 主图/价格；咨询有成交无 → 话术/信任</li></ul></div>
+     <div class="notify"><b>学员通知点</b>「我们开始 7 天冲刺，每天我给你一个具体动作，你做完发我看数据。这 7 天是决定能不能出单的关键。」</div>
+     <div class="chips"><span class="chip o">交付物 · 7 天冲刺计划表 + 每日数据记录</span></div>
+     <div class="risk"><b>合规 / 风险提示</b>冲刺期<b>不要一直催</b>（焦虑型学员越催越退）。<b>每天给具体动作，不给压力</b>。</div>
+    </div>
+   </div><div class="card" data-id="s6-6.3">
+    <div class="chead" onclick="tog(this.parentElement)">
+     <div class="cb" onclick="ck(event,this)"></div>
+     <span class="nm">6.3</span>
+     <div class="ttl">未出单归因分析（超过 7 天未出单）</div>
+     <span class="lim">T+28d</span>
+    </div>
+    <div class="cbody">
+     <div class="blk"><div class="lb">详细动作</div><ul class="acts"><li><b>四类归因，逐项排查</b>：<br>· <b>不想做</b>——动作量不够/拖延 → 调整节奏，不加压<br>· <b>不会做</b>——方法没掌握 → 补对应课程 + 1v1 精讲<br>· <b>做得慢</b>——单个环节卡住 → 定位环节，专项突破<br>· <b>做了没流量</b>——方向/选品/账号问题 → <b>换品或换类</b>，别死磕</li><li><b>归因结论写成《未出单诊断单》</b>，同步 PM 主管</li><li><b>不甩锅</b>：客观说「我们一起找原因」，不要说「你自己没做」</li></ul></div>
+     <div class="notify"><b>学员通知点</b>「7 天还没出单，我们不躲，一起看看卡在哪。我看了你的数据，问题在【X】，接下来我们集中解决这个。」</div>
+     <div class="chips"><span class="chip o">交付物 · 《未出单诊断单》+ 改进方案</span></div>
+     <div class="risk"><b>合规 / 风险提示</b>⚠️ 未出单就默认「学员不行」→ 退款风险直线上升。<b>先归因再定性</b>，方法问题要认。</div>
+    </div>
+   </div><div class="card" data-id="s6-6.4">
+    <div class="chead" onclick="tog(this.parentElement)">
+     <div class="cb" onclick="ck(event,this)"></div>
+     <span class="nm">6.4</span>
+     <div class="ttl">出单证据留存与结果确认</div>
+     <span class="lim">出单当日</span>
+    </div>
+    <div class="cbody">
+     <div class="blk"><div class="lb">详细动作</div><ul class="acts"><li><b>出单当日</b>让学员发<b>订单截图</b>（成交时间、商品、金额）——这是结业凭证</li><li><b>发单庆祝</b>：群内/私聊恭喜，<b>公开表扬</b>（正向激励很关键）</li><li><b>引导复购</b>：「出第一单只是开始，接下来学怎么稳定出单」</li></ul></div>
+     <div class="notify"><b>学员通知点</b>「恭喜！第一单出了 🎉 这就是你自己的项目跑通了。截图发我存档，接下来我教你做第二单。」</div>
+     <div class="chips"><span class="chip o">交付物 · 订单截图 + 结业确认记录</span></div>
+     <div class="risk"><b>合规 / 风险提示</b>无截图无凭证 → 后续争议说不清。必须当天收集。</div>
+    </div>
+   </div><div class="card" data-id="s6-6.5">
+    <div class="chead" onclick="tog(this.parentElement)">
+     <div class="cb" onclick="ck(event,this)"></div>
+     <span class="nm">6.5</span>
+     <div class="ttl">结业验收与持续运营 SOP</div>
+     <span class="lim">出单后 3 天内</span>
+    </div>
+    <div class="cbody">
+     <div class="blk"><div class="lb">详细动作</div><ul class="acts"><li><b>完整结业验收表</b>：知识掌握 / 选品定款 / 上架执行 / 首单突破 / 闭环跑通 / 运营能力（6 维度逐项确认）</li><li>交付<b>《持续运营 SOP》</b>：出单后怎么维持、怎么提升、怎么避免违规</li><li><b>遗留问题建事项</b>：「矩阵扩店待启动」等 → 明确后续负责人和时间</li><li><b>续费/升班型建议</b>：出单只是第一单，指向更高阶目标</li></ul></div>
+     <div class="notify"><b>学员通知点</b>「结业验收表我发你，6 项都过了。剩下的运营 SOP 你收好，后面按这个跑就能稳住。后续想做大随时找我。」</div>
+     <div class="chips"><span class="chip o">交付物 · 《结业验收表》（6 维度）+《持续运营 SOP》+ 遗留事项清单</span></div>
+     <div class="risk"><b>合规 / 风险提示</b>出单后就「结业不管了」→ 学员掉出单状态，负面口碑。<b>出单后必须给持续运营 SOP</b>。</div>
+    </div>
+   </div>
+ </div>
+</div>
+<div class="pg" id="pg-s7">
+ <div class="sec">
+  <div class="sechd">
+   <h2><span class="code">S7</span>交付复盘与资产沉淀</h2>
+   <div class="meta-r"><span>时限 <b>结业后 3 天内</b></span><span>责任 <b>带教 PM + PM 主管</b></span></div>
+  </div>
+  <div class="goal"><b>阶段目标</b>：把每一个学员的陪跑<b>变成可复用的资产</b>和<b>反哺前端的话术依据</b>。这一环不做，陪跑永远在重复劳动。</div>
+  <div class="card" data-id="s7-7.1">
+    <div class="chead" onclick="tog(this.parentElement)">
+     <div class="cb" onclick="ck(event,this)"></div>
+     <span class="nm">7.1</span>
+     <div class="ttl">单学员陪跑复盘</div>
+     <span class="lim">结业后 3 天内</span>
+    </div>
+    <div class="cbody">
+     <div class="blk"><div class="lb">详细动作</div><ul class="acts"><li>复盘<b>五项指标</b>：出单率、结业率、平均陪跑周期、满意度、退款率</li><li>复盘<b>关键节点数据</b>：摸排完成时长 / 视频完播率 / 上架完成时长 / 首单天数</li><li><b>找出本单卡点</b>：哪一步最慢、哪一步学员最容易放弃</li></ul></div>
+     <div class="notify"><b>学员通知点</b>问卷类动作，无需单独推送；<b>统一在 1.10汇总回复学员</b>时带一句：「你 XX 情况我看到了，已记进你的陪跑计划。」让学员知道每项都被认真看过。</div>
+     <div class="chips"><span class="chip o">交付物 · 《单学员陪跑复盘表》</span></div>
+     <div class="risk"><b>合规 / 风险提示</b>—</div>
+    </div>
+   </div><div class="card" data-id="s7-7.2">
+    <div class="chead" onclick="tog(this.parentElement)">
+     <div class="cb" onclick="ck(event,this)"></div>
+     <span class="nm">7.2</span>
+     <div class="ttl">数据沉淀与 SOP 迭代</div>
+     <span class="lim">结业后 3 天内</span>
+    </div>
+    <div class="cbody">
+     <div class="blk"><div class="lb">详细动作</div><ul class="acts"><li>把本单的<b>有效动作沉淀进 SOP</b>：哪句话术管用、哪个环节这样讲学员更配合</li><li>把<b>无效/低效动作标记出来</b>，下版 SOP 删掉或改</li><li>更新 SOP 版本号，<b>通知全员</b></li></ul></div>
+     <div class="notify"><b>学员通知点</b>问卷类动作，无需单独推送；<b>统一在 1.10汇总回复学员</b>时带一句：「你 XX 情况我看到了，已记进你的陪跑计划。」让学员知道每项都被认真看过。</div>
+     <div class="chips"><span class="chip o">交付物 · SOP 更新版本记录</span></div>
+     <div class="risk"><b>合规 / 风险提示</b>SOP 半年不更新 → 照着过时方法带教，效率越来越低。</div>
+    </div>
+   </div><div class="card" data-id="s7-7.3">
+    <div class="chead" onclick="tog(this.parentElement)">
+     <div class="cb" onclick="ck(event,this)"></div>
+     <span class="nm">7.3</span>
+     <div class="ttl">跨团队反馈闭环</div>
+     <span class="lim">结业后 3 天内</span>
+    </div>
+    <div class="cbody">
+     <div class="blk"><div class="lb">详细动作</div><ul class="acts"><li><b>→ 获客团队</b>：哪些话术容易引发退款 / 哪些承诺需要提前澄清（直接反哺话术）</li><li><b>→ 内容团队</b>：哪几节课学员反馈最差 / 哪些内容需要补</li><li><b>→ 带教团队</b>：陪跑节奏、导师工作量、哪些环节可标准化</li></ul></div>
+     <div class="notify"><b>学员通知点</b>问卷类动作，无需单独推送；<b>统一在 1.10汇总回复学员</b>时带一句：「你 XX 情况我看到了，已记进你的陪跑计划。」让学员知道每项都被认真看过。</div>
+     <div class="chips"><span class="chip o">交付物 · 跨团队反馈记录</span></div>
+     <div class="risk"><b>合规 / 风险提示</b>反馈不回前端 → 前端继续用同样的话术继续埋雷。<b>闭环必须做</b>。</div>
+    </div>
+   </div><div class="card" data-id="s7-7.4">
+    <div class="chead" onclick="tog(this.parentElement)">
+     <div class="cb" onclick="ck(event,this)"></div>
+     <span class="nm">7.4</span>
+     <div class="ttl">案例脱敏沉淀</div>
+     <span class="lim">结业后 3 天内</span>
+    </div>
+    <div class="cbody">
+     <div class="blk"><div class="lb">详细动作</div><ul class="acts"><li>把成功案例<b>脱敏</b>（隐去姓名/头像/联系方式），写成可对外的案例</li><li>标注<b>适用人群</b>（什么基础的人用了这个方法有效）</li><li>提供给获客团队做信任背书</li></ul></div>
+     <div class="notify"><b>学员通知点</b>问卷类动作，无需单独推送；<b>统一在 1.10汇总回复学员</b>时带一句：「你 XX 情况我看到了，已记进你的陪跑计划。」让学员知道每项都被认真看过。</div>
+     <div class="chips"><span class="chip o">交付物 · 脱敏案例卡（可对外）</span></div>
+     <div class="risk"><b>合规 / 风险提示</b>⚠️ 案例泄露学员隐私 → 法律风险。<b>脱敏必须彻底</b>。</div>
+    </div>
+   </div><div class="card" data-id="s7-7.5">
+    <div class="chead" onclick="tog(this.parentElement)">
+     <div class="cb" onclick="ck(event,this)"></div>
+     <span class="nm">7.5</span>
+     <div class="ttl">升级/续费建议与学员关系维护</div>
+     <span class="lim">结业后 3 天内</span>
+    </div>
+    <div class="cbody">
+     <div class="blk"><div class="lb">详细动作</div><ul class="acts"><li>根据学员<b>出单后的真实状态</b>给出建议：继续做起来 / 升班型 / 矩阵扩店 / 代运营评估</li><li><b>不做过度推销</b>：学员刚出单就推销升单容易反感</li><li><b>长期维护</b>：结业后 30 天回访一次，关心进展，建立长期信任</li></ul></div>
+     <div class="notify"><b>学员通知点</b>「结业快乐 🎉 后面有什么问题随时找我，想做大也可以找我聊。」</div>
+     <div class="chips"><span class="chip o">交付物 · 升级建议记录 + 回访计划</span></div>
+     <div class="risk"><b>合规 / 风险提示</b>结业即推销 → 掉口碑。<b>先给价值，后谈升级</b>。</div>
+    </div>
+   </div>
+ </div>
+</div><div class="pg" id="pg-tt">
+  <div class="sec">
+   <div class="sechd"><h2>学员通知节奏表</h2><div class="meta-r"><span>原则：<b>每个节点都要让学员知道「什么时候会通知你、通知你干什么」</b></span></div></div>
+   <div class="goal">这张表回答的是「<b>每一步都要同步学员 X 久时间会通知你干什么</b>」。带教 PM 每次执行完动作，按此表在对应时间点主动推送，学员不追着问。</div>
+   <div class="tw"><table><thead><tr><th style="width:76px">时间点</th><th style="width:140px">节点动作</th><th style="width:120px">通知方向</th><th>学员收到什么 / 要做什么</th><th style="width:185px">带教内部动作</th><th style="width:200px">关键红线</th></tr></thead><tbody>
+   <tr><td><span class="k">T+0</span></td><td>支付成功 / 销售拉群</td><td>销售 → 学员</td><td>群公告 + 自我介绍 + 7 天日程预告</td><td>带教 PM 明确回执接手</td><td>销售说过的承诺，逐条落到交接单</td></tr><tr><td><span class="k">T+2h</span></td><td>带教 PM 群内回执</td><td>带教 PM → 内部</td><td>交接单录入台账，状态改「已交接」</td><td>4h 不回执 = 未交接</td><td>—</td></tr><tr><td><span class="k">T+4h</span></td><td>摸排问卷下发</td><td>带教 PM → 学员</td><td>群内 + 私聊双发问卷链接</td><td>5 分钟填完，24h 前提交</td><td>收问卷提交时间戳作留痕</td></tr><tr><td><span class="k">T+24h</span></td><td>摸排完成 + 定级</td><td>带教 PM → 学员 / 内部</td><td>回「你是 XX 类，我按这个排计划」</td><td>附陪跑方案初稿</td><td>C 级学员要上报主管</td></tr><tr><td><span class="k">T+24h</span></td><td>电话预约</td><td>带教 PM → 学员</td><td>给 2 个时段让学员选</td><td>提前 2h 预约，不突袭</td><td>—</td></tr><tr><td><span class="k">T+48h</span></td><td>电话沟通 + 书面确认</td><td>带教 PM → 学员</td><td>《沟通确认单》+ 请回复「已确认」</td><td>预期管理三件套必须讲到</td><td>⚠️ 此回复是退款争议关键证据</td></tr><tr><td><span class="k">T+48h</span></td><td>课程清单下发</td><td>带教 PM + 助教 → 学员</td><td>本周课程 3 节 + 每日打卡规则</td><td>按定级分配，不一次甩满</td><td>—</td></tr><tr><td><span class="k">T+7d</span></td><td>视频结业验收</td><td>带教 PM → 内部</td><td>完播率≥80% + 作业≥80% 才放行</td><td>不达标补学，不进 S4</td><td>⚠️ 硬闸门，不能跳</td></tr><tr><td><span class="k">T+7d</span></td><td>分类 + 供应链匹配</td><td>带教 PM → 供应链</td><td>学员分类结论 + SKU 范围</td><td>同步供应链对接人</td><td>⚠️ 不推 1688/抖音/拼多多</td></tr><tr><td><span class="k">T+10d</span></td><td>上架教学 + 逐品验收</td><td>带教 PM → 学员</td><td>一对一带着上第一个品</td><td>48h 内完成首批 3-5 款</td><td>违禁词必查</td></tr><tr><td><span class="k">T+14d</span></td><td>运营 SOP 交付</td><td>带教 PM → 学员</td><td>日动作清单 + 数据看板 + 话术卡</td><td>前两周每日盯执行</td><td>—</td></tr><tr><td><span class="k">T+21d</span></td><td>出单前置三项验收</td><td>带教 PM → 学员 / 内部</td><td>选品/上架/优化 三项通过确认</td><td>不过不进入冲刺</td><td>⚠️ 防止「结果全押在出单」</td></tr><tr><td><span class="k">T+21d</span></td><td>7 天冲刺启动</td><td>带教 PM → 学员</td><td>每天给一个具体动作 + 复盘数据</td><td>给动作，不给压力</td><td>焦虑型学员越催越退</td></tr><tr><td><span class="k">T+28d</span></td><td>未出单归因（如适用）</td><td>带教 PM → 学员 / 主管</td><td>《未出单诊断单》+ 改进方案</td><td>四类归因，不甩锅</td><td>⚠️ 先归因再定性</td></tr><tr><td><span class="k">出单当日</span></td><td>出单确认</td><td>带教 PM → 学员</td><td>收订单截图 + 公开表扬</td><td>当天收截图，存档</td><td>出单后 3 天内给持续运营 SOP</td></tr><tr><td><span class="k">结业后 3 天</span></td><td>复盘 + 跨团队反馈</td><td>带教 PM → 三团队</td><td>复盘表 + SOP 迭代 + 反馈记录</td><td>沉淀脱敏案例</td><td>反馈必须闭环回前端</td></tr>
+   </tbody></table></div>
+   <div class="note"><b>执行要求</b>：这张表是「<b>带教 PM 的节拍器</b>」。到点必发，不等学员问。发完在交付台账标记「已通知 + 通知时间」，缺一次记一次。</div>
+  </div>
+ </div><div class="pg" id="pg-mf">
+  <div class="sec">
+   <div class="sechd"><h2>摸排信息表模板（22 项）</h2><div class="meta-r">S1 阶段用 · <b>★ = 必填</b></div></div>
+   <div class="goal">摸排产出不是「信息」，是「<b>学员定级 + 陪跑方案初稿</b>」。22 项里带 <span style="color:#c0392b">★★</span> 的 6 项是<b>风险项</b>，漏填等于埋雷。</div>
+   <div class="tw"><table><thead><tr><th style="width:36px">#</th><th style="width:150px">字段</th><th style="width:170px">关键点</th><th style="width:130px">用途</th><th>填写说明</th></tr></thead><tbody>
+   <tr><td><span class="k">1</span></td><td>称呼 / 昵称</td><td>联系方式</td><td>—</td><td>唯一标识，后面所有记录用它 <span class="tag d">★</span></td><td>★</td></tr><tr><td><span class="k">2</span></td><td>手机号 / 微信</td><td>可触达性</td><td>—</td><td>至少留 2 个可触达方式 <span class="tag d">★</span></td><td>★</td></tr><tr><td><span class="k">3</span></td><td>所在城市</td><td>—</td><td>—</td><td>影响供应链发货时效判断 </td><td></td></tr><tr><td><span class="k">4</span></td><td>年龄段</td><td>经验判断</td><td>—</td><td>25 以下 / 25-35 / 35+ <span class="tag d">★</span></td><td>★</td></tr><tr><td><span class="k">5</span></td><td>来源渠道</td><td>IP号/直播/私域/短视频/转介绍</td><td>—</td><td>引流内容和渠道质量判断 <span class="tag d">★</span></td><td>★</td></tr><tr><td><span class="k">6</span></td><td>班型 / 金额 / 订单号</td><td>交付边界</td><td>—</td><td>已付确认，交接必填 <span class="tag d">★</span></td><td>★</td></tr><tr><td><span class="k">7</span></td><td>销售已承诺事项</td><td>风险点</td><td>—</td><td><b>必须带销售原话截图</b> <span class="tag d">★★</span></td><td>★★</td></tr><tr><td><span class="k">8</span></td><td>学员自述目标</td><td>期望管理</td><td>—</td><td>想赚多少、多久见效 <span class="tag d">★</span></td><td>★</td></tr><tr><td><span class="k">9</span></td><td>现有闲鱼账号数</td><td>账号底数</td><td>—</td><td>新号/老号/无 <span class="tag d">★</span></td><td>★</td></tr><tr><td><span class="k">10</span></td><td>账号注册时长与品类</td><td>陪跑节奏</td><td>—</td><td>决定是「从零」还是「优化」 <span class="tag d">★</span></td><td>★</td></tr><tr><td><span class="k">11</span></td><td>后台数据截图</td><td>真实水位</td><td>—</td><td>曝光/浏览/想要/成交 4 项 <span class="tag d">★★</span></td><td>★★</td></tr><tr><td><span class="k">12</span></td><td>违规 / 限流史</td><td>风险</td><td>—</td><td>有则先排申诉养号 <span class="tag d">★★</span></td><td>★★</td></tr><tr><td><span class="k">13</span></td><td>现有货源来源</td><td>是否需给供应链</td><td>—</td><td>1688/抖音/自有/无 <span class="tag d">★</span></td><td>★</td></tr><tr><td><span class="k">14</span></td><td>有无囤货 / 供应链资源</td><td>交付路径</td><td>—</td><td>影响是否走一件代发 </td><td></td></tr><tr><td><span class="k">15</span></td><td>启动资金预算</td><td>选品档位</td><td>—</td><td>0元/500内/1-3k/3k+ <span class="tag d">★</span></td><td>★</td></tr><tr><td><span class="k">16</span></td><td>每天可投入时间</td><td>SOP 颗粒度</td><td>—</td><td>决定 SOP 写多细 <span class="tag d">★</span></td><td>★</td></tr><tr><td><span class="k">17</span></td><td>固定学习时段</td><td>打卡安排</td><td>—</td><td>早/晚/午休 <span class="tag d">★</span></td><td>★</td></tr><tr><td><span class="k">18</span></td><td>技能基础</td><td>零基础判定</td><td>—</td><td>拍图/文案/剪辑/出镜意愿 <span class="tag d">★</span></td><td>★</td></tr><tr><td><span class="k">19</span></td><td>职业与家庭支持</td><td>执行稳定性</td><td>—</td><td>全职/在职/宝妈 <span class="tag d">★</span></td><td>★</td></tr><tr><td><span class="k">20</span></td><td>心理类型 + 退款风险等级</td><td>陪跑策略</td><td>A/B/C</td><td>积极执行/被动等待/焦虑质疑/高高在上 <span class="tag d">★★</span></td><td>★★</td></tr><tr><td><span class="k">21</span></td><td>合规诉求确认</td><td>红线</td><td>—</td><td>灰产/仿牌/刷单/站外引流/代持账号 </td><td></td></tr><tr><td><span class="k">22</span></td><td>可接受单笔成本上限</td><td>客单价区间</td><td>—</td><td>— <span class="tag d">★</span></td><td>★</td></tr>
+   </tbody></table></div>
+   <div class="warnbox"><b>⚠️ 6 个 ★★ 风险项，务必当面/截图确认，不要只听口述</b>
+    07 销售已承诺事项（带原话截图）· 11 后台数据截图 · 12 违规限流史 · 20 心理类型与退款风险等级 · 21 合规诉求<br>
+    这 6 项漏了任一项，后续退款或封号纠纷时<b>带教侧拿不出证据</b>。</div>
+  </div>
+ </div><div class="pg" id="pg-sc">
+  <div class="sec">
+   <div class="sechd"><h2>话术库</h2><div class="meta-r">S2 电话 + 日常跟进 · <b>点击复制</b></div></div>
+   <div class="goal">话术不是照背，是<b>按学员类型调整语气</b>。焦虑型慢一点、被质疑型给数据、高高在上型从基础做起。</div>
+   <div class="sc">
+    <h4>【破冰开场】通话前 3 分钟，先让学员开口<button class="copy" onclick="cp(this)">复制话术</button></h4>
+    <p>「X 哥/姐，我是你的带教老师 XXX。今天不着急讲课，就是想先跟你聊聊——你之前是做什么工作的？这次是怎么了解到我们这个课的？」</p>
+    <div class="anno"><b>要点</b>：不给开放式压力，问具体经历；认真听并复述一次。</div>
+   </div><div class="sc">
+    <h4>【心理按摩】把问题归因外化<button class="copy" onclick="cp(this)">复制话术</button></h4>
+    <p>「你别觉得是自己不行。闲鱼这两年流量池子在收紧，很多人卡住不是因为不努力，是<b>方法没跟上平台变化</b>。我带的学员里，第一单基本都落在第 7 到 20 天，中间卡一两周太正常了。」</p>
+    <div class="anno"><b>要点</b>：外部归因 + 正常化 + 给区间预期，不说「你努力就能行」。</div>
+   </div><div class="sc">
+    <h4>【预期管理·收益】<button class="copy" onclick="cp(this)">复制话术</button></h4>
+    <p>「收益我没法给你打包票，因为结果取决于你投入多少。但我能承诺三件事：<b>方法给到位、供应链资源接到位、每天有人盯你进度</b>。你按节奏走，出单是必然结果，只是时间问题。」</p>
+    <div class="anno">⚠️ <b>红线</b>：不说「保证」「肯定赚」。用「出单是结果，不是承诺」替代。</div>
+   </div><div class="sc">
+    <h4>【预期管理·时间】<button class="copy" onclick="cp(this)">复制话术</button></h4>
+    <p>「第一单快的话一周，慢的话一个月。<b>越早动手越早出单</b>。如果超过一个月还没出单，我们一起找原因，不甩锅——是方法的问题我们补方法，是你的问题我们帮你卡点。」</p>
+    <div class="anno">⚠️ 不给「几天必出单」的具体承诺。</div>
+   </div><div class="sc">
+    <h4>【预期管理·边界】<button class="copy" onclick="cp(this)">复制话术</button></h4>
+    <p>「还有一条我必须提前说清楚：我们教的是<b>方法、资源和陪跑</b>。账号是你自己的，货是你自己发的，<b>我们不代持账号、不代运营、不保证收益</b>。这条提前讲明白，是为了不让你后面有误会。」</p>
+    <div class="anno">⚠️ <b>红线</b>：这三条必须口头讲 + 书面写，双保险。</div>
+   </div><div class="sc">
+    <h4>【异议】「能不能保证出单？」<button class="copy" onclick="cp(this)">复制话术</button></h4>
+    <p>「我不能保证，但我可以给你看数据：我带的学员里，按节奏走的 90% 在一个月内出了第一单。我能保证的是<b>方法和陪跑到位</b>——你没做的地方我会天天盯着你。」</p>
+    <div class="anno">⚠️ 不许说「保证」「一定能」。学员录音是常态。</div>
+   </div><div class="sc">
+    <h4>【异议】「别人都说赚很多」<button class="copy" onclick="cp(this)">复制话术</button></h4>
+    <p>「截图我可以发你。但每个人起点不一样，横向比没意义。<b>我们只跟你的上周比</b>——你这周曝光多少、出了几单，这个才是你的真实进度。」</p>
+    <div class="anno"><b>要点</b>：不贬低同行，把话题拉回学员自己的数据。</div>
+   </div><div class="sc">
+    <h4>【异议】「能不能帮我代运营」<button class="copy" onclick="cp(this)">复制话术</button></h4>
+    <p>「<b>账号不能代持</b>，这是平台和合规的要求。但我可以给你做到：每天一个具体动作、出问题随时问、每一步都告诉你为什么这么做。做到极致，比代运营更有用——因为能力长在你身上。」</p>
+    <div class="anno">⚠️ 不代持账号、不给账号密码。这条没得商量。</div>
+   </div><div class="sc">
+    <h4>【异议】「我先自己试试」<button class="copy" onclick="cp(this)">复制话术</button></h4>
+    <p>「完全可以，你随时回来找我们。SOP 我照样发你，不锁你。你试出来了告诉我，我把方案给你调优。」</p>
+    <div class="anno"><b>要点</b>：不锁死、不绑架，反而建立信任。</div>
+   </div><div class="sc">
+    <h4>【掉队跟进】连续 3 天未打卡<button class="copy" onclick="cp(this)">复制话术</button></h4>
+    <p>「好几天没看到你打卡了，是最近忙，还是课程哪块卡住了？跟我说一声，我给你把节奏调一下，别硬扛。」</p>
+    <div class="anno">⚠️ 私聊，不群里 @，给面子。不催只问原因。</div>
+   </div><div class="sc">
+    <h4>【未出单归因】超过 7 天没出单<button class="copy" onclick="cp(this)">复制话术</button></h4>
+    <p>「7 天还没出单，我们不躲，一起看看卡在哪。我看了你的数据，问题在【X】。接下来我们集中解决这一件事，其他先放一放。」</p>
+    <div class="anno">⚠️ 先归因再定性。客观说「我们一起找原因」，不说「你自己没做」。</div>
+   </div><div class="sc">
+    <h4>【出单庆祝】出单当日<button class="copy" onclick="cp(this)">复制话术</button></h4>
+    <p>「恭喜！第一单出了 🎉 这一单是你自己跑通的，不是别人替你做的。截图发我存档。接下来说明你想做第二单了，我们按这个思路往下走。」</p>
+    <div class="anno"><b>要点</b>：正向公开表扬，指向下一个目标（第二单），给连续性。</div>
+   </div><div class="sc">
+    <h4>【结尾】结业 + 长期维护<button class="copy" onclick="cp(this)">复制话术</button></h4>
+    <p>「结业快乐 🎉 这 30 天你把自己的项目跑通了。后面遇到问题随时找我，想做大也可以找我聊，不用客气。」</p>
+    <div class="anno">⚠️ 出单后<b>先给价值，别急着推销升单</b>，容易掉口碑。</div>
+   </div>
+  </div>
+ </div></div>
+
+<script>
+/* ═══════════════ 数据 ═══════════════ */
+const TABS=[
+ {id:'ov',n:'全景总览',d:''},
+ {id:'s0',n:'S0 前端交接',d:'6项'},
+ {id:'s1',n:'S1 基础摸排',d:'10项'},
+ {id:'s2',n:'S2 电话疏导',d:'8项'},
+ {id:'s3',n:'S3 视频学习',d:'6项'},
+ {id:'s4',n:'S4 供应链发品',d:'7项'},
+ {id:'s5',n:'S5 运营 SOP',d:'6项'},
+ {id:'s6',n:'S6 出单验收',d:'5项'},
+ {id:'s7',n:'S7 复盘沉淀',d:'5项'},
+ {id:'tt',n:'通知节奏表',d:''},
+ {id:'mf',n:'摸排表模板',d:'22项'},
+ {id:'sc',n:'话术库',d:''}
+];
+
+const PHASES=[
+{id:'s0',code:'S0',title:'前端交接：获客 → 带教',win:'T+0 ~ T+4h',own:'销售 → 带教 PM',page:'s0',
+ goal:'把客户信息<b>完整、口径一致、留痕可追</b>地交到后端手上。交接完成 = 带教 PM 已在群内回执接手，后续学员问题不再回落到前端。',
+ items:[
+ {n:'0.1',t:'支付到账确认与交接触发',lim:'T+30min',
+  acts:['确认学员<b>支付成功</b>（支付截图 + 订单号），订单进入已付状态','销售在交接群内发「<b>@带教PM 学员已付，班型 XX，请接手</b>」','带教 PM 看到触发信号后，<b>必须在 30 分钟内响应</b>，超 30 分钟未响应 → 学员直接找前端 → 后续纠纷归前端'],
+  notify:'<b>学员侧暂无动作</b>（此阶段学员只关心付款成功）。带教 PM 收到后 <b>1 小时内</b>在学员所在临时群内发：「我是你的带教老师 XXX，接下来 30 天由我负责带你出第一单。」',
+  dv:'交接触发记录（订单号 + 时间 + 触发人）',
+  risk:'销售用「先拉群、后付款」把未付款学员塞进交付群 → 必须在群内明确「<b>付款确认后才正式启动陪跑</b>」，避免白带。'},
+ {n:'0.2',t:'客户信息交接单填写（12 项，销售侧必填）',lim:'T+30min',
+  acts:['<b>基础信息</b>：称呼、微信昵称、手机号、所在城市、年龄段','<b>来源渠道</b>：IP 号 / 直播间 / 私域 / 短视频 / 转介绍，附引流内容截图','<b>成交信息</b>：班型、金额、支付时间、订单号、是否分期','<b>销售已承诺事项</b>：逐条列出，<b>必须带销售原话截图</b>（含口头承诺）','<b>学员自述诉求</b>：想赚多少、多久见效、有什么具体想法','<b>现有账号</b>：有没有 / 几个 / 做多久 / 什么品类 / 大概曝光出单量','<b>职业与可投入时间</b>：上班 / 全职 / 每天能挤出几小时','<b>执行意愿初判</b>：销售按 A 积极 / B 一般 / C 观望 评一级'],
+  notify:'带教 PM <b>1 小时内</b>私信学员发送自我介绍 + 摸排问卷预告：「先做个基础了解，我按你的情况定陪跑计划，大概 15 分钟问卷 + 20 分钟电话。」',
+  dv:'《客户信息交接单》（12 项齐全，缺项标红）',
+  risk:'销售为了促单口头加码「保证出单」「这个月就能赚几千」→ <b>交接单必须原文记录</b>，带教 PM 接手后第一通电话做口径纠偏，别让销售把锅全甩给交付。'},
+ {n:'0.3',t:'承诺事项与口径留痕',lim:'T+1h',
+  acts:['把销售所有承诺拆成两类：<b>【公司可承接】</b>（课程、陪跑、资源对接）/ <b>【公司不承接】</b>（保证出单、保收益、代持账号、代运营）','【不承接】项<b>书面同步学员</b>（群内文字，留痕），不要口头私下说','销售与交付口径冲突时，以<b>合同/协议</b>为准；销售说错话 → 立刻报 PM 主管，不自行圆'],
+  notify:'带教 PM 在群内发《口径确认》：<b>我们承诺给你什么、不承诺什么</b>，请回复「已阅读」。',
+  dv:'承诺拆解表 + 群内口径确认截图',
+  risk:'⚠️ 高风险：学员留证「销售承诺包出单」。必须在陪跑启动前完成书面澄清，后续退款时这是唯一防线。'},
+ {n:'0.4',t:'拉群与多方入群',lim:'T+2h',
+  acts:['<b>销售拉群</b>（保留信任延续），群名规范：<code>班型-期次-学员称呼</code>','四方入群：学员 / 销售 / 带教 PM / 助教（助教可不进群，内部对接）','群内 @ 全体，发欢迎语 + <b>接下来 7 天日程预告</b>','置顶群公告：课程入口、答疑时间、联系方式、群规'],
+  notify:'T+2h 群公告 + @全体：「从现在起，我（带教 XXX）负责你的 30 天陪跑。这周我们做三件事：① 摸底 ② 电话沟通 ③ 开课学习。日程如下…」',
+  dv:'交付群（含群公告 + 成员名单）',
+  risk:'销售拉群后<strong style="color:#c0392b">长期潜水</strong>，学员有问题先找销售 → 带教 PM 在群公告明确「交付期问题统一找我，销售同学负责前期答疑」。'},
+ {n:'0.5',t:'带教 PM 群内回执接手',lim:'T+4h',
+  acts:['带教 PM 在群内<b>明确回执</b>：「已接手 XX 学员的陪跑，后续交付由我负责 @销售」','同步内部：交接单录入交付系统 / 台账，状态改为「已交接」','<b>4 小时内不回执 = 视为未交接</b>，学员问题仍归销售'],
+  notify:'学员无需动作。此步为内部责任划分节点。',
+  dv:'回执截图 + 台账状态更新',
+  risk:'回执缺失 → 退款纠纷时责任无法划分。必须留痕。'},
+ {n:'0.6',t:'交接信息缺项补齐',lim:'T+4h',
+  acts:['带教 PM 核对交接单 12 项，缺项<b>直接找销售补</b>（不等学员自述）','<b>关键项缺失优先级最高</b>：已承诺事项、现有账号现状、学员真实诉求','补齐后更新交接单版本号，留痕「V1→V2」'],
+  notify:'学员无需动作。',
+  dv:'交接单 V2（补齐版）',
+  risk:'销售已离场/请假 → 缺项直接电话学员补录（10 分钟内可完成），并标注「由交付侧补录」。'}
+ ]},
+
+{id:'s1',code:'S1',title:'基础信息摸排：把底数摸清',win:'T+2h ~ T+24h',own:'带教 PM',page:'s1',
+ goal:'<b>摸排是一切陪跑动作的地基。</b>摸不清底数就分供应链、发品、压进度，全部会翻车。摸排的产出不只是信息，而是「<b>学员定级 + 陪跑方案初稿</b>」。',
+ items:[
+ {n:'1.1',t:'摸排问卷下发',lim:'T+4h',
+  acts:['进入交付群 <b>4 小时内</b>下发摸排问卷（<b>用表单，不长篇大论</b>，20 题以内、5 分钟填完）','<b>表单必须带提交截图要求</b>，作为执行意愿的第一份留痕','问卷入口 + 填写示例（让学员知道填到什么颗粒度）','私聊单独发一次链接（群内发了不代表看到）'],
+  notify:'<b>T+4h</b> 群内 + 私聊：「问卷 5 分钟，填完我就能给你定陪跑计划了。<b>T+24h 前提交</b>，我好提前给你排电话。」',
+  dv:'问卷提交记录（含提交时间戳）',
+  risk:'问卷只发群内 → 70% 不看群。必须群内 + 私聊双发，24h 未提交触发电话。'},
+ {n:'1.2',t:'账号底数盘点',lim:'T+24h',
+  acts:['问清：<b>目前有几个闲鱼号 / 注册多久 / 什么品类 / 日均曝光多少 / 出过几单</b>','要求<b>截图后台数据页</b>（曝光、浏览、想要、成交四项），不收截图按 0 处理','判断：<b>新号 vs 老号 vs 有违规史</b>——三类的陪跑节奏完全不同','老号有历史违规 → 先排「申诉/养号」动作，不直接推上架'],
+  notify:'问卷回收后 <b>2 小时内</b>回：「看了你的账号，你的情况属于【XX 类】，我按这个给你排计划。」',
+  dv:'账号底数记录 + 后台数据截图',
+  risk:'学员谎报/夸大（「我原来做过」但截图是空白号）→ 按截图说话，别按嘴说。'},
+ {n:'1.3',t:'现有货源与品类现状',lim:'T+24h',
+  acts:['问：现在在卖什么？<b>货源从哪来</b>（1688 / 抖音 / 朋友 / 自有 / 没有）','有无<b>囤货</b>、有无<b>供应链资源</b>、之前做的是不是同一品类','已有货源且在出单 → 属「优化型」，不打散；无货源 → 走机构供应链'],
+  notify:'问卷类动作，无需单独推送；<b>统一在 1.10汇总回复学员</b>时带一句：「你 XX 情况我看到了，已记进你的陪跑计划。」让学员知道每项都被认真看过。',
+  dv:'货源现状记录',
+  risk:'学员已有稳定出单货源却报「完全没做」→ 可能怕被否定。摸排要<b>肯定先行</b>，别一上来就盘问。'},
+ {n:'1.4',t:'资金与预算摸排',lim:'T+24h',
+  acts:['问：<b>愿意投入多少启动资金</b>（0 元 / 500 内 / 1000-3000 / 3000+）','是否接受<b>一件代发</b>（不囤货）还是必须自提','能接受的<b>单笔成本上限</b>，决定发品的客单价区间'],
+  notify:'问卷类动作，无需单独推送；<b>统一在 1.10汇总回复学员</b>时带一句：「你 XX 情况我看到了，已记进你的陪跑计划。」让学员知道每项都被认真看过。',
+  dv:'预算档位标注（0元档 / 低预算档 / 有预算档）',
+  risk:'预算 0 元却想买高客单品牌货 → 直接判为不匹配，换类目或换班型，别硬推。'},
+ {n:'1.5',t:'可投入时间摸排',lim:'T+24h',
+  acts:['问：<b>每天能稳定投入多久</b>（碎片 15min / 1h / 2h+）、<b>什么时段</b>（早/晚/午休）','是否<b>固定每天</b>还是想起来才做','时长大 → 陪跑计划按「大块推进」排；碎片 → 排「15 分钟微任务」'],
+  notify:'问卷类动作，无需单独推送；<b>统一在 1.10汇总回复学员</b>时带一句：「你 XX 情况我看到了，已记进你的陪跑计划。」让学员知道每项都被认真看过。',
+  dv:'可投入时段表',
+  risk:'「我有很多时间」→ 三天后交不出作业。<b>不信口头信日程</b>，按 1h 排，多了再松。'},
+ {n:'1.6',t:'技能基础摸排',lim:'T+24h',
+  acts:['会不会<b>拍图/修图</b>（会不会用剪映/醒图）、会不会<b>写文案</b>、有没有<b>出镜意愿</b>','会不会<b>基础电脑操作</b>（发货、打单、后台操作）','零基础 → SOP 要写到「点哪个按钮」级别'],
+  notify:'问卷类动作，无需单独推送；<b>统一在 1.10汇总回复学员</b>时带一句：「你 XX 情况我看到了，已记进你的陪跑计划。」让学员知道每项都被认真看过。',
+  dv:'技能画像标签（零基础 / 有基础 / 有内容能力）',
+  risk:'高估自己能力（"我懂 Photoshop"实际只会截图）→ 按最低能力给 SOP，多问一句「你上次做类似的是什么时候」。'},
+ {n:'1.7',t:'目标与收益预期摸排',lim:'T+24h',
+  acts:['问：<b>你做闲鱼想达到什么目标</b>（月入 3000 / 5000 / 1万 / 先出单就行）','问：<b>期望多久见效</b>（1周 / 1个月 / 3个月）','<b>关键动作</b>：把「想赚多少」翻译成「<b>需要多少单 × 什么客单价</b>」，帮学员算清账','期望明显超出可达成范围 → <b>标记</b>，留到 S2 电话做预期管理'],
+  notify:'问卷类动作，无需单独推送；<b>统一在 1.10汇总回复学员</b>时带一句：「你 XX 情况我看到了，已记进你的陪跑计划。」让学员知道每项都被认真看过。',
+  dv:'目标换算表（目标收入 → 所需单量 → 对应选品方向）',
+  risk:'⚠️ 学员目标过高（如"一个月赚 3 万"）→ 这类学员退款率最高，<b>摸排阶段就要打标</b>，S2 电话重点管理预期。'},
+ {n:'1.8',t:'心理状态与执行意愿评估',lim:'T+24h',
+  acts:['判断学员<b>类型</b>：积极执行型 / 被动等待型 / 焦虑质疑型 / 高高在上型','<b>识别退款倾向早期信号</b>：反复问「多久回本」「保证赚吗」「别人都赚了多少」','焦虑型 → S2 电话加长；质疑型 → 全程留痕、用数据说话；高高在上型 → 从基础动作做起压预期'],
+  notify:'问卷类动作，无需单独推送；<b>统一在 1.10汇总回复学员</b>时带一句：「你 XX 情况我看到了，已记进你的陪跑计划。」让学员知道每项都被认真看过。',
+  dv:'学员画像标签 + 风险等级（A 低 / B 中 / C 高退款风险）',
+  risk:'忽视心理类型 → 用错节奏。焦虑型不能催（越催越退），质疑型必须给数据。'},
+ {n:'1.9',t:'合规诉求确认',lim:'T+24h',
+  acts:['直接问：<b>有没有要求做灰产、假货、仿牌、无货源搬运、站外引流</b>','有无要求<b>代持账号</b>、<b>完全代运营</b>（含账号密码）','有任何一条 → <b>立即上报 PM 主管</b>，按拒接流程处理'],
+  notify:'问卷类动作，无需单独推送；<b>统一在 1.10汇总回复学员</b>时带一句：「你 XX 情况我看到了，已记进你的陪跑计划。」让学员知道每项都被认真看过。',
+  dv:'合规确认记录（学员口头确认 + 带教签注）',
+  risk:'⚠️ 红线：涉及侵权/仿牌/灰产/站外引流 → <b>一律不接</b>，即使已付款也要走退费流程，别硬扛。'},
+ {n:'1.10',t:'学员定级与陪跑方案初稿',lim:'T+24h',
+  acts:['<b>综合定级</b>（三选一）：<br>· <b>A 级 全力陪跑</b>——账号健康 + 时间充足 + 目标合理 → 全流程 S0→S7 完整带<br>· <b>B 级 轻量陪跑</b>——时间碎片 / 基础弱 → 录播为主 + 关键节点 1v1<br>· <b>C 级 观察/降配</b>——执行意愿低 / 预期离谱 / 资源不足 → 降配方案 + 明确退出条件','输出<b>陪跑方案初稿</b>：选品方向、节奏、日动作量、里程碑时间点','方案初稿<b>内部过一遍</b>（助教/导师），不达标的不发学员'],
+  notify:'<b>T+24h 内</b>群内 + 私聊发《你的陪跑方案》：定位 + 选品方向 + 本周动作 + 里程碑时间点。同时预告<b>电话时间</b>。',
+  dv:'学员定级结论 + 陪跑方案初稿（内部版）',
+  risk:'⚠️ 摸排做一半就发品 = 最常见的翻车原因。<b>摸排不完成，不进入 S4</b>。'}
+ ]},
+
+{id:'s2',code:'S2',title:'电话沟通：心理按摩 + 预期管理',win:'T+24h ~ T+48h',own:'带教 PM',page:'s2',
+ goal:'这是整个陪跑<b>最关键的一通电话</b>。摸排是「收集信息」，电话是「<b>建立信任 + 校准预期</b>」。目标：让学员从「我交了钱，公司该给我结果」转成「<b>这是我自己的项目，公司给我方法</b>」。',
+ items:[
+ {n:'2.1',t:'电话预约与前置准备',lim:'T+24h',
+  acts:['<b>提前 2 小时预约</b>，不用「现在方便吗」这种开放式问法','直接给 2 个时段让学员选：「今天晚上 8 点还是明天中午 12 点？」','<b>通话前必看</b>：摸排问卷 + 账号截图 + 交接单承诺项 + 学员画像标签','<b>通话目标</b>写下来（3 条以内）：① 心理疏导建立信任 ② 预期管理 ③ 确认下一步动作'],
+  notify:'<b>T+24h</b> 内发出预约：「今晚 8 点或明早 10 点，20 分钟，我带你把后面 30 天的路捋一遍。」',
+  dv:'通话预约确认 + 通话目标卡',
+  risk:'临时突袭电话 → 学员戒备/反感。必须预约。'},
+ {n:'2.2',t:'通话开场与破冰（3 分钟）',lim:'T+48h',
+  acts:['<b>先不问问题</b>，先聊现状：「你之前是做什么的？这次是怎么了解到我们的？」','让学员讲 2-3 分钟，<b>认真听并复述</b>：「所以你主要是想做【XX】类，对吧」','<b>目的</b>：让学员开口，降低防御，建立「他是认真在帮我的」印象'],
+  notify:'问卷类动作，无需单独推送；<b>统一在 1.10汇总回复学员</b>时带一句：「你 XX 情况我看到了，已记进你的陪跑计划。」让学员知道每项都被认真看过。',
+  dv:'—',
+  risk:'开局就上问题 → 学员当成填表，防御心重，后面预期管理讲不进去。'},
+ {n:'2.3',t:'现状共情与问题归因外化',lim:'T+48h',
+  acts:['<b>先肯定</b>：「你自己能主动来学、已经在摸排填表了，这个动作很多人做不到」','<b>归因外化</b>（关键）——把问题推给「外部客观原因」，不是学员能力：<br>·「闲鱼现在流量池子在收紧，很多人卡住不是因为不努力，是<b>方法跟不上平台变化</b>」<br>·「你不是没出单，是<b>选品那一步没选对，选错了一直在跟空气较劲</b>」','<b>降羞耻感</b>：明确告诉他「卡住是常态，我带的学员里大部分第一单都在第 7-20 天」'],
+  notify:'问卷类动作，无需单独推送；<b>统一在 1.10汇总回复学员</b>时带一句：「你 XX 情况我看到了，已记进你的陪跑计划。」让学员知道每项都被认真看过。',
+  dv:'通话中记录学员情绪状态（用于后续跟进策略）',
+  risk:'不要说「你怎么不上架」「你进度太慢了」→ 学员的自尊一破，后面全不配合。'},
+ {n:'2.4',t:'心理按摩与情绪疏导',lim:'T+48h',
+  acts:['<b>处理焦虑</b>：「你担心赚不到，我理解。换我也担心。我们把它拆小：这 30 天只要做成一件事——<b>你自己独立出一单</b>，后面全是复利。」','<b>处理羞耻</b>：「身边朋友赚钱了你就急了？正常。但你不知道他们背后试了多少次。」','<b>处理怀疑</b>：「你怀疑我们是不是割韭菜，这个怀疑很对，我给你看 XX 数据（看我们自己的学员案例、后台数据）。」','<b>建立节奏感</b>：「接下来每周会有一个明确的小目标，一周一个台阶，不是一步到位。」'],
+  notify:'问卷类动作，无需单独推送；<b>统一在 1.10汇总回复学员</b>时带一句：「你 XX 情况我看到了，已记进你的陪跑计划。」让学员知道每项都被认真看过。',
+  dv:'情绪疏导记录 + 学员承诺点（他自己说愿意做什么）',
+  risk:'⚠️ 关键：学员承诺点要<b>当场记下来</b>，后续没做到时用它做跟进，不是用来指责，是用来问「这周说好要上架 3 件，现在到 1 件，卡在哪了？」'},
+ {n:'2.5',t:'预期管理三件套',lim:'T+48h',
+  acts:['<b>【收益预期】</b>：「我不承诺你赚多少——因为结果取决于你投入多少。但我可以承诺：<b>方法、资源、陪跑我给到位，你按节奏走，出单是必然结果，只是时间问题</b>」',
+  '<b>【时间预期】</b>：「第一单通常 7-21 天，快的话一周，慢的话一个月。<b>越早开始动手，越早出单</b>。超过一个月还没出单的，我们一起找原因，不甩锅」',
+  '<b>【边界预期】</b>：「我们教的是<b>方法 + 资源对接 + 陪跑监督</b>。账号是你自己的，货是你自己发的，<b>我们不代持账号、不代运营、不保证收益</b>。这条我必须提前说清楚」'],
+  notify:'问卷类动作，无需单独推送；<b>统一在 1.10汇总回复学员</b>时带一句：「你 XX 情况我看到了，已记进你的陪跑计划。」让学员知道每项都被认真看过。',
+  dv:'预期管理确认记录（学员口头确认三个预期）',
+  risk:'⚠️ 红线：不承诺收益、不承诺时间、不承诺一定出单。<b>口头也不许说</b>，说一次就可能被留证。同时用「出单是必然结果，只是时间问题」替代「保证出单」，把主动权还给学员。'},
+ {n:'2.6',t:'需求澄清与方案微调',lim:'T+48h',
+  acts:['基于摸排+通话，<b>当场确认 3 件事</b>：① 选品方向 ② 每天动作量 ③ 本周里程碑','<b>学员认可后再往下讲</b>，避免单方面输出','方案有调整 → 当场说清「我调整了 X，因为你的情况是 Y」'],
+  notify:'问卷类动作，无需单独推送；<b>统一在 1.10汇总回复学员</b>时带一句：「你 XX 情况我看到了，已记进你的陪跑计划。」让学员知道每项都被认真看过。',
+  dv:'电话后确认的方案版本',
+  risk:'方案在电话里定了但没落纸 → 后续扯皮「你当时不是这么说的」。'},
+ {n:'2.7',t:'异议与高危话术处理',lim:'T+48h',
+  acts:['<b>「能不能保证出单？」</b> → 口径：不能保证，但按节奏走的学员 90% 在一个月内出单；<b>我能保证的是方法和陪跑到位</b>','<b>「别人都说赚很多」</b> → 口径：截图可以给你看，但每个人起点不同，我们不比别人，只跟你的上周比','<b>「我先自己试试」</b> → 口径：完全可以，你随时回来找我们，SOP 依然给你（不锁死资源）','<b>「能不能帮我代运营」</b> → 口径：<b>不代持账号</b>，但我们给你逐条 SOP + 逐项陪跑'],
+  notify:'问卷类动作，无需单独推送；<b>统一在 1.10汇总回复学员</b>时带一句：「你 XX 情况我看到了，已记进你的陪跑计划。」让学员知道每项都被认真看过。',
+  dv:'—',
+  risk:'⚠️ 任何涉及「保证/承诺/肯定赚」的表述都不许出口。学员录音留证是常态。'},
+ {n:'2.8',t:'电话后书面确认（关键留痕）',lim:'T+48h（通话后 2h 内）',
+  acts:['通话结束后 <b>2 小时内</b>，群内 + 私聊发《沟通确认单》：<br>· 我们承诺给你什么<br>· 我们不承诺什么<br>· 你需要做什么<br>· 本周里程碑 + 时间点','<b>请学员回复「已确认」</b>——这行回复是后续退款争议的关键证据','《沟通确认单》同步存交付档案，编号留痕'],
+  notify:'「X 哥，这是刚才电话的确认，麻烦回复「已确认」，后面我们就按这个走，有问题随时找我。」',
+  dv:'《沟通确认单》+ 学员「已确认」回复截图',
+  risk:'⚠️ 不做书面确认 → 退款时学员拿不出你承诺过什么、你也没法证明他答应做什么。这是<b>最高性价比的留痕动作</b>，务必执行。'}
+ ]},
+
+{id:'s3',code:'S3',title:'视频学习：先输入方法',win:'T+48h ~ T+7d',own:'带教 PM + 助教',page:'s3',
+ goal:'<b>学习在前，动作在后。</b>没学完方法就上架 = 学员自己摸索 + 出问题 + 找上门。先把方法灌进去，再动手。<b>本阶段唯一考核指标：完播率 + 作业通过率</b>。',
+ items:[
+ {n:'3.1',t:'课程清单按定级分配',lim:'T+48h',
+  acts:['按 S1 定级分配课程：<b>A 级</b>全套必修 + 选修；<b>B 级</b>只给必修主干；<b>C 级</b>给最小必要集','<b>不要一次甩 30 节课</b>，按周给「本周只看这 3 节」，降低放弃率','说明每节课<b>「看完要做什么」</b>，和 S4 上架动作挂钩'],
+  notify:'「本周课程 3 节已放到群文件，<b>周日前看完</b>，每节后面都有一个小作业，做完我给你批。」',
+  dv:'个人课程清单（含必看/选看标注）',
+  risk:'课程给太满 → 完播率崩。宁少勿多。'},
+ {n:'3.2',t:'学习节奏表下发',lim:'T+48h',
+  acts:['明确<b>每天学多久</b>（按 S1 摸排的可用时间定，不统一硬性）','<b>固定学习时段</b>（如每晚 9 点），配合打卡机制','<b>截止日明确</b>：「Day1-3 看第 1-3 节，Day4 交作业」，不给模糊空间'],
+  notify:'问卷类动作，无需单独推送；<b>统一在 1.10汇总回复学员</b>时带一句：「你 XX 情况我看到了，已记进你的陪跑计划。」让学员知道每项都被认真看过。',
+  dv:'学习节奏表（学员版）',
+  risk:'时间不贴合学员实际作息 → 三天后停摆。必须按摸排结果定制。'},
+ {n:'3.3',t:'每日打卡与作业提交',lim:'每日',
+  acts:['<b>每日打卡</b>：学完打一次（文字/截图均可），<b>带教每天回复</b>（哪怕只回「收到」）','<b>每周 1 个作业</b>（实操作业为主，如：写 3 个标题、写 1 段详情）','<b>作业必须批改</b>，给具体反馈（哪里好、哪里改），不要只回「收到」','<b>作业存档</b>：这是 S4 上架、S6 出单的素材来源'],
+  notify:'每日固定时间提醒：「⏰ 今天的打卡还差，看完回个 1 就行。」<br>每周作业截止前一天提醒：「明晚 10 点交作业，我给你批。」',
+  dv:'打卡记录 + 作业批改记录（含学员原稿+修改稿）',
+  risk:'带教不回复打卡 → 学员 3 天内停止打卡。<b>回复成本极低、效果极高</b>，必须每天做。'},
+ {n:'3.4',t:'答疑与每周复盘',lim:'每周',
+  acts:['<b>群内答疑</b>：固定时段（如每晚 20:00-21:00），学员集中提问','<b>每周一次复盘</b>：这周学了什么、作业情况、下周动作、下周里程碑','<b>1v1 答疑</b>：B/C 级学员每周至少 1 次，A 级按需'],
+  notify:'每周日发《本周复盘》：学习完成 X 节 / 作业 Y 份 / 下周动作 3 条 / 下周里程碑。',
+  dv:'答疑纪要 + 每周复盘记录',
+  risk:'答疑只在群内 → 学员不好意思问/A 级学员觉得人多不爱问。留 1v1 通道。'},
+ {n:'3.5',t:'学习进度追踪与掉队预警',lim:'每日',
+  acts:['<b>连续 3 天未打卡/未交作业</b> → 私聊问原因（不群里 @，留面子）','<b>连续 5 天未响应</b> → 电话跟进，判断是否要降配或调整节奏','<b>完播率低于 50%</b> → 暂停推进后续动作，先把学习补上（<b>不补完不上架</b>）'],
+  notify:'「好几天没看到你打卡了，是最近忙还是课程哪里卡住？跟我说一声，我调整下节奏给你。」',
+  dv:'学习进度看板 + 预警记录',
+  risk:'⚠️ 掉队不预警 → 拖到出单期才发现没学完，前面全白做。<b>每天盯看板是带教的基本功</b>。'},
+ {n:'3.6',t:'视频结业验收',lim:'T+7d',
+  acts:['<b>完播率 ≥80%</b> + <b>作业通过 ≥80%</b> 才算通过','<b>不达标 → 不进入 S4</b>，补学后重测（这是硬闸门，不能跳）','通过后<b>当场通知</b>：进入实操阶段，进入 S4'],
+  notify:'「视频部分通过了，明天开始给你匹配供应链和发品。」',
+  dv:'学习结业确认（完播率截图 + 作业通过记录）',
+  risk:'⚠️ <b>放水让没学完的学员进 S4 是最大的雷</b>：学员会自己瞎摸索，出问题反过来怪课程和陪跑。闸门必须守住。'}
+ ]},
+
+{id:'s4',code:'S4',title:'分类给供应链 → 发品 → 上架',win:'T+7d ~ T+14d',own:'带教 PM + 供应链对接',page:'s4',
+ goal:'把「学到的方法」<b>变成货架上的商品</b>。本阶段唯一考核指标：<b>首批上架完成率 + 上架质量合格率</b>。',
+ items:[
+ {n:'4.1',t:'学员分类（三分法）',lim:'T+7d',
+  acts:['<b>按能力/预算/执行意愿三分</b>：<br>· <b>新手类目</b>（适合零基础）——标准普通供应链三选一，易上架、易出单<br>· <b>供应链优势类目</b>（3C 配件 / 品牌鞋服等）——需一定资金和甄别能力，利润高但门槛高<br>· <b>鲸选供应链</b>（数码 3C / 品牌鞋服）——门槛高，<b>不适合新手</b>，仅推给有经验/有资源的学员','<b>强边界</b>：不推 1688 / 抖音 / 拼多多 / 视频号货源，只推机构审核过的供应链','分类结论<b>同步给供应链对接人</b>，明确 SKU 范围和学员情况'],
+  notify:'「根据你的情况，我给你匹配的是【XX 类目】的供应链，这类的特点是【XX】，和你之前说的【XX 需求】比较匹配。」<br>注意：<b>要讲清楚「为什么给你这个类」，让学员觉得是被认真分析过的</b>。',
+  dv:'学员分类结论 + 供应链匹配单',
+  risk:'⚠️ 不管学员基础一律推高门槛品类 → 上架失败、退款、投诉。分类这一步<b>宁可保守不要激进</b>。'},
+ {n:'4.2',t:'供应链匹配与授权开通',lim:'T+7d',
+  acts:['对接供应链负责人，开通<b>学员账号权限</b>（下单/查价/看库存）','同步<b>该供应链的规则</b>：起订量、退换货、发货时效、结算方式、售后责任','明确<b>禁止事项</b>：不得对外宣称官方合作、不得改价乱发、不得跨区发货','<b>把规则写给学员看</b>，不是口头说'],
+  notify:'「你的供应链权限开通了，我拉你进供应商对接群，里面有价格表和下单流程。有问题先问我，别自己乱下单。」',
+  dv:'权限开通截图 + 规则告知留痕',
+  risk:'供应链规则没提前说 → 出货/售后阶段纠纷。必须书面。'},
+ {n:'4.3',t:'首批发品清单（3-5 个品）',lim:'T+7d',
+  acts:['<b>首批 ≤5 个品，控制在 3-5 个</b>，多了学员做不完也看不明白','每个品<b>配套资料</b>：成本价、建议售价、利润、主图素材、卖点文案','<b>说明为什么选这 3-5 个</b>：客群匹配/易出单/竞争小/有利润','<b>明确试品逻辑</b>：「先上这 3 个跑数据，哪个跑得好我们再追加」'],
+  notify:'「给你发了 3 个品（清单见文件）。<b>先不用全上，选 1-2 个最顺手的先上</b>，我带你走一遍。」',
+  dv:'发品清单 + 选品理由说明',
+  risk:'⚠️ 一口气发 20 个品 → 学员懵了、选择困难、最后一个都没上。<b>宁可少而精</b>。'},
+ {n:'4.4',t:'上架一对一教学',lim:'T+10d',
+  acts:['<b>手把手带做第一个品</b>：标题怎么写、主图怎么选、详情怎么排、价格怎么定、发货怎么填','<b>零基础必须陪着他点一遍</b>（可视频/语音），不能只发教程链接','上架 6 要素逐个过：<b>标题/主图/详情/价格/发货/分类标签</b>','教完<b>让他自己上第二个</b>，确认他真会了'],
+  notify:'「今天带你上第一个品，我发个语音，你边听边操作，卡住随时问我。上完你再自己上一个。」',
+  dv:'上架教学记录 + 第一个品上架截图',
+  risk:'只发教程不陪练 → 学员卡在半路不动手，第一次上架的挫败感会直接终结陪跑。'},
+ {n:'4.5',t:'上架质量验收（逐品）',lim:'T+10d',
+  acts:['<b>逐品检查 6 要素</b>，不合格<b>打回重做</b>（不是嘴上说）','<b>标题检查</b>：关键词有没有、长度、有无违禁词','<b>主图检查</b>：清晰度、有无水印、有无夸大','<b>违禁词必查</b>：最、第一、国家级、治愈、纯天然等一律不写'],
+  notify:'「第一个品通过，第二个主图有水印，我给你标出来了，重新换一张。」',
+  dv:'上架验收记录（每品 6 要素勾选 + 修改前后对比）',
+  risk:'⚠️ 违禁词导致商品下架/扣分 → 学员信任崩塌。<b>带教必须每次都查词</b>，这是硬要求。'},
+ {n:'4.6',t:'上架完成时限硬要求',lim:'T+10d（48 小时内完成首批）',
+  acts:['<b>首批上架 48 小时内必须完成</b>，不能拖','超时的<b>当天电话催</b>，问具体卡点（不会写标题 / 不知道选哪个品 / 没时间）','<b>把「上架完成」和时间节点绑定</b>：上架完 → 下周开始流量和转化课程，节奏上给学员盼头'],
+  notify:'「你的上架这周内要完成，卡住了直接找我，别自己憋着。上架完我们下周进下一阶段。」',
+  dv:'首批上架完成记录（含时间戳）',
+  risk:'上架拖过一周 → 后面运营课全部延后，陪跑周期拉长，学员失去信心。'},
+ {n:'4.7',t:'供应链使用规范宣导',lim:'T+10d',
+  acts:['再次强调<b>只用机构审核供应链</b>，<b>不得私自从 1688/抖音/拼多多进货</b>（一旦出问题机构不担责）','<b>不得刷单、不得虚假交易、不得搬运他人图片</b>（违规后果说明清楚）','<b>价格保护</b>：按建议售价区间出货，不得恶意低价引流破坏价格体系'],
+  notify:'「记住，货只从我们对接的供应链走，别自己从别的地方拿，出事我们帮不了你。」',
+  dv:'规范确认记录',
+  risk:'⚠️ 学员偷偷上 1688 或刷单 → 平台处罚学员，但学员会怪到陪跑头上。<b>提前把这条说透</b>。'}
+ ]},
+
+{id:'s5',code:'S5',title:'运营 SOP 标准：让学员自己跑',win:'T+14d ~ T+21d',own:'带教 PM',page:'s5',
+ goal:'从「我教他做」转为「<b>他自己按标准跑</b>」。本阶段考核指标：<b>SOP 交付完整度 + 学员日动作执行率</b>。',
+ items:[
+ {n:'5.1',t:'日常运营动作 SOP',lim:'T+14d',
+  acts:['<b>每日动作清单</b>（可勾选版）：上新 X 件 / 擦亮 X 次 / 回复全部消息 / 浏览竞品 X 分钟 / 数据记录','<b>每周动作清单</b>：数据复盘 / 价格测试 / 补货 / 标题优化','<b>动作要具体到数字</b>，不说「多上架」，说「每天上架 2-3 件」'],
+  notify:'「运营 SOP 给你了，每天照着清单做，做完打个勾。月底我们看勾了多少。」',
+  dv:'《日动作 SOP 清单》（勾选版，学员可打印）',
+  risk:'SOP 太笼统 → 学员做两天就废。必须拆到可勾选颗粒度。'},
+ {n:'5.2',t:'数据看板 SOP',lim:'T+14d',
+  acts:['明确<b>只看 4 个核心指标</b>：曝光、浏览/点击、咨询、成交','<b>每天固定时间记录</b>（建议晚 9 点），截图存','<b>周维度对比</b>：这周曝光比上周涨了还是跌了','<b>异常处理规则</b>：曝光 <30 → 检查标题/类目；曝光有但咨询 0 → 检查主图和价格'],
+  notify:'「每天发我一下这 4 个数，我帮你看有没有问题。这是判断你有没有做对的方法，不用你自己瞎猜。」',
+  dv:'《学员数据日报模板》+ 异常处理对照表',
+  risk:'⚠️ 只给数据不给判断标准 → 学员看到数据跌就慌、直接放弃。<b>必须给「跌了怎么办」的规则</b>。'},
+ {n:'5.3',t:'合规避坑 SOP',lim:'T+14d',
+  acts:['<b>违禁词清单</b>：最/第一/国家级/绝对化/医疗功效/纯天然…（列成表，学员上架前自查）','<b>行为红线</b>：不刷单、不虚假发货、不诱导好评、不站外引流、不碰灰产','<b>账号安全</b>：不频繁改标题/类目（触发降权）、不频繁切换登录设备'],
+  notify:'「上架前把这张表过一遍，宁可少写词也别踩线。被封了重新养号很耽误事。」',
+  dv:'《违禁词自查表》+《行为红线告知书》',
+  risk:'学员被封号 → 归因到陪跑。必须提前预防 + 明确「这是平台规则，不是我能改的」。'},
+ {n:'5.4',t:'客服话术 SOP',lim:'T+14d',
+  acts:['给<b>询价/议价/催付/售后</b>四类场景的标准话术','<b>议价底线</b>要提前给（不轻易降价，降价伤账号权重）','<b>回复时效要求</b>：<b>咨询 10 分钟内必须回</b>，闲鱼掉回复率权重','话术要<b>给示例</b>，不是给原则'],
+  notify:'「买家咨询 10 分钟内必须回，这条比你上架还重要，直接影响你的曝光。」',
+  dv:'《四场景话术卡》（可直接照抄）',
+  risk:'回复慢 → 掉权重 → 学员完全不知道为什么自己不曝光。<b>这条要反复强调</b>。'},
+ {n:'5.5',t:'发货与售后 SOP',lim:'T+14d',
+  acts:['<b>发货时效</b>：24h 内发出（影响体验分和权重）','<b>售后话术</b>：先处理再复盘，不推诿','<b>异常订单</b>（破损/漏发/退货）：按供应链规则走，谁出运费写清楚'],
+  notify:'「发货 24 小时内发出，这是硬指标。做不了 3 件以上就先别上那么多品。」',
+  dv:'发货时效要求 + 售后流程说明',
+  risk:'学员发货慢被差评 → 影响整条链接。<b>宁可少上，别超能力发货</b>。'},
+ {n:'5.6',t:'SOP 交付与每日提醒机制',lim:'T+14d',
+  acts:['SOP <b>整理成可复制粘贴的表格/清单</b>发到群文件，方便学员反复用','<b>前两周每日提醒执行</b>（发清单 + 问完成情况），之后改为每周抽查','<b>执行率记录</b>：每周统计「SOP 完成度」，低于 50% 找原因'],
+  notify:'「SOP 清单在群文件，每天做完打个勾发我，我给你看进度。」',
+  dv:'SOP 交付记录 + 执行率周统计',
+  risk:'⚠️ SOP 发了不管 → 学员不看。<b>前两周必须每天盯</b>，这是从「陪跑」到「能自己跑」的关键过渡期。'}
+ ]},
+
+{id:'s6',code:'S6',title:'首单突破与结业验收',win:'T+21d ~ 结业',own:'带教 PM',page:'s6',
+ goal:'<b>结业标准只有一条：学员独立出第一单。</b>本阶段要做的不是「催」，而是<b>把前置动作一项项验收通过</b>，把压力从「结果」转移到「过程」。',
+ items:[
+ {n:'6.1',t:'出单前置四项验收',lim:'T+21d',
+  acts:['<b>严格按顺序验收，前一项不过不进入下一项</b>：<br>· 选品确认 ✅（选定品类 + 确认发品清单）<br>· 上架完成 ✅（首批 ≥3 款，每款 6 要素合格）<br>· 优化达标 ✅（标题/主图/价格至少各优化过一轮，有记录）<br>· 首单 ✅（真实成交订单截图）','<b>每项验收留痕</b>（截图 + 日期 + 带教签字）','<b>明确告诉学员</b>：「四项里前三项我帮你确认过了，现在只差最后一步。」'],
+  notify:'「你的前三项都过了，现在就是等第一单。我这边盯着你的数据，有动静第一时间告诉你。」',
+  dv:'出单前置验收表（三项勾选 + 截图）',
+  risk:'⚠️ <b>前置动作没做扎实就催出单</b> → 学员出不了单反过来怪你。<b>这是整个陪跑最容易翻车的地方</b>，务必守住前置。'},
+ {n:'6.2',t:'首单冲刺专项（7 天）',lim:'T+21d',
+  acts:['<b>7 天冲刺方案</b>：明确每天做什么（改标题 / 换主图 / 降价试探 / 刷擦亮 / 回复加速）','<b>每天复盘数据</b>：曝光涨没涨、咨询有没有、有没有卡在某一环','<b>按数据找卡点</b>：曝光低 → 标题/标签/上架量；曝光有咨询无 → 主图/价格；咨询有成交无 → 话术/信任'],
+  notify:'「我们开始 7 天冲刺，每天我给你一个具体动作，你做完发我看数据。这 7 天是决定能不能出单的关键。」',
+  dv:'7 天冲刺计划表 + 每日数据记录',
+  risk:'冲刺期<b>不要一直催</b>（焦虑型学员越催越退）。<b>每天给具体动作，不给压力</b>。'},
+ {n:'6.3',t:'未出单归因分析（超过 7 天未出单）',lim:'T+28d',
+  acts:['<b>四类归因，逐项排查</b>：<br>· <b>不想做</b>——动作量不够/拖延 → 调整节奏，不加压<br>· <b>不会做</b>——方法没掌握 → 补对应课程 + 1v1 精讲<br>· <b>做得慢</b>——单个环节卡住 → 定位环节，专项突破<br>· <b>做了没流量</b>——方向/选品/账号问题 → <b>换品或换类</b>，别死磕','<b>归因结论写成《未出单诊断单》</b>，同步 PM 主管','<b>不甩锅</b>：客观说「我们一起找原因」，不要说「你自己没做」'],
+  notify:'「7 天还没出单，我们不躲，一起看看卡在哪。我看了你的数据，问题在【X】，接下来我们集中解决这个。」',
+  dv:'《未出单诊断单》+ 改进方案',
+  risk:'⚠️ 未出单就默认「学员不行」→ 退款风险直线上升。<b>先归因再定性</b>，方法问题要认。'},
+ {n:'6.4',t:'出单证据留存与结果确认',lim:'出单当日',
+  acts:['<b>出单当日</b>让学员发<b>订单截图</b>（成交时间、商品、金额）——这是结业凭证','<b>发单庆祝</b>：群内/私聊恭喜，<b>公开表扬</b>（正向激励很关键）','<b>引导复购</b>：「出第一单只是开始，接下来学怎么稳定出单」'],
+  notify:'「恭喜！第一单出了 🎉 这就是你自己的项目跑通了。截图发我存档，接下来我教你做第二单。」',
+  dv:'订单截图 + 结业确认记录',
+  risk:'无截图无凭证 → 后续争议说不清。必须当天收集。'},
+ {n:'6.5',t:'结业验收与持续运营 SOP',lim:'出单后 3 天内',
+  acts:['<b>完整结业验收表</b>：知识掌握 / 选品定款 / 上架执行 / 首单突破 / 闭环跑通 / 运营能力（6 维度逐项确认）','交付<b>《持续运营 SOP》</b>：出单后怎么维持、怎么提升、怎么避免违规','<b>遗留问题建事项</b>：「矩阵扩店待启动」等 → 明确后续负责人和时间','<b>续费/升班型建议</b>：出单只是第一单，指向更高阶目标'],
+  notify:'「结业验收表我发你，6 项都过了。剩下的运营 SOP 你收好，后面按这个跑就能稳住。后续想做大随时找我。」',
+  dv:'《结业验收表》（6 维度）+《持续运营 SOP》+ 遗留事项清单',
+  risk:'出单后就「结业不管了」→ 学员掉出单状态，负面口碑。<b>出单后必须给持续运营 SOP</b>。'}
+ ]},
+
+{id:'s7',code:'S7',title:'交付复盘与资产沉淀',win:'结业后 3 天内',own:'带教 PM + PM 主管',page:'s7',
+ goal:'把每一个学员的陪跑<b>变成可复用的资产</b>和<b>反哺前端的话术依据</b>。这一环不做，陪跑永远在重复劳动。',
+ items:[
+ {n:'7.1',t:'单学员陪跑复盘',lim:'结业后 3 天内',
+  acts:['复盘<b>五项指标</b>：出单率、结业率、平均陪跑周期、满意度、退款率','复盘<b>关键节点数据</b>：摸排完成时长 / 视频完播率 / 上架完成时长 / 首单天数','<b>找出本单卡点</b>：哪一步最慢、哪一步学员最容易放弃'],
+  notify:'问卷类动作，无需单独推送；<b>统一在 1.10汇总回复学员</b>时带一句：「你 XX 情况我看到了，已记进你的陪跑计划。」让学员知道每项都被认真看过。',
+  dv:'《单学员陪跑复盘表》',
+  risk:'—'},
+ {n:'7.2',t:'数据沉淀与 SOP 迭代',lim:'结业后 3 天内',
+  acts:['把本单的<b>有效动作沉淀进 SOP</b>：哪句话术管用、哪个环节这样讲学员更配合','把<b>无效/低效动作标记出来</b>，下版 SOP 删掉或改','更新 SOP 版本号，<b>通知全员</b>'],
+  notify:'问卷类动作，无需单独推送；<b>统一在 1.10汇总回复学员</b>时带一句：「你 XX 情况我看到了，已记进你的陪跑计划。」让学员知道每项都被认真看过。',
+  dv:'SOP 更新版本记录',
+  risk:'SOP 半年不更新 → 照着过时方法带教，效率越来越低。'},
+ {n:'7.3',t:'跨团队反馈闭环',lim:'结业后 3 天内',
+  acts:['<b>→ 获客团队</b>：哪些话术容易引发退款 / 哪些承诺需要提前澄清（直接反哺话术）','<b>→ 内容团队</b>：哪几节课学员反馈最差 / 哪些内容需要补','<b>→ 带教团队</b>：陪跑节奏、导师工作量、哪些环节可标准化'],
+  notify:'问卷类动作，无需单独推送；<b>统一在 1.10汇总回复学员</b>时带一句：「你 XX 情况我看到了，已记进你的陪跑计划。」让学员知道每项都被认真看过。',
+  dv:'跨团队反馈记录',
+  risk:'反馈不回前端 → 前端继续用同样的话术继续埋雷。<b>闭环必须做</b>。'},
+ {n:'7.4',t:'案例脱敏沉淀',lim:'结业后 3 天内',
+  acts:['把成功案例<b>脱敏</b>（隐去姓名/头像/联系方式），写成可对外的案例','标注<b>适用人群</b>（什么基础的人用了这个方法有效）','提供给获客团队做信任背书'],
+  notify:'问卷类动作，无需单独推送；<b>统一在 1.10汇总回复学员</b>时带一句：「你 XX 情况我看到了，已记进你的陪跑计划。」让学员知道每项都被认真看过。',
+  dv:'脱敏案例卡（可对外）',
+  risk:'⚠️ 案例泄露学员隐私 → 法律风险。<b>脱敏必须彻底</b>。'},
+ {n:'7.5',t:'升级/续费建议与学员关系维护',lim:'结业后 3 天内',
+  acts:['根据学员<b>出单后的真实状态</b>给出建议：继续做起来 / 升班型 / 矩阵扩店 / 代运营评估','<b>不做过度推销</b>：学员刚出单就推销升单容易反感','<b>长期维护</b>：结业后 30 天回访一次，关心进展，建立长期信任'],
+  notify:'「结业快乐 🎉 后面有什么问题随时找我，想做大也可以找我聊。」',
+  dv:'升级建议记录 + 回访计划',
+  risk:'结业即推销 → 掉口碑。<b>先给价值，后谈升级</b>。'}
+ ]}
+];
+
+/* 通知节奏表 */
+const TT=[
+ ['T+0','支付成功 / 销售拉群','销售 → 学员','群公告 + 自我介绍 + 7 天日程预告','带教 PM 明确回执接手','销售说过的承诺，逐条落到交接单'],
+ ['T+2h','带教 PM 群内回执','带教 PM → 内部','交接单录入台账，状态改「已交接」','4h 不回执 = 未交接','—'],
+ ['T+4h','摸排问卷下发','带教 PM → 学员','群内 + 私聊双发问卷链接','5 分钟填完，24h 前提交','收问卷提交时间戳作留痕'],
+ ['T+24h','摸排完成 + 定级','带教 PM → 学员 / 内部','回「你是 XX 类，我按这个排计划」','附陪跑方案初稿','C 级学员要上报主管'],
+ ['T+24h','电话预约','带教 PM → 学员','给 2 个时段让学员选','提前 2h 预约，不突袭','—'],
+ ['T+48h','电话沟通 + 书面确认','带教 PM → 学员','《沟通确认单》+ 请回复「已确认」','预期管理三件套必须讲到','⚠️ 此回复是退款争议关键证据'],
+ ['T+48h','课程清单下发','带教 PM + 助教 → 学员','本周课程 3 节 + 每日打卡规则','按定级分配，不一次甩满','—'],
+ ['T+7d','视频结业验收','带教 PM → 内部','完播率≥80% + 作业≥80% 才放行','不达标补学，不进 S4','⚠️ 硬闸门，不能跳'],
+ ['T+7d','分类 + 供应链匹配','带教 PM → 供应链','学员分类结论 + SKU 范围','同步供应链对接人','⚠️ 不推 1688/抖音/拼多多'],
+ ['T+10d','上架教学 + 逐品验收','带教 PM → 学员','一对一带着上第一个品','48h 内完成首批 3-5 款','违禁词必查'],
+ ['T+14d','运营 SOP 交付','带教 PM → 学员','日动作清单 + 数据看板 + 话术卡','前两周每日盯执行','—'],
+ ['T+21d','出单前置三项验收','带教 PM → 学员 / 内部','选品/上架/优化 三项通过确认','不过不进入冲刺','⚠️ 防止「结果全押在出单」'],
+ ['T+21d','7 天冲刺启动','带教 PM → 学员','每天给一个具体动作 + 复盘数据','给动作，不给压力','焦虑型学员越催越退'],
+ ['T+28d','未出单归因（如适用）','带教 PM → 学员 / 主管','《未出单诊断单》+ 改进方案','四类归因，不甩锅','⚠️ 先归因再定性'],
+ ['出单当日','出单确认','带教 PM → 学员','收订单截图 + 公开表扬','当天收截图，存档','出单后 3 天内给持续运营 SOP'],
+ ['结业后 3 天','复盘 + 跨团队反馈','带教 PM → 三团队','复盘表 + SOP 迭代 + 反馈记录','沉淀脱敏案例','反馈必须闭环回前端']
+];
+
+/* 摸排表 20 项 */
+const MF=[
+ ['1','称呼 / 昵称','联系方式','—','唯一标识，后面所有记录用它','★'],
+ ['2','手机号 / 微信','可触达性','—','至少留 2 个可触达方式','★'],
+ ['3','所在城市','—','—','影响供应链发货时效判断',''],
+ ['4','年龄段','经验判断','—','25 以下 / 25-35 / 35+','★'],
+ ['5','来源渠道','IP号/直播/私域/短视频/转介绍','—','引流内容和渠道质量判断','★'],
+ ['6','班型 / 金额 / 订单号','交付边界','—','已付确认，交接必填','★'],
+ ['7','销售已承诺事项','风险点','—','<b>必须带销售原话截图</b>','★★'],
+ ['8','学员自述目标','期望管理','—','想赚多少、多久见效','★'],
+ ['9','现有闲鱼账号数','账号底数','—','新号/老号/无','★'],
+ ['10','账号注册时长与品类','陪跑节奏','—','决定是「从零」还是「优化」','★'],
+ ['11','后台数据截图','真实水位','—','曝光/浏览/想要/成交 4 项','★★'],
+ ['12','违规 / 限流史','风险','—','有则先排申诉养号','★★'],
+ ['13','现有货源来源','是否需给供应链','—','1688/抖音/自有/无','★'],
+ ['14','有无囤货 / 供应链资源','交付路径','—','影响是否走一件代发',''],
+ ['15','启动资金预算','选品档位','—','0元/500内/1-3k/3k+','★'],
+ ['16','每天可投入时间','SOP 颗粒度','—','决定 SOP 写多细','★'],
+ ['17','固定学习时段','打卡安排','—','早/晚/午休','★'],
+ ['18','技能基础','零基础判定','—','拍图/文案/剪辑/出镜意愿','★'],
+ ['19','职业与家庭支持','执行稳定性','—','全职/在职/宝妈','★'],
+ ['20','心理类型 + 退款风险等级','陪跑策略','A/B/C','积极执行/被动等待/焦虑质疑/高高在上','★★'],
+ ['21','合规诉求确认','红线','—','灰产/仿牌/刷单/站外引流/代持账号',''],
+ ['22','可接受单笔成本上限','客单价区间','—','—','★']
+];
+
+/* 话术库 */
+const SC=[
+ {t:'【破冰开场】通话前 3 分钟，先让学员开口',cls:'a',p:'「X 哥/姐，我是你的带教老师 XXX。今天不着急讲课，就是想先跟你聊聊——你之前是做什么工作的？这次是怎么了解到我们这个课的？」',a:'<b>要点</b>：不给开放式压力，问具体经历；认真听并复述一次。'},
+ {t:'【心理按摩】把问题归因外化',cls:'a',p:'「你别觉得是自己不行。闲鱼这两年流量池子在收紧，很多人卡住不是因为不努力，是<b>方法没跟上平台变化</b>。我带的学员里，第一单基本都落在第 7 到 20 天，中间卡一两周太正常了。」',a:'<b>要点</b>：外部归因 + 正常化 + 给区间预期，不说「你努力就能行」。'},
+ {t:'【预期管理·收益】',cls:'w',p:'「收益我没法给你打包票，因为结果取决于你投入多少。但我能承诺三件事：<b>方法给到位、供应链资源接到位、每天有人盯你进度</b>。你按节奏走，出单是必然结果，只是时间问题。」',a:'⚠️ <b>红线</b>：不说「保证」「肯定赚」。用「出单是结果，不是承诺」替代。'},
+ {t:'【预期管理·时间】',cls:'w',p:'「第一单快的话一周，慢的话一个月。<b>越早动手越早出单</b>。如果超过一个月还没出单，我们一起找原因，不甩锅——是方法的问题我们补方法，是你的问题我们帮你卡点。」',a:'⚠️ 不给「几天必出单」的具体承诺。'},
+ {t:'【预期管理·边界】',cls:'w',p:'「还有一条我必须提前说清楚：我们教的是<b>方法、资源和陪跑</b>。账号是你自己的，货是你自己发的，<b>我们不代持账号、不代运营、不保证收益</b>。这条提前讲明白，是为了不让你后面有误会。」',a:'⚠️ <b>红线</b>：这三条必须口头讲 + 书面写，双保险。'},
+ {t:'【异议】「能不能保证出单？」',cls:'d',p:'「我不能保证，但我可以给你看数据：我带的学员里，按节奏走的 90% 在一个月内出了第一单。我能保证的是<b>方法和陪跑到位</b>——你没做的地方我会天天盯着你。」',a:'⚠️ 不许说「保证」「一定能」。学员录音是常态。'},
+ {t:'【异议】「别人都说赚很多」',cls:'d',p:'「截图我可以发你。但每个人起点不一样，横向比没意义。<b>我们只跟你的上周比</b>——你这周曝光多少、出了几单，这个才是你的真实进度。」',a:'<b>要点</b>：不贬低同行，把话题拉回学员自己的数据。'},
+ {t:'【异议】「能不能帮我代运营」',cls:'d',p:'「<b>账号不能代持</b>，这是平台和合规的要求。但我可以给你做到：每天一个具体动作、出问题随时问、每一步都告诉你为什么这么做。做到极致，比代运营更有用——因为能力长在你身上。」',a:'⚠️ 不代持账号、不给账号密码。这条没得商量。'},
+ {t:'【异议】「我先自己试试」',cls:'o',p:'「完全可以，你随时回来找我们。SOP 我照样发你，不锁你。你试出来了告诉我，我把方案给你调优。」',a:'<b>要点</b>：不锁死、不绑架，反而建立信任。'},
+ {t:'【掉队跟进】连续 3 天未打卡',cls:'a',p:'「好几天没看到你打卡了，是最近忙，还是课程哪块卡住了？跟我说一声，我给你把节奏调一下，别硬扛。」',a:'⚠️ 私聊，不群里 @，给面子。不催只问原因。'},
+ {t:'【未出单归因】超过 7 天没出单',cls:'w',p:'「7 天还没出单，我们不躲，一起看看卡在哪。我看了你的数据，问题在【X】。接下来我们集中解决这一件事，其他先放一放。」',a:'⚠️ 先归因再定性。客观说「我们一起找原因」，不说「你自己没做」。'},
+ {t:'【出单庆祝】出单当日',cls:'o',p:'「恭喜！第一单出了 🎉 这一单是你自己跑通的，不是别人替你做的。截图发我存档。接下来说明你想做第二单了，我们按这个思路往下走。」',a:'<b>要点</b>：正向公开表扬，指向下一个目标（第二单），给连续性。'},
+ {t:'【结尾】结业 + 长期维护',cls:'o',p:'「结业快乐 🎉 这 30 天你把自己的项目跑通了。后面遇到问题随时找我，想做大也可以找我聊，不用客气。」',a:'⚠️ 出单后<b>先给价值，别急着推销升单</b>，容易掉口碑。'}
+];
+</script>
+
+<script>
+/* ═══════════════ 渲染 ═══════════════ */
+const KEY='xykb_sop_v1_';
+let state={};
+try{state=JSON.parse(localStorage.getItem(KEY)||'{}')||{};}catch(e){state={};}
+
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+
+/* nav */
+document.getElementById('nav').innerHTML=TABS.map((t,i)=>
+ `<button class="nb${i===0?' on':''}" data-t="${t.id}">${t.n}${t.d?`<span class="d">${t.d}</span>`:''}</button>`).join('');
+document.getElementById('nav').onclick=e=>{
+ const b=e.target.closest('.nb'); if(!b)return;
+ document.querySelectorAll('.nb').forEach(x=>x.classList.remove('on'));
+ document.querySelectorAll('.pg').forEach(x=>x.classList.remove('on'));
+ b.classList.add('on');
+ document.getElementById('pg-'+b.dataset.t).classList.add('on');
+ window.scrollTo({top:0,behavior:'smooth'});
+};
+
+const phHTML=P=>`
+<div class="pg" id="pg-${P.id}">
+ <div class="sec">
+  <div class="sechd">
+   <h2><span class="code">${P.code}</span>${P.title}</h2>
+   <div class="meta-r"><span>时限 <b>${P.win}</b></span><span>责任 <b>${P.own}</b></span></div>
+  </div>
+  <div class="goal"><b>阶段目标</b>：${P.goal}</div>
+  ${P.items.map(it=>{
+   const id=P.id+'-'+it.n, done=!!state[id];
+   return `<div class="card${done?' done':''}${state['o_'+id]?' open':''}" data-id="${id}">
+    <div class="chead" onclick="tog(this.parentElement)">
+     <div class="cb" onclick="ck(event,this)"></div>
+     <span class="nm">${it.n}</span>
+     <div class="ttl">${it.t}</div>
+     ${it.lim?`<span class="lim">${it.lim}</span>`:''}
+    </div>
+    <div class="cbody">
+     <div class="blk"><div class="lb">详细动作</div><ul class="acts">${it.acts.map(a=>`<li>${a}</li>`).join('')}</ul></div>
+     ${it.notify?`<div class="notify"><b>学员通知点</b>${it.notify}</div>`:''}
+     ${it.dv&&it.dv!=='—'?`<div class="chips"><span class="chip o">交付物 · ${it.dv}</span></div>`:''}
+     ${it.risk?`<div class="risk"><b>合规 / 风险提示</b>${it.risk}</div>`:''}
+    </div>
+   </div>`}).join('')}
+ </div>
+</div>`;
+
+document.getElementById('pages').innerHTML=
+ /* 总览 */
+ `<div class="pg on" id="pg-ov">
+  <div class="warnbox"><b>⚠️ 使用前请先对齐 4 件事</b>
+   ① <b>「出第一单」的准确定义</b>——真实成交（非刷单）、学员自操作 vs 代操作、退单是否计入；<br>
+   ② <b>销售已承诺事项的清单与口径</b>——哪些承诺公司不承接，必须在陪跑启动前书面澄清；<br>
+   ③ <b>各阶段时限是否合理</b>——时限是本 SOP 的骨架，改时限等于改整个陪跑周期；<br>
+   ④ <b>视频结业闸门（3.6）是否放水</b>——放水是本 SOP 最大的雷，放了后面全塌。</div>
+
+  <div class="ov">
+   ${PHASES.map(p=>{
+    const done=p.items.filter(i=>state[p.id+'-'+i.n]).length, pct=Math.round(done/p.items.length*100);
+    return `<div class="ovc" onclick="jump('${p.page}')" style="cursor:pointer">
+     <div class="bar"></div><h4><span class="code">${p.code}</span>${p.title.split('：')[0]}</h4>
+     <div class="w">${p.win}</div><p>${p.title.split('：')[1]||''}</p>
+     <div class="pg-bar"><i style="width:${pct}%"></i></div>
+     <div class="pg-t">${done} / ${p.items.length} 项完成</div>
+    </div>`}).join('')}
+  </div>
+
+  <div class="sec">
+   <div class="sechd"><h2>全链路时间轴</h2></div>
+   <div class="tw"><table><thead><tr><th style="width:80px">节点</th><th style="width:150px">动作</th><th style="width:110px">通知方向</th><th>学员收到什么 / 做什么</th><th style="width:190px">带教内部动作</th><th style="width:200px">关键红线</th></tr></thead><tbody>
+   ${TT.map(r=>`<tr>${r.map((c,i)=>`<td>${i===0?`<span class="k">${c}</span>`:c}</td>`).join('')}</tr>`).join('')}
+   </tbody></table></div>
+  </div>
+
+  <div class="sec">
+   <div class="sechd"><h2>4 条贯穿全程的红线</h2></div>
+   <div class="tw"><table><thead><tr><th style="width:180px">红线</th><th>说明</th><th style="width:120px">触发阶段</th></tr></thead><tbody>
+   <tr><td><b>不承诺收益</b> <span class="tag d">最高</span></td><td>口头、书面、群里、私聊<b>一律不许</b>说「保证」「肯定赚」「稳赚」。统一口径：出单是结果不是承诺，我们承诺方法+资源+陪跑。</td><td><span class="tag w">S0 / S2</span></td></tr>
+   <tr><td><b>不代持账号</b> <span class="tag d">最高</span></td><td>不接账号密码、不代运营、不代发货。全案代运营班型例外，需走单独书面授权流程。</td><td><span class="tag w">S0 / S4</span></td></tr>
+   <tr><td><b>不碰灰产</b> <span class="tag d">最高</span></td><td>仿牌、假货、刷单、虚假交易、站外引流、无货源搬运——涉及一律拒接，已付款走退费流程。</td><td><span class="tag w">S1 / S4</span></td></tr>
+   <tr><td><b>前置动作不放水</b> <span class="tag n">高</span></td><td>视频结业、上架验收、SOP 执行率——该卡的必须卡住。放了水，学员翻车反过来算陪跑的账。</td><td><span class="tag w">S3 / S6</span></td></tr>
+   </tbody></table></div>
+  </div>
+
+  <div class="note"><b>关于这份 SOP</b>：V1 是骨架稿，先对齐阶段划分和时限，再逐项细化动作。三个建议先拍板——<b>① 各阶段时限是否可行；② 视频结业闸门（3.6）放不放水；③ 出单前置验收（6.1）由谁签字确认</b>。这三点定了，剩下就是执行细节。</div>
+ </div>`
+ +PHASES.map(phHTML).join('')
+ /* 通知节奏表 */
+ +`<div class="pg" id="pg-tt">
+  <div class="sec">
+   <div class="sechd"><h2>学员通知节奏表</h2><div class="meta-r"><span>原则：<b>每个节点都要让学员知道「什么时候会通知你、通知你干什么」</b></span></div></div>
+   <div class="goal">这张表回答的是「<b>每一步都要同步学员 X 久时间会通知你干什么</b>」。带教 PM 每次执行完动作，按此表在对应时间点主动推送，学员不追着问。</div>
+   <div class="tw"><table><thead><tr><th style="width:76px">时间点</th><th style="width:140px">节点动作</th><th style="width:120px">通知方向</th><th>学员收到什么 / 要做什么</th><th style="width:185px">带教内部动作</th><th style="width:200px">关键红线</th></tr></thead><tbody>
+   ${TT.map(r=>`<tr>${r.map((c,i)=>`<td>${i===0?`<span class="k">${c}</span>`:c}</td>`).join('')}</tr>`).join('')}
+   </tbody></table></div>
+   <div class="note"><b>执行要求</b>：这张表是「<b>带教 PM 的节拍器</b>」。到点必发，不等学员问。发完在交付台账标记「已通知 + 通知时间」，缺一次记一次。</div>
+  </div>
+ </div>`
+ /* 摸排表 */
+ +`<div class="pg" id="pg-mf">
+  <div class="sec">
+   <div class="sechd"><h2>摸排信息表模板（22 项）</h2><div class="meta-r">S1 阶段用 · <b>★ = 必填</b></div></div>
+   <div class="goal">摸排产出不是「信息」，是「<b>学员定级 + 陪跑方案初稿</b>」。22 项里带 <span style="color:#c0392b">★★</span> 的 6 项是<b>风险项</b>，漏填等于埋雷。</div>
+   <div class="tw"><table><thead><tr><th style="width:36px">#</th><th style="width:150px">字段</th><th style="width:170px">关键点</th><th style="width:130px">用途</th><th>填写说明</th></tr></thead><tbody>
+   ${MF.map(r=>`<tr>${r.map((c,i)=>{
+     if(i===0)return `<td><span class="k">${c}</span></td>`;
+     if(i===4)return `<td>${c} ${r[5]?`<span class="tag d">${r[5]}</span>`:''}</td>`;
+     return `<td>${c}</td>`}).join('')}</tr>`).join('')}
+   </tbody></table></div>
+   <div class="warnbox"><b>⚠️ 6 个 ★★ 风险项，务必当面/截图确认，不要只听口述</b>
+    07 销售已承诺事项（带原话截图）· 11 后台数据截图 · 12 违规限流史 · 20 心理类型与退款风险等级 · 21 合规诉求<br>
+    这 6 项漏了任一项，后续退款或封号纠纷时<b>带教侧拿不出证据</b>。</div>
+  </div>
+ </div>`
+ /* 话术库 */
+ +`<div class="pg" id="pg-sc">
+  <div class="sec">
+   <div class="sechd"><h2>话术库</h2><div class="meta-r">S2 电话 + 日常跟进 · <b>点击复制</b></div></div>
+   <div class="goal">话术不是照背，是<b>按学员类型调整语气</b>。焦虑型慢一点、被质疑型给数据、高高在上型从基础做起。</div>
+   ${SC.map(s=>`<div class="sc">
+    <h4>${s.t}<button class="copy" onclick="cp(this)">复制话术</button></h4>
+    <p>${s.p}</p>
+    <div class="anno">${s.a}</div>
+   </div>`).join('')}
+  </div>
+ </div>`;
+
+/* ═══════════════ 交互 ═══════════════ */
+function tog(el){
+ el.classList.toggle('open');
+ state['o_'+el.dataset.id]=el.classList.contains('open');
+ save();
+}
+function ck(e,el){
+ e.stopPropagation();
+ const card=el.parentElement,id=card.dataset.id;
+ state[id]=!state[id];
+ if(!state[id])state['o_'+id]=false;
+ card.classList.toggle('done',state[id]);
+ card.classList.toggle('open',state[id]);
+ save();render();
+}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}}
+function render(){
+ let d=0,t=0;
+ PHASES.forEach(p=>p.items.forEach(i=>{t++;if(state[p.id+'-'+i.n])d++}));
+ const pct=t?Math.round(d/t*100):0;
+ document.getElementById('pbar').style.width=pct+'%';
+ document.getElementById('ptxt').textContent=d+' / '+t;
+ document.querySelectorAll('.ovc').forEach((el,i)=>{
+  const p=PHASES[i],dn=p.items.filter(x=>state[p.id+'-'+x.n]).length,pc=Math.round(dn/p.items.length*100);
+  el.querySelector('.pg-bar i').style.width=pc+'%';
+  el.querySelector('.pg-t').textContent=dn+' / '+p.items.length+' 项完成';
+ });
+}
+function jump(id){
+ document.querySelectorAll('.nb').forEach(x=>x.classList.toggle('on',x.dataset.t===id));
+ document.querySelectorAll('.pg').forEach(x=>x.classList.toggle('on',x.id==='pg-'+id));
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+function expandAll(){document.querySelectorAll('.card').forEach(c=>{c.classList.add('open');state['o_'+c.dataset.id]=1});save()}
+function collapseAll(){document.querySelectorAll('.card').forEach(c=>{c.classList.remove('open');state['o_'+c.dataset.id]=0});save()}
+function resetAll(){if(confirm('清空所有勾选进度？')){state={};save();location.reload()}}
+function cp(btn){
+ const txt=btn.parentElement.querySelector('p').innerText;
+ try{navigator.clipboard.writeText(txt).then(()=>{
+  const o=btn.innerText;btn.innerText='✓ 已复制';btn.classList.add('ok');
+  setTimeout(()=>{btn.innerText=o;btn.classList.remove('ok')},1600)});}catch(e){btn.innerText='请手动复制'};
+}
+render();
+</script>
+</body>
+</html>
